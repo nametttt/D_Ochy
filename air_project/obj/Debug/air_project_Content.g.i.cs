@@ -8,24 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/add-ticket.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/airport.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/calendar.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/delete-ticket.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/doc.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/exit.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/logo.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/plane-stock.jpg")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/plane.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/plata.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/profile.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/replace.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/safety.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/safetyss.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/user.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/visa.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/watchflight.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/%d0%b2%d1%85%d0%be%d0%b4.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/%d0%bb%d0%be%d0%b3%d0%be%d1%82%d0%b8%d0%bf.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/plane-backgraund.png")]
 
 

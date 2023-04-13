@@ -30,3 +30,5 @@ C:\Users\tanus\source\repos\air_project\air_project\bin\Debug\EntityFramework.Sq
 C:\Users\tanus\source\repos\air_project\air_project\bin\Debug\ru\EntityFramework.resources.dll
 C:\Users\tanus\source\repos\air_project\air_project\bin\Debug\ru\EntityFramework.SqlServer.resources.dll
 C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\CustomerProfile.baml
+C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\MyOchy.g.cs
+C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\MyOchy.baml

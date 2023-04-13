@@ -45,7 +45,6 @@
                     Height="40" 
                     Content="Войти" 
                     Margin="0 0 0 5" 
-                    Style="{StaticResource ResourceKey=Button}" 
                     Click="btnAuth_Click"/>
 
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top"

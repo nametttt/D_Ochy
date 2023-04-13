@@ -72,6 +72,9 @@
     <Compile Include="CustomerProfile.xaml.cs">
       <DependentUpon>CustomerProfile.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MyOchy.xaml.cs">
+      <DependentUpon>MyOchy.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Recovery.xaml.cs">
       <DependentUpon>Recovery.xaml</DependentUpon>
     </Compile>
@@ -90,6 +93,10 @@
       <DependentUpon>Auth.xaml</DependentUpon>
     </Compile>
     <Page Include="CustomerProfile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyOchy.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -150,6 +157,9 @@
     <Resource Include="Resources\watchflight.png" />
     <Resource Include="Resources\вход.png" />
     <Resource Include="Resources\логотип.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Plane-backgraund.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

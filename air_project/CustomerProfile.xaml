@@ -10,73 +10,52 @@
         Title="Личный кабинет" Height="650" Width="1250" MinHeight="650" MinWidth="1250" Icon="/Resources/логотип.png">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="49*"/>
-            <ColumnDefinition Width="148*"/>
-            <ColumnDefinition Width="597*"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+        
         <Grid.Background>
             <ImageBrush ImageSource="Resources/Plane-stock.jpg"/>
         </Grid.Background>
-        <DockPanel LastChildFill="False" Grid.Column="1" Grid.ColumnSpan="2">
-            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="0 0 0 60">
-                <Label DockPanel.Dock="Top" Content="OCHY" HorizontalAlignment="Left" Margin="20,15,0,0" VerticalAlignment="Top" Height="72" Width="195" FontSize="65" Foreground="#FFCC775E" FontWeight="Bold" FontFamily="Cormorant" IsEnabled="False"/>
-                <Label DockPanel.Dock="Top" Content="авиабилеты" HorizontalAlignment="Left" Margin="-5,52,0,0" VerticalAlignment="Top" FontFamily="Candara Light" FontSize="20"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Center">
-                <Rectangle HorizontalAlignment="Left" Height="408" Margin="0 0 30 0" VerticalAlignment="Top" Width="196" RadiusY="10" RadiusX="10" Fill="#FAE9D9"/>
-                <Rectangle HorizontalAlignment="Left" Height="408" Margin="0 0 30 0" VerticalAlignment="Top" Width="525" RadiusY="10" RadiusX="10" Fill="#FAE9D9"/>
-            </StackPanel>
-            <StackPanel DockPanel.Dock="Top" HorizontalAlignment="Center" Margin="-590,-395,0,0">
-                <Label x:Name="mytickets"  Content="Мои билеты" HorizontalAlignment="Center" Margin="0 0 0 0" VerticalAlignment="Top" FontFamily="Arial Black" Foreground="#FF2E2F3F" FontSize="16"/>
-                <Label x:Name="doci" Content="Документы" HorizontalAlignment="Center" Margin="0 0 0 0" VerticalAlignment="Top" FontFamily="Arial Black" Foreground="#FF2E2F3F" FontSize="16"/>
-                <Label x:Name="cards" Content="Банковские карты" HorizontalAlignment="Center" Margin="0 0 0 200" VerticalAlignment="Top" FontFamily="Arial Black" Foreground="#FF2E2F3F" FontSize="16"/>
-                <Label Content="Связаться с нами:" HorizontalAlignment="Center" Margin="0 0 0 0" VerticalAlignment="Top" FontFamily="Candara Light" FontSize="16" FontWeight="Normal"/>
-                <Label Content="+7(000)000-00-00" HorizontalAlignment="Center" Margin="0 0 0 0" VerticalAlignment="Top" FontFamily="Candara Light" FontSize="14"/>
-                <Label Content="ochy@gmail.com" HorizontalAlignment="Center" Margin="0 0 0 0" VerticalAlignment="Top" FontFamily="Candara Light" FontSize="14"/>
-            </StackPanel>
-            <Label Content="Личные данные" HorizontalAlignment="Left" Margin="450 -390 0 0" VerticalAlignment="Top" FontFamily="Arial Black" Foreground="#FF2E2F3F" FontSize="16"/>
-            <StackPanel DockPanel.Dock="Top" HorizontalAlignment="Center" Orientation="Horizontal" Margin="-410 -355 0 0">
-                <TextBox x:Name="txtFam" HorizontalAlignment="Left" Margin="0 0 40 0" TextWrapping="Wrap" Text="Фамилия" VerticalAlignment="Top" Width="201" Height="29" BorderBrush="{x:Null}" FontFamily="Candara Light" FontSize="16" />
-                <TextBox x:Name="txtLName" HorizontalAlignment="Left" Margin="30 0 0 0" TextWrapping="Wrap" VerticalAlignment="Top" Width="201" Height="28" BorderBrush="{x:Null}" Text="Отчество" FontFamily="Candara Light" FontSize="16"/>
-            </StackPanel>
-            <StackPanel DockPanel.Dock="Top" HorizontalAlignment="Center" Orientation="Horizontal" Margin="-410 -315 0 0">
-                <TextBox x:Name="txtName" HorizontalAlignment="Left" Margin="0 0 40 0" TextWrapping="Wrap" Text="Имя" VerticalAlignment="Top" Width="201" Height="29" BorderBrush="{x:Null}" FontFamily="Candara Light" FontSize="16" />
-                <TextBox x:Name="txtTel" HorizontalAlignment="Left" Margin="30 0 0 0" TextWrapping="Wrap" VerticalAlignment="Top" Width="201" Height="28" BorderBrush="{x:Null}" Text="Номер телефона" FontFamily="Candara Light" FontSize="16"/>
-            </StackPanel>
-            <Button x:Name="btnChangeData" Content="Изменить данные" HorizontalAlignment="Left" Margin="-160 -275 0 0" VerticalAlignment="Top" RenderTransformOrigin="1.071,0.553" Width="202" Height="29" Visibility="Visible" Style="{StaticResource ResourceKey=Button}">
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="5"/>
-                    </Style>
-                </Button.Resources>
-            </Button>
-            <Label Content="Изменение пароля" HorizontalAlignment="Left" Margin="-195 -240 0 0" VerticalAlignment="Top" FontFamily="Arial Black" Foreground="#FF2E2F3F" FontSize="16"/>
-            <StackPanel DockPanel.Dock="Top" HorizontalAlignment="Center" Orientation="Vertical" Margin="-290 -210 430 0">
-                <Label Content="Текщий пароль:" HorizontalAlignment="Left" Margin="0 0 0 0" VerticalAlignment="Top" FontFamily="Candara Light" FontSize="14" FontWeight="Normal"/>
-                <TextBox x:Name="txtCurrentPass"  HorizontalAlignment="Left" Margin="0 0 0 0" TextWrapping="Wrap" VerticalAlignment="Top" Width="201" Height="29" BorderBrush="{x:Null}" FontFamily="Candara Light" FontSize="16"/>
-                <Button x:Name="btnChangePass"  Content="Изменить пароль" HorizontalAlignment="Left" Margin="0 32 0 0" VerticalAlignment="Top" Width="201" Height="29" Style="{StaticResource ResourceKey=Button}">
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="5"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
-                <Label x:Name="lblExitAcc" Content="Хотите выйти из аккаунта?" HorizontalAlignment="Left" Margin="0 30 0 0" VerticalAlignment="Top" FontFamily="Candara Light" FontSize="14" Foreground="#FF2E2F3F"/>
-            </StackPanel>
-            <StackPanel DockPanel.Dock="Top" HorizontalAlignment="Center" Orientation="Vertical" Margin="-170 -210 0 0">
-                <Label Content="Новый пароль:" HorizontalAlignment="Left" Margin="0 0 0 0" VerticalAlignment="Top" FontFamily="Candara Light" FontSize="14" FontWeight="Normal"/>
-                <TextBox x:Name="txtNewPass" HorizontalAlignment="Left" Margin="0 0 0 5" TextWrapping="Wrap" VerticalAlignment="Top" Width="201" Height="29" BorderBrush="{x:Null}" FontFamily="Candara Light" FontSize="16"/>
-                <Label Content="Повторите пароль:" HorizontalAlignment="Left" Margin="0 0 0 0" VerticalAlignment="Top" FontFamily="Candara Light" FontSize="14" FontWeight="Normal"/>
-                <TextBox x:Name="txtRetryPass" HorizontalAlignment="Left" Margin="0 0 0 0" TextWrapping="Wrap" VerticalAlignment="Top" Width="201" Height="29" BorderBrush="{x:Null}" FontFamily="Candara Light" FontSize="16"/>
-                <Label x:Name="lblRemoveAcc" Content="Хотите удалить аккаунт?" HorizontalAlignment="Left" Margin="43 30 0 0" VerticalAlignment="Top" FontFamily="Candara Light" FontSize="14" Foreground="#FF2E2F3F"/>
+        
+        <DockPanel Grid.Column="1" Grid.ColumnSpan="2">
+            <local:MyOchy DockPanel.Dock="Top"/>
+
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Center" Margin="10">
+
+                <Border CornerRadius="10" BorderThickness="1" Background="#FFFAE3D5" >
+                    <StackPanel  Width="200">
+                        <Label x:Name="mytickets"   Content="Данные" HorizontalAlignment="Center" Margin="0 10 0 0" VerticalAlignment="Top" FontFamily="Arial Black" Foreground="#FF2E2F3F" FontSize="16"/>
+                        <Label x:Name="cards" Content="Мои карты" HorizontalAlignment="Center" Margin="0 0 0 0" VerticalAlignment="Top" FontFamily="Arial Black" Foreground="#FF2E2F3F" FontSize="16"/>
+                        <Label Content="Пассажиры" HorizontalAlignment="Center" Margin="0 0 0 0" VerticalAlignment="Top" FontFamily="Arial Black" Foreground="#FF2E2F3F" FontSize="16"/>
+                        <Label Content="Документы" HorizontalAlignment="Center" Margin="0 0 0 200" VerticalAlignment="Top" FontFamily="Arial Black" Foreground="#FF2E2F3F" FontSize="16"/>
+                        <Label Content="Связаться с нами:" HorizontalAlignment="Center" Margin="0 0 0 0" VerticalAlignment="Top" FontFamily="Candara Light" FontSize="16" FontWeight="Normal"/>
+                        <Label Content="+7(000)000-00-00" HorizontalAlignment="Center" Margin="0 0 0 0" VerticalAlignment="Top" FontFamily="Candara Light" FontSize="14"/>
+                        <Label Content="ochy@gmail.com" HorizontalAlignment="Center" Margin="0 0 0 0" VerticalAlignment="Top" FontFamily="Candara Light" FontSize="14"/>
+
+                    </StackPanel>
+                </Border>
+
+                <Border CornerRadius="10" BorderThickness="1" Background="#FFFAE3D5" Margin="30 0 0 0" >
+                    <StackPanel VerticalAlignment="Top" Width="600">
+                        <Label Content="Личные данные" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Top" FontFamily="Arial Black" Foreground="#FF2E2F3F" FontSize="16"/>
+                        <StackPanel DockPanel.Dock="Top" HorizontalAlignment="Center" Orientation="Horizontal" Margin="10">
+                            <TextBox x:Name="txtFam"  HorizontalAlignment="Left" Margin="0 0 40 0" TextWrapping="Wrap" Text="Фамилия" VerticalAlignment="Top" Width="201" Height="29" BorderBrush="{x:Null}" FontFamily="Candara Light" FontSize="16" />
+                            <TextBox x:Name="txtLName"  HorizontalAlignment="Left" Margin="30 0 0 0" TextWrapping="Wrap" VerticalAlignment="Top" Width="201" Height="28" BorderBrush="{x:Null}" Text="Отчество" FontFamily="Candara Light" FontSize="16"/>
+                        </StackPanel>
+                        <StackPanel DockPanel.Dock="Top" HorizontalAlignment="Center" Orientation="Horizontal" Margin="10">
+                            <TextBox x:Name="txtName"  HorizontalAlignment="Left" Margin="0 0 40 0" TextWrapping="Wrap" Text="Имя" VerticalAlignment="Top" Width="201" Height="29" BorderBrush="{x:Null}" FontFamily="Candara Light" FontSize="16" />
+                            <TextBox x:Name="txtTel"  HorizontalAlignment="Left" Margin="30 0 0 0" TextWrapping="Wrap" VerticalAlignment="Top" Width="201" Height="28" BorderBrush="{x:Null}" Text="Номер телефона" FontFamily="Candara Light" FontSize="16"/>
+                        </StackPanel>
+                        <Button Content="Изменить данные" HorizontalAlignment="Left" Margin="30" Width="470" Height="29">
+                        </Button>
+                    </StackPanel>
+                </Border>
+                
             </StackPanel>
         </DockPanel>
-        <HamburgerMenu:HamburgerMenu Grid.Column="0" Grid.ColumnSpan="2" Background="#FAE9D9" MenuIconColor="#764C4D" SelectionIndicatorColor="#30282D" HorizontalAlignment="Left" Foreground="#FFD54EF6" BorderBrush="Black" FontWeight="Bold" FontSize="16">
-            <HamburgerMenu:HamburgerMenu.MenuItemForeground>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FFFF1739"/>
-                </LinearGradientBrush>
-            </HamburgerMenu:HamburgerMenu.MenuItemForeground>
+        <HamburgerMenu:HamburgerMenu Grid.Column="0" Grid.ColumnSpan="2" Background="#FFE2C5BF" MenuIconColor="#764C4D" SelectionIndicatorColor="#30282D" HorizontalAlignment="Left" FontFamily="Candara Light" FontSize="16" MenuItemForeground="Black">
             <HamburgerMenu:HamburgerMenuItem x:Name="profile" Text="Личный кабинет" Icon="/Resources/profile.png"/>
             <HamburgerMenu:HamburgerMenuItem x:Name="ticketsBuy" Text="Полететь далеко" Icon="/Resources/plane.png"/>
             <HamburgerMenu:HamburgerMenuItem Text="Выход из аккаунта" x:Name="exit" Icon="/Resources/exit.png"/>

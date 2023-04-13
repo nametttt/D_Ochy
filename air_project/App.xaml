@@ -4,10 +4,10 @@
              xmlns:local="clr-namespace:air_project"
              xmlns:air_project="clr-namespace:air_project"
              xmlns:PasswordStyle="clr-namespace:air_project"
-             StartupUri="Auth.xaml">
+             StartupUri="CustomerProfile.xaml">
     <Application.Resources>
         
-        <Style TargetType="Button" x:Key="Button">
+        <Style TargetType="Button">
             <Style.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>
