@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Title="Вход" Height="410" Width="380" MinHeight="410" MinWidth="380"
-               Closing="Window_Closing" Icon="Resources/логотип.png" Background="#FBDAB9">
+               Closing="Window_Closing" Icon="Resources/логотип.png" Background="#FFFCD7C0">
     <Grid>
         <DockPanel LastChildFill="False">
             
@@ -28,14 +28,15 @@
                      DockPanel.Dock="Top"
                      Style="{StaticResource MyWaterMarkStyle}"
                      Width="300" 
-                     Height="37"
+                     Height="38"
                      Margin="0 0 0 15"
                      Tag="Адрес электронной почты"/>
             
             <TextBox x:Name="txtPassword"
                      DockPanel.Dock="Top"
                      Style="{StaticResource MyWaterMarkStyle}"
-                     Width="300" Height="37" 
+                     Width="300" 
+                     Height="38" 
                      Margin="0 0 0 15"
                      Tag="Пароль"/>
             
@@ -45,7 +46,8 @@
                     Height="40" 
                     Content="Войти" 
                     Margin="0 0 0 5" 
-                    Click="btnAuth_Click"/>
+                    Click="btnAuth_Click"
+                    Style="{StaticResource Button}"/>
 
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top"
                         HorizontalAlignment="Center">

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:air_project"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Регистрация" Height="550" Width="380" MinHeight="550" MinWidth="380" Icon="Resources/логотип.png" Background="#FBDAB9">
+        Title="Регистрация" Height="600" Width="380" MinHeight="600" MinWidth="380" Icon="Resources/логотип.png" Background="#FFFCD7C0">
     <Grid>
         <DockPanel LastChildFill="False">
             <Label DockPanel.Dock="Top"
@@ -38,6 +38,14 @@
                      Height="39" 
                      Margin="0 0 0 15"
                      Tag="Имя"/>
+
+            <TextBox x:Name="txtPatronymic" 
+                     DockPanel.Dock="Top" 
+                     Style="{StaticResource MyWaterMarkStyle}"
+                     Width="300" 
+                     Height="39" 
+                     Margin="0 0 0 15"
+                     Tag="Отчество"/>
 
             <TextBox x:Name="txtLogin" 
                      DockPanel.Dock="Top" 
@@ -86,7 +94,8 @@
                     x:Name="btnAuth" 
                     Width="300" 
                     Height="40" 
-                    Content="Зарегистрироваться">
+                    Content="Зарегистрироваться"
+                    Style="{StaticResource Button}">
             </Button>
         </DockPanel>
     </Grid>

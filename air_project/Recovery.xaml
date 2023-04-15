@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:air_project"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Не помню пароль" Height="410" Width="380" MinHeight="390" MinWidth="380" Icon="Resources/логотип.png" Closing="Window_Closing" Background="#FBDAB9">
+        Title="Не помню пароль" Height="410" Width="380" MinHeight="390" MinWidth="380" Icon="Resources/логотип.png" Closing="Window_Closing" Background="#FFFCD7C0">
     <Grid>
         <DockPanel LastChildFill="False">
             <Label DockPanel.Dock="Top" 
@@ -27,13 +27,14 @@
                        Foreground="#30282D" 
                        TextWrapping="Wrap" 
                        Width="300" 
-                       Margin="0,0,0,15">Укажите адрес электронной почты от вашего аккаунта на OCHY. На эту почту мы пришлем код для быстрого входа в аккаунт.</TextBlock>
+                       Text="Укажите адрес электронной почты от вашего аккаунта на OCHY. На эту почту мы пришлем код для быстрого входа в аккаунт."
+                       Margin="0,0,0,15"></TextBlock>
 
             <TextBox x:Name="txtLogin"
                      DockPanel.Dock="Top"
                      Style="{StaticResource MyWaterMarkStyle}"
                      Width="300" 
-                     Height="37"
+                     Height="38"
                      Margin="0 0 0 15"
                      Tag="Адрес электронной почты"/>
 
@@ -43,7 +44,8 @@
                     Width="300" 
                     Height="40" 
                     Content="Получить код" 
-                    Margin="0 0 0 5">
+                    Margin="0 0 0 5"
+                    Style="{StaticResource Button}">
             </Button>
         </DockPanel>
     </Grid>

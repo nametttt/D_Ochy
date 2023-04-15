@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/plane-backgraund.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/pngcard.png")]
 
 

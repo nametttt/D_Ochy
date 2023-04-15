@@ -7,59 +7,598 @@
         xmlns:HamburgerMenu="clr-namespace:HamburgerMenu;assembly=HamburgerMenu"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Личный кабинет" Height="650" Width="1250" MinHeight="650" MinWidth="1250" Icon="/Resources/логотип.png">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="50"/>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        
-        <Grid.Background>
-            <ImageBrush ImageSource="Resources/Plane-stock.jpg"/>
-        </Grid.Background>
-        
-        <DockPanel Grid.Column="1" Grid.ColumnSpan="2">
-            <local:MyOchy DockPanel.Dock="Top"/>
+        Title="Личный кабинет" Height="680" Width="1250" MinHeight="680" MinWidth="1100" Icon="/Resources/логотип.png">
 
-            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Center" Margin="10">
+    <DockPanel>
+        <ScrollViewer>
 
-                <Border CornerRadius="10" BorderThickness="1" Background="#FFFAE3D5" >
-                    <StackPanel  Width="200">
-                        <Label x:Name="mytickets"   Content="Данные" HorizontalAlignment="Center" Margin="0 10 0 0" VerticalAlignment="Top" FontFamily="Arial Black" Foreground="#FF2E2F3F" FontSize="16"/>
-                        <Label x:Name="cards" Content="Мои карты" HorizontalAlignment="Center" Margin="0 0 0 0" VerticalAlignment="Top" FontFamily="Arial Black" Foreground="#FF2E2F3F" FontSize="16"/>
-                        <Label Content="Пассажиры" HorizontalAlignment="Center" Margin="0 0 0 0" VerticalAlignment="Top" FontFamily="Arial Black" Foreground="#FF2E2F3F" FontSize="16"/>
-                        <Label Content="Документы" HorizontalAlignment="Center" Margin="0 0 0 200" VerticalAlignment="Top" FontFamily="Arial Black" Foreground="#FF2E2F3F" FontSize="16"/>
-                        <Label Content="Связаться с нами:" HorizontalAlignment="Center" Margin="0 0 0 0" VerticalAlignment="Top" FontFamily="Candara Light" FontSize="16" FontWeight="Normal"/>
-                        <Label Content="+7(000)000-00-00" HorizontalAlignment="Center" Margin="0 0 0 0" VerticalAlignment="Top" FontFamily="Candara Light" FontSize="14"/>
-                        <Label Content="ochy@gmail.com" HorizontalAlignment="Center" Margin="0 0 0 0" VerticalAlignment="Top" FontFamily="Candara Light" FontSize="14"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
 
-                    </StackPanel>
-                </Border>
+                <Grid.Background>
+                    <ImageBrush ImageSource="Resources/Plane-stock.jpg"/>
+                </Grid.Background>
 
-                <Border CornerRadius="10" BorderThickness="1" Background="#FFFAE3D5" Margin="30 0 0 0" >
-                    <StackPanel VerticalAlignment="Top" Width="600">
-                        <Label Content="Личные данные" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Top" FontFamily="Arial Black" Foreground="#FF2E2F3F" FontSize="16"/>
-                        <StackPanel DockPanel.Dock="Top" HorizontalAlignment="Center" Orientation="Horizontal" Margin="10">
-                            <TextBox x:Name="txtFam"  HorizontalAlignment="Left" Margin="0 0 40 0" TextWrapping="Wrap" Text="Фамилия" VerticalAlignment="Top" Width="201" Height="29" BorderBrush="{x:Null}" FontFamily="Candara Light" FontSize="16" />
-                            <TextBox x:Name="txtLName"  HorizontalAlignment="Left" Margin="30 0 0 0" TextWrapping="Wrap" VerticalAlignment="Top" Width="201" Height="28" BorderBrush="{x:Null}" Text="Отчество" FontFamily="Candara Light" FontSize="16"/>
-                        </StackPanel>
-                        <StackPanel DockPanel.Dock="Top" HorizontalAlignment="Center" Orientation="Horizontal" Margin="10">
-                            <TextBox x:Name="txtName"  HorizontalAlignment="Left" Margin="0 0 40 0" TextWrapping="Wrap" Text="Имя" VerticalAlignment="Top" Width="201" Height="29" BorderBrush="{x:Null}" FontFamily="Candara Light" FontSize="16" />
-                            <TextBox x:Name="txtTel"  HorizontalAlignment="Left" Margin="30 0 0 0" TextWrapping="Wrap" VerticalAlignment="Top" Width="201" Height="28" BorderBrush="{x:Null}" Text="Номер телефона" FontFamily="Candara Light" FontSize="16"/>
-                        </StackPanel>
-                        <Button Content="Изменить данные" HorizontalAlignment="Left" Margin="30" Width="470" Height="29">
-                        </Button>
-                    </StackPanel>
-                </Border>
-                
-            </StackPanel>
-        </DockPanel>
-        <HamburgerMenu:HamburgerMenu Grid.Column="0" Grid.ColumnSpan="2" Background="#FFE2C5BF" MenuIconColor="#764C4D" SelectionIndicatorColor="#30282D" HorizontalAlignment="Left" FontFamily="Candara Light" FontSize="16" MenuItemForeground="Black">
-            <HamburgerMenu:HamburgerMenuItem x:Name="profile" Text="Личный кабинет" Icon="/Resources/profile.png"/>
-            <HamburgerMenu:HamburgerMenuItem x:Name="ticketsBuy" Text="Полететь далеко" Icon="/Resources/plane.png"/>
-            <HamburgerMenu:HamburgerMenuItem Text="Выход из аккаунта" x:Name="exit" Icon="/Resources/exit.png"/>
-        </HamburgerMenu:HamburgerMenu>
-    </Grid>
+                <DockPanel Grid.Column="1" 
+                   Grid.ColumnSpan="2">
+                    <local:MyOchy DockPanel.Dock="Top"/>
 
+                    <WrapPanel Orientation="Horizontal" 
+                        DockPanel.Dock="Top" 
+                        HorizontalAlignment="Center"
+                           Margin="0 0 0 50">
+
+                        <Border CornerRadius="10" 
+                        BorderThickness="1" 
+                        Background="#FFFAE3D5" >
+
+                            <StackPanel Width="210">
+
+                                <Button Height="40" 
+                                Margin="0 20 0 0"
+                                Content="Личные данные"
+                                Style="{StaticResource ProfileButton}"/>
+
+                                <Button Height="40" 
+                                Content="Документы"
+                                Style="{StaticResource ProfileButton}"/>
+
+                                <Button Height="40"
+                                Content="Мои билеты"
+                                Style="{StaticResource ProfileButton}"/>
+
+                                <Button Height="40" 
+                                Margin="0 0 0 140"
+                                Content="Банковские карты"
+                                Style="{StaticResource ProfileButton}"/>
+
+                                <Label Content="Связаться с нами:"
+                               HorizontalAlignment="Center" 
+                               FontFamily="Candara Light" 
+                               FontSize="16"/>
+
+                                <Label Content="+7(000)000-00-00" 
+                               HorizontalAlignment="Center" 
+                               FontFamily="Candara Light" 
+                               FontSize="14"/>
+
+                                <Label Content="ochy@gmail.com" 
+                               HorizontalAlignment="Center"
+                               FontFamily="Candara Light" 
+                               FontSize="14"/>
+
+                            </StackPanel>
+                        </Border>
+
+                        <Border CornerRadius="10"
+                        BorderThickness="1"
+                        Background="#FFFAE3D5"
+                        Margin="30 0 0 0">
+
+                            <StackPanel Width="700">
+                                <Grid>
+                                    <Grid Margin="10" Visibility="Hidden">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="40*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <StackPanel Grid.Column="0" Margin="0 0 10 0" >
+
+                                            <Label Content="Личные данные"
+                                       HorizontalAlignment="Left"
+                                       Margin="20,15,0,5"
+                                       FontFamily="Arial Black"
+                                       Foreground="#FF2E2F3F"
+                                       FontSize="18"/>
+
+                                            <TextBox x:Name="Surname" 
+                                          Style="{StaticResource MyWaterMarkStyle}"
+                                          Height="38" 
+                                          Margin="20 10 20 0"
+                                          Tag="Фамилия"/>
+
+                                            <TextBox x:Name="Name" 
+                                          Style="{StaticResource MyWaterMarkStyle}"
+                                          Height="38" 
+                                          Margin="20 15 20 0"
+                                          Tag="Имя"/>
+
+                                            <TextBox x:Name="Patronymic" 
+                                          Style="{StaticResource MyWaterMarkStyle}"
+                                          Height="38" 
+                                          Margin="20 15 20 0"
+                                          Tag="Отчество"/>
+
+                                            <Label Content="Контактные данные"
+                                       HorizontalAlignment="Left"
+                                       Margin="20,30,0,5"
+                                       FontFamily="Arial Black"
+                                       Foreground="#FF2E2F3F"
+                                       FontSize="18"/>
+
+                                            <TextBox x:Name="Email" 
+                                          Style="{StaticResource MyWaterMarkStyle}"
+                                          Height="38" 
+                                          Margin="20 10 20 20"
+                                          Tag="Адрес электронной почты"/>
+
+                                            <Button DockPanel.Dock="Top" 
+                                        x:Name="btnAuth" 
+                                        Width="290" 
+                                        Height="40" 
+                                        Content="Сохранить изменения"
+                                        Style="{StaticResource Button}"/>
+                                        </StackPanel>
+
+                                        <StackPanel Grid.Column="1"  Margin="10 0 0 0">
+
+                                            <Label Content="Изменить пароль"
+                                       HorizontalAlignment="Left"
+                                       Margin="20,15,0,5"
+                                       FontFamily="Arial Black"
+                                       Foreground="#FF2E2F3F"
+                                       FontSize="18"/>
+
+                                            <PasswordBox x:Name="NowPassword" 
+                                          Style="{StaticResource MyWaterMarkStyle1}"
+                                          Height="38" 
+                                          Margin="20 10 20 0"
+                                          Tag="Текущий пароль"/>
+
+                                            <PasswordBox x:Name="NewPassword" 
+                                          Style="{StaticResource MyWaterMarkStyle1}"
+                                          Height="38" 
+                                          Margin="20 15 20 0"
+                                          Tag="Новый пароль"/>
+
+                                            <PasswordBox x:Name="Password" 
+                                          Style="{StaticResource MyWaterMarkStyle1}"
+                                          Height="38" 
+                                          Margin="20 15 20 20"
+                                          Tag="Подтвердите пароль"/>
+
+                                            <Button DockPanel.Dock="Top" 
+                                        x:Name="btnPass" 
+                                        Width="290" 
+                                        Height="40" 
+                                        Content="Изменить пароль"
+                                        Style="{StaticResource Button}"/>
+                                        </StackPanel>
+
+                                        <WrapPanel Grid.ColumnSpan="2" 
+                                           Grid.Row="1" 
+                                           Margin="0 20 0 0">
+
+                                            <TextBlock DockPanel.Dock="Top" 
+                                               HorizontalAlignment="Right" 
+                                               FontFamily="Candara Light" 
+                                               FontSize="14" 
+                                               Margin="20 0 20 0">
+                                         <Hyperlink 
+                                                Foreground="#30282D">Хотите выйти из аккаунта?</Hyperlink>
+                                            </TextBlock>
+
+                                            <TextBlock DockPanel.Dock="Top" 
+                                               HorizontalAlignment="Right" 
+                                               FontFamily="Candara Light" 
+                                               FontSize="14" 
+                                               Margin="310 0 20 0">
+                                        <Hyperlink 
+                                            Foreground="#30282D">Хотите удалить аккаунт?</Hyperlink>
+                                            </TextBlock>
+                                        </WrapPanel>
+                                    </Grid>
+
+                                    <Grid Margin="10 10 10 20" Visibility="Hidden">
+
+                                        <StackPanel>
+
+                                            <Label Content="Новая карта"
+                                       HorizontalAlignment="Left"
+                                       Margin="20,15,0,5"
+                                       FontFamily="Arial Black"
+                                       Foreground="#FF2E2F3F"
+                                       FontSize="18"/>
+
+                                            <TextBox  
+                                          Style="{StaticResource MyWaterMarkStyle}"
+                                          Height="38" 
+                                          Margin="20 20 20 0"
+                                          Tag="Номер карты"/>
+
+                                            <WrapPanel Margin="20 15 20 0" >
+                                                <TextBox 
+                                          Style="{StaticResource MyWaterMarkStyle}"
+                                          Height="38"
+                                          Width="180"
+                                          Tag="Месяц"/>
+
+                                                <Label Content="/"
+                                                   FontFamily="Canadara Light"
+                                                   FontSize="26"
+                                                   Margin="10 0 10 0"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="Gray"/>
+                                                <TextBox 
+                                                   Style="{StaticResource MyWaterMarkStyle}"
+                                                   Height="38" 
+                                                   Width="180"
+                                                   Tag="Год"/>
+
+                                                <PasswordBox
+                                                  Style="{StaticResource MyWaterMarkStyle1}"
+                                                  Height="38" 
+                                                  Width="200"
+                                                  Margin="29 0 0 0"
+                                                  Tag="CW/CVC"/>
+                                            </WrapPanel>
+
+
+                                            <TextBox  
+                                          Style="{StaticResource MyWaterMarkStyle}"
+                                          Height="38" 
+                                          Margin="20 15 20 20"
+                                          Tag="Имя владельца на латинице"/>
+                                            <Button DockPanel.Dock="Top" 
+                                                    Height="40" 
+                                                    Margin="20 0 20 0"
+                                                    Content="Добавить карту"
+                                                    Style="{StaticResource Button}"/>
+
+                                            <Label Content="Сохраненные"
+                                       HorizontalAlignment="Left"
+                                       Margin="20,30,0,5"
+                                       FontFamily="Arial Black"
+                                       Foreground="#FF2E2F3F"
+                                       FontSize="18"/>
+
+
+                                            <StackPanel Margin="20 15 0 0">
+                                                <Border Width="300" 
+                                                    Height="180" 
+                                                    BorderThickness="2" 
+                                                    BorderBrush="#33FFFFFF" 
+                                                    Background="#FF7C132F" 
+                                                    CornerRadius="10" 
+                                                    HorizontalAlignment="Left">
+                                                    <Grid>
+                                                        <Grid.Background>
+                                                            <ImageBrush ImageSource="/Resources/pngcard.png"/>
+                                                        </Grid.Background>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="1*"/>
+                                                            <RowDefinition Height="2*"/>
+                                                            <RowDefinition Height="0.5*"/>
+                                                        </Grid.RowDefinitions>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="1*"/>
+                                                            <ColumnDefinition Width="2*"/>
+                                                        </Grid.ColumnDefinitions>
+
+                                                        <StackPanel Orientation="Vertical" 
+                                                                Grid.Row="1" 
+                                                                Grid.ColumnSpan="2"  
+                                                                Margin="10 0 0 0">
+                                                            <Image Source="https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/chip.png" 
+                                                                   Height="40" 
+                                                                   Width="40"
+                                                                   HorizontalAlignment="Left"/>
+
+                                                            <TextBlock Text="4586 7985 9271 6388" 
+                                                                       Foreground="#FFFFFFFF" 
+                                                                       FontSize="16"/>
+                                                        </StackPanel>
+
+                                                        <StackPanel Grid.Row="2" Grid.Column="0">
+                                                            <TextBlock Text="02/24" 
+                                                                       Margin="10,0,0,0" 
+                                                                       Foreground="#FFFFFFFF"/>
+                                                        </StackPanel>
+
+                                                        <StackPanel Grid.Row="2" Grid.Column="1">
+                                                            <TextBlock Text="Shaykhullina Adelina" 
+                                                                       Margin="10,0,10,0" 
+                                                                       Foreground="#FFFFFFFF" 
+                                                                       HorizontalAlignment="Right"/>
+                                                        </StackPanel>
+
+                                                    </Grid>
+                                                </Border>
+                                            </StackPanel>
+
+                                        </StackPanel>
+                                    </Grid>
+
+                                    <Grid Margin="10 10 10 20" Visibility="Hidden">
+
+                                        <StackPanel ClipToBounds="True">
+
+                                            <Label Content="Активные билеты"
+                                                   HorizontalAlignment="Left"
+                                                   Margin="20,15,0,5"
+                                                   FontFamily="Arial Black"
+                                                   Foreground="#FF2E2F3F"
+                                                   FontSize="18"/>
+
+                                            <Border CornerRadius="10"
+                                                    BorderThickness="1"
+                                                    Background="#FFFEF9F4"
+                                                    Margin="30 15 30 0"
+                                                    BorderBrush="#FFA4848A">
+
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="*"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                    </Grid.RowDefinitions>
+
+                                                    <StackPanel Orientation="Horizontal"  Height="50" Grid.Row="0" Margin="20 20 20 0">
+                                                        <TextBlock Text="Билет №10100101" Foreground="#FFA4848A" FontSize="24" />
+                                                    </StackPanel>
+
+                                                    <StackPanel Grid.Row="1" Margin="20 0 20 20">
+                                                        <TextBlock Text="Маршрут: Москва - Нью-Йорк" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition/>
+                                                                <ColumnDefinition/>
+                                                            </Grid.ColumnDefinitions>
+
+                                                            <StackPanel>
+                                                                <TextBlock Text="Вылет" FontWeight="Bold"/>
+                                                                <TextBlock Text="Москва (SVO)" Margin="0,10,0,0"/>
+                                                                <TextBlock Text="19 июня 2023" Margin="0,5,0,0"/>
+                                                                <TextBlock Text="Вылет: 16:30" Margin="0,5,0,0"/>
+                                                            </StackPanel>
+
+                                                            <StackPanel Grid.Column="1" Margin="20,0,0,0">
+                                                                <TextBlock Text="Прилет" FontWeight="Bold"/>
+                                                                <TextBlock Text="Нью-Йорк (JFK)" Margin="0,10,0,0"/>
+                                                                <TextBlock Text="20 июня 2023" Margin="0,5,0,0"/>
+                                                                <TextBlock Text="Прилет: 10:45" Margin="0,5,0,0"/>
+                                                            </StackPanel>
+                                                        </Grid>
+
+                                                        <Separator Margin="0,20"/>
+
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <TextBlock Text="Класс: " FontWeight="Bold"/>
+                                                            <TextBlock Text="Бизнес" Margin="5,0"/>
+                                                        </StackPanel>
+
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <TextBlock Text="Количество пассажиров: " FontWeight="Bold"/>
+                                                            <TextBlock Text="2 взрослых, 1 ребенок" Margin="5,0"/>
+                                                        </StackPanel>
+
+                                                        <Separator Margin="0,20"/>
+
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <TextBlock Text="Стоимость: " FontWeight="Bold"/>
+                                                            <TextBlock Text="97 500 руб." Margin="5,0"/>
+                                                        </StackPanel>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Border>
+
+
+
+                                            <Label Content="История приобретений"
+                                       HorizontalAlignment="Left"
+                                       Margin="20,30,0,5"
+                                       FontFamily="Arial Black"
+                                       Foreground="#FF2E2F3F"
+                                       FontSize="18"/>
+                                            <Border CornerRadius="10"
+                                                    BorderThickness="1"
+                                                    Background="#FFFEF9F4"
+                                                    Margin="30 15 30 0"
+                                                    BorderBrush="#FFA4848A">
+
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="*"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                    </Grid.RowDefinitions>
+
+                                                    <StackPanel Orientation="Horizontal"  Height="50" Grid.Row="0" Margin="20 20 20 0">
+                                                        <TextBlock Text="Билет №10100101" Foreground="#FFA4848A" FontSize="24" />
+                                                    </StackPanel>
+
+                                                    <StackPanel Grid.Row="1" Margin="20 0 20 20">
+                                                        <TextBlock Text="Маршрут: Москва - Нью-Йорк" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition/>
+                                                                <ColumnDefinition/>
+                                                            </Grid.ColumnDefinitions>
+
+                                                            <StackPanel>
+                                                                <TextBlock Text="Вылет" FontWeight="Bold"/>
+                                                                <TextBlock Text="Москва (SVO)" Margin="0,10,0,0"/>
+                                                                <TextBlock Text="19 июня 2023" Margin="0,5,0,0"/>
+                                                                <TextBlock Text="Вылет: 16:30" Margin="0,5,0,0"/>
+                                                            </StackPanel>
+
+                                                            <StackPanel Grid.Column="1" Margin="20,0,0,0">
+                                                                <TextBlock Text="Прилет" FontWeight="Bold"/>
+                                                                <TextBlock Text="Нью-Йорк (JFK)" Margin="0,10,0,0"/>
+                                                                <TextBlock Text="20 июня 2023" Margin="0,5,0,0"/>
+                                                                <TextBlock Text="Прилет: 10:45" Margin="0,5,0,0"/>
+                                                            </StackPanel>
+                                                        </Grid>
+
+                                                        <Separator Margin="0,20"/>
+
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <TextBlock Text="Класс: " FontWeight="Bold"/>
+                                                            <TextBlock Text="Бизнес" Margin="5,0"/>
+                                                        </StackPanel>
+
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <TextBlock Text="Количество пассажиров: " FontWeight="Bold"/>
+                                                            <TextBlock Text="2 взрослых, 1 ребенок" Margin="5,0"/>
+                                                        </StackPanel>
+
+                                                        <Separator Margin="0,20"/>
+
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <TextBlock Text="Стоимость: " FontWeight="Bold"/>
+                                                            <TextBlock Text="97 500 руб." Margin="5,0"/>
+                                                        </StackPanel>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Border>
+                                        </StackPanel>
+                                    </Grid>
+
+                                    <Grid Margin="10 10 10 20" Visibility="Visible">
+
+                                        <StackPanel>
+
+                                            <Label Content="Новый документ"
+                                       HorizontalAlignment="Left"
+                                       Margin="20,15,0,5"
+                                       FontFamily="Arial Black"
+                                       Foreground="#FF2E2F3F"
+                                       FontSize="18"/>
+
+                                            <WrapPanel Margin="20 15 20 0" >
+                                                
+                                                <ComboBox
+                                                      IsEditable="True" 
+                                                      Text="Гражданство"
+                                                      Style="{StaticResource Combo}"
+                                                      Height="38"
+                                                      Width="200"/>
+                                                
+                                                <ComboBox
+                                                      IsEditable="True" 
+                                                      Text="Тип документа"
+                                                      Margin="20 0 20 0"
+                                                      Style="{StaticResource Combo}"
+                                                      Height="38"
+                                                      Width="200"/>
+
+                                                <TextBox 
+                                                   Style="{StaticResource MyWaterMarkStyle}"
+                                                   Height="38" 
+                                                   Width="105"
+                                                   Margin="0 0 -10 0"
+                                                   Tag="М"/>
+                                                
+                                                <TextBox 
+                                                   Style="{StaticResource MyWaterMarkStyle}"
+                                                   Height="38" 
+                                                   Width="105"
+                                                   Tag="Ж"/>
+
+                                            </WrapPanel>
+
+
+                                            <Label Content="Данные документа"
+                                                   HorizontalAlignment="Left"
+                                                   Margin="20,20,0,0"
+                                                   FontFamily="Arial Black"
+                                                   Foreground="#FF2E2F3F"
+                                                   FontSize="16"/>
+
+                                            <WrapPanel Margin="20 15 20 0" >
+                                                <TextBox 
+                                                      Style="{StaticResource MyWaterMarkStyle}"
+                                                      Height="38"
+                                                      Width="200"
+                                                      Tag="Фамилия"/>
+
+                                                <TextBox 
+                                                   Style="{StaticResource MyWaterMarkStyle}"
+                                                   Height="38" 
+                                                   Width="200"
+                                                   Margin="20 0 20 0"
+                                                   Tag="Имя"/>
+
+                                                <TextBox
+                                                  Style="{StaticResource MyWaterMarkStyle}"
+                                                  Height="38" 
+                                                  Width="200"
+                                                  Tag="Отчество"/>
+                                            </WrapPanel>
+
+                                            <WrapPanel Margin="20 15 20 0" >
+                                                <TextBox 
+                                                      Style="{StaticResource MyWaterMarkStyle}"
+                                                      Height="38"
+                                                      Width="200"
+                                                      Tag="Дата рождения"/>
+
+                                                <TextBox 
+                                                   Style="{StaticResource MyWaterMarkStyle}"
+                                                   Height="38" 
+                                                   Width="420"
+                                                   Margin="20 0 0 0"
+                                                   Tag="Номер документа"/>
+                                            </WrapPanel>
+                                            <Button Margin="20" 
+                                                    Height="40" 
+                                                    Content="Сохранить документ"
+                                                    Style="{StaticResource Button}"/>
+
+                            </StackPanel>
+                                    </Grid>
+
+                                </Grid>
+
+                            </StackPanel>
+                        </Border>
+
+
+
+
+                    </WrapPanel>
+                </DockPanel>
+                <HamburgerMenu:HamburgerMenu 
+                Grid.Column="0" 
+                Grid.ColumnSpan="2" 
+                Background="#FFE2C5BF" 
+                MenuIconColor="#764C4D" 
+                SelectionIndicatorColor="#764C4D" 
+                HorizontalAlignment="Left" 
+                FontFamily="Candara Light" 
+                FontSize="16" 
+                MenuItemForeground="Black">
+
+                    <HamburgerMenu:HamburgerMenuItem 
+                    x:Name="profile" 
+                    Text="Личный кабинет" 
+                    Icon="/Resources/profile.png"/>
+
+                    <HamburgerMenu:HamburgerMenuItem 
+                    x:Name="ticketsBuy" 
+                    Text="Полететь далеко" 
+                    Icon="/Resources/plane.png"/>
+
+                    <HamburgerMenu:HamburgerMenuItem 
+                    x:Name="interest" 
+                    Text="Интересное" 
+                    Icon="/Resources/aroundWorld.png"/>
+
+                    <HamburgerMenu:HamburgerMenuItem 
+                    Text="Выход из аккаунта" 
+                    x:Name="exit" 
+                    Icon="/Resources/exit.png"/>
+                </HamburgerMenu:HamburgerMenu>
+            </Grid>
+        </ScrollViewer>
+    </DockPanel>
 </Window>
