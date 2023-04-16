@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:air_project"
              xmlns:air_project="clr-namespace:air_project"
              xmlns:PasswordStyle="clr-namespace:air_project"
-             StartupUri="CustomerProfile.xaml">
+             StartupUri="WatchTickets.xaml">
     <Application.Resources>
 
         <Style TargetType="Button" x:Key="Button">
@@ -49,11 +49,10 @@
             <Setter Property="FontFamily" Value="Candara Light"/>
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="Border.CornerRadius" Value="10"/>
         </Style>
 
-        
-        <Style TargetType="Button" x:Key="ProfileButton">
+
+            <Style TargetType="Button" x:Key="ProfileButton">
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="#FFE9D0C6"/>

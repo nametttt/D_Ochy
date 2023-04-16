@@ -23,5 +23,41 @@ namespace air_project
         {
             InitializeComponent();
         }
+
+        private void UserInfo_Click(object sender, RoutedEventArgs e)
+        {
+            Grid.Height = About.Height;
+            About.Visibility = Visibility.Visible;
+            Docs.Visibility = Visibility.Hidden;
+            Cards.Visibility = Visibility.Hidden;
+            Tickets.Visibility = Visibility.Hidden;
+        }
+
+        private void Doc_Click(object sender, RoutedEventArgs e)
+        {
+            Grid.Height = Docs.ActualHeight;
+            About.Visibility = Visibility.Hidden;
+            Docs.Visibility = Visibility.Visible;
+            Cards.Visibility = Visibility.Hidden;
+            Tickets.Visibility = Visibility.Hidden;
+        }
+
+        private void Ticket_Click(object sender, RoutedEventArgs e)
+        {
+            Grid.Height = Tickets.ActualHeight;
+            About.Visibility = Visibility.Hidden;
+            Docs.Visibility = Visibility.Hidden;
+            Cards.Visibility = Visibility.Hidden;
+            Tickets.Visibility = Visibility.Visible;
+        }
+
+        private void Card_Click(object sender, RoutedEventArgs e)
+        {
+            Grid.Height = Cards.ActualHeight;
+            About.Visibility = Visibility.Hidden;
+            Docs.Visibility = Visibility.Hidden;
+            Cards.Visibility = Visibility.Visible;
+            Tickets.Visibility = Visibility.Hidden;
+        }
     }
 }

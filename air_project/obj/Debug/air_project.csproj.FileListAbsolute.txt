@@ -32,3 +32,13 @@ C:\Users\tanus\source\repos\air_project\air_project\bin\Debug\ru\EntityFramework
 C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\CustomerProfile.baml
 C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\MyOchy.g.cs
 C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\MyOchy.baml
+C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\AdminProfile.g.cs
+C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\BuhProfile.g.cs
+C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\AdminProfile.baml
+C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\BuhProfile.baml
+C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\WatchTickets.g.cs
+C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\WatchTickets.baml
+C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\WatchFlights.g.cs
+C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\WatchFlights.baml
+C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\Document.g.cs
+C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\Document.baml

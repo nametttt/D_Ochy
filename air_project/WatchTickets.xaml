@@ -1,0 +1,143 @@
+﻿<Window x:Class="air_project.WatchTickets"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:air_project" 
+        xmlns:HamburgerMenu="clr-namespace:HamburgerMenu;assembly=HamburgerMenu"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="Просмотр билетов" Height="650" Width="1250" MinHeight="650" MinWidth="1000" Icon="/Resources/логотип.png" Closing="Window_Closing">
+
+
+    <DockPanel>
+        <ScrollViewer>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.Background>
+                    <ImageBrush ImageSource="Resources/Plane-stock.jpg"/>
+                </Grid.Background>
+
+                <DockPanel Grid.Column="1" 
+                   Grid.ColumnSpan="2">
+                    <local:MyOchy DockPanel.Dock="Top"/>
+
+                    <WrapPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                           Margin="0 0 0 50">
+
+                        <Border CornerRadius="20"
+                                    BorderThickness="1"
+                                    Grid.Column="1"
+                                    Margin="30 0 30 0"
+                                    VerticalAlignment="Top"
+                                    Visibility="Visible">
+                            <Border.Background>
+                                <SolidColorBrush Color="#FFFFEDE2" Opacity="0.7"/>
+                            </Border.Background>
+                            <StackPanel Width="900">
+                                <Grid Margin="20 20">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+
+                                    <Label Content="Просмотр билетов"
+                                       HorizontalAlignment="Center"
+                                       Grid.ColumnSpan="2"
+                                           Margin="10 10 10 30"
+                                       Grid.Row="0"
+                                       FontSize="40" 
+                                       FontFamily="Nirmala UI Semilight"/>
+
+                                    <TextBox
+                                          Grid.Row="1"
+                                          Height="40"
+                                          Grid.Column="1"
+                                          Margin="10"
+                                          Style="{StaticResource MyWaterMarkStyle}"
+                                          Tag="Поиск по номеру"/>
+
+                                    <DataGrid Margin="10,10,10,10" 
+                                          Height="350" 
+                                          Grid.Row="2"
+                                          Grid.ColumnSpan="2"
+                                          FontFamily="Candara Light" 
+                                          FontSize="20" 
+                                          x:Name="datagrid" 
+                                          Background="#FFF1E4E0"/>
+
+                                    <Button x:Name="AllTicket" 
+                                            Grid.Row="3"
+                                            Grid.Column="0" 
+                                            Margin="10"
+                                            Height="40" 
+                                            Content="Все билеты"
+                                            Style="{StaticResource Button}"/>
+
+                                    <Button x:Name="BuyTicket" 
+                                            Grid.Row="3"
+                                            Margin="10"
+                                            Grid.Column="1" 
+                                            Height="40" 
+                                            Content="Приобретенные билеты"
+                                            Style="{StaticResource Button}"/>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+                    </WrapPanel>
+                </DockPanel>
+                <HamburgerMenu:HamburgerMenu 
+                                Grid.Column="0" 
+                                Grid.ColumnSpan="2" 
+                                Background="#FFE2C5BF" 
+                                MenuIconColor="#764C4D" 
+                                SelectionIndicatorColor="#764C4D"
+                                HorizontalAlignment="Left" 
+                                FontFamily="Candara Light" 
+                                FontSize="16" 
+                                MenuItemForeground="Black">
+
+                    <HamburgerMenu:HamburgerMenuItem Text="Личный кабинет" 
+                                                     x:Name="buh" 
+                                                     IsSelected="False"
+                                                     Height="50"
+                                                     Icon="/Resources/profile.png" Selected="buh_Selected"/>
+
+                    <HamburgerMenu:HamburgerMenuItem Text="Просмотр билетов" 
+                                                     x:Name="watchtickets" 
+                                                     IsSelected="True"
+                                                     Height="50"
+                                                     Icon="/Resources/plane.png"/>
+
+                    <HamburgerMenu:HamburgerMenuItem Text="Документация" 
+                                                     Height="50"
+                                                     x:Name="doc" 
+                                                     Icon="/Resources/doc.png" Selected="doc_Selected"/>
+
+                    <HamburgerMenu:HamburgerMenuItem Text="Просмотр рейсов" 
+                                                     Height="50"
+                                                     x:Name="watchfly" 
+                                                     Icon="/Resources/watchflight.png" Selected="watchfly_Selected"/>
+
+                    <HamburgerMenu:HamburgerMenuItem Text="Выход из аккаунта" 
+                                                     Height="50"
+                                                     x:Name="exit"
+                                                     Icon="/Resources/exit.png" Selected="exit_Selected"/>
+                </HamburgerMenu:HamburgerMenu>
+            </Grid>
+        </ScrollViewer>
+    </DockPanel>
+</Window>

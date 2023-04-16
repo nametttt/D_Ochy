@@ -69,8 +69,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AdminProfile.xaml.cs">
+      <DependentUpon>AdminProfile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BuhProfile.xaml.cs">
+      <DependentUpon>BuhProfile.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomerProfile.xaml.cs">
       <DependentUpon>CustomerProfile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Document.xaml.cs">
+      <DependentUpon>Document.xaml</DependentUpon>
     </Compile>
     <Compile Include="MyOchy.xaml.cs">
       <DependentUpon>MyOchy.xaml</DependentUpon>
@@ -81,6 +90,16 @@
     <Compile Include="Reg.xaml.cs">
       <DependentUpon>Reg.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WatchFlights.xaml.cs">
+      <DependentUpon>WatchFlights.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WatchTickets.xaml.cs">
+      <DependentUpon>WatchTickets.xaml</DependentUpon>
+    </Compile>
+    <Page Include="AdminProfile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Auth.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -92,7 +111,15 @@
     <Compile Include="Auth.xaml.cs">
       <DependentUpon>Auth.xaml</DependentUpon>
     </Compile>
+    <Page Include="BuhProfile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CustomerProfile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Document.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -105,6 +132,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Reg.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WatchFlights.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WatchTickets.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -166,6 +201,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\pngcard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\man.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\woman.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
