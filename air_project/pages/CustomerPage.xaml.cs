@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace air_project
 {
     /// <summary>
-    /// Логика взаимодействия для CustomerProfile.xaml
+    /// Логика взаимодействия для CustomerPage.xaml
     /// </summary>
-    public partial class CustomerProfile : Window
+    public partial class CustomerPage : Page
     {
-        public CustomerProfile()
+        public CustomerPage()
         {
             InitializeComponent();
         }

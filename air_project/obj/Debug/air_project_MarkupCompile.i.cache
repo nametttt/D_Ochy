@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\tanus\source\repos\air_project\air_project\App.xaml
-10-606405228
+141243420521
 
-15851905748
+19-1798614113
 191414716025
-AdminProfile.xaml;Auth.xaml;BuhProfile.xaml;CustomerProfile.xaml;Document.xaml;MyOchy.xaml;Recovery.xaml;Reg.xaml;WatchFlights.xaml;WatchTickets.xaml;
+forms\AdminProfile.xaml;Auth.xaml;forms\BuhProfile.xaml;pages\CustomerPage.xaml;forms\CustomerProfile.xaml;Document.xaml;Interesting.xaml;pages\Interests.xaml;pages\MainHome.xaml;MyOchy.xaml;Recovery.xaml;Reg.xaml;WatchFlights.xaml;WatchTickets.xaml;
 
-True
+False
 

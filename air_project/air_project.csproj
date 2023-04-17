@@ -69,17 +69,29 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AdminProfile.xaml.cs">
+    <Compile Include="forms\AdminProfile.xaml.cs">
       <DependentUpon>AdminProfile.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BuhProfile.xaml.cs">
+    <Compile Include="forms\BuhProfile.xaml.cs">
       <DependentUpon>BuhProfile.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CustomerProfile.xaml.cs">
+    <Compile Include="pages\CustomerPage.xaml.cs">
+      <DependentUpon>CustomerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="forms\CustomerProfile.xaml.cs">
       <DependentUpon>CustomerProfile.xaml</DependentUpon>
     </Compile>
     <Compile Include="Document.xaml.cs">
       <DependentUpon>Document.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interesting.xaml.cs">
+      <DependentUpon>Interesting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Interests.xaml.cs">
+      <DependentUpon>Interests.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\MainHome.xaml.cs">
+      <DependentUpon>MainHome.xaml</DependentUpon>
     </Compile>
     <Compile Include="MyOchy.xaml.cs">
       <DependentUpon>MyOchy.xaml</DependentUpon>
@@ -96,7 +108,7 @@
     <Compile Include="WatchTickets.xaml.cs">
       <DependentUpon>WatchTickets.xaml</DependentUpon>
     </Compile>
-    <Page Include="AdminProfile.xaml">
+    <Page Include="forms\AdminProfile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -111,15 +123,31 @@
     <Compile Include="Auth.xaml.cs">
       <DependentUpon>Auth.xaml</DependentUpon>
     </Compile>
-    <Page Include="BuhProfile.xaml">
+    <Page Include="forms\BuhProfile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CustomerProfile.xaml">
+    <Page Include="pages\CustomerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="forms\CustomerProfile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Document.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interesting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pages\Interests.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pages\MainHome.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -208,5 +236,11 @@
   <ItemGroup>
     <Resource Include="Resources\woman.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\elbrus.jpg" />
+    <Resource Include="Resources\moscow.jpg" />
+    <Resource Include="Resources\most.jpg" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

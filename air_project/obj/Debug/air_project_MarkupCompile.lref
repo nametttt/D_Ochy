@@ -1,13 +1,17 @@
 ﻿
 FC:\Users\tanus\source\repos\air_project\air_project\App.xaml;;
-FC:\Users\tanus\source\repos\air_project\air_project\AdminProfile.xaml;;
+FC:\Users\tanus\source\repos\air_project\air_project\forms\AdminProfile.xaml;;
 FC:\Users\tanus\source\repos\air_project\air_project\Auth.xaml;;
-FC:\Users\tanus\source\repos\air_project\air_project\BuhProfile.xaml;;
-FC:\Users\tanus\source\repos\air_project\air_project\CustomerProfile.xaml;;
+FC:\Users\tanus\source\repos\air_project\air_project\forms\BuhProfile.xaml;;
+FC:\Users\tanus\source\repos\air_project\air_project\pages\CustomerPage.xaml;;
+FC:\Users\tanus\source\repos\air_project\air_project\forms\CustomerProfile.xaml;;
+FC:\Users\tanus\source\repos\air_project\air_project\Document.xaml;;
+FC:\Users\tanus\source\repos\air_project\air_project\Interesting.xaml;;
+FC:\Users\tanus\source\repos\air_project\air_project\pages\Interests.xaml;;
+FC:\Users\tanus\source\repos\air_project\air_project\pages\MainHome.xaml;;
 FC:\Users\tanus\source\repos\air_project\air_project\MyOchy.xaml;;
 FC:\Users\tanus\source\repos\air_project\air_project\Recovery.xaml;;
 FC:\Users\tanus\source\repos\air_project\air_project\Reg.xaml;;
-FC:\Users\tanus\source\repos\air_project\air_project\WatchTickets.xaml;;
 FC:\Users\tanus\source\repos\air_project\air_project\WatchFlights.xaml;;
-FC:\Users\tanus\source\repos\air_project\air_project\Document.xaml;;
+FC:\Users\tanus\source\repos\air_project\air_project\WatchTickets.xaml;;
 

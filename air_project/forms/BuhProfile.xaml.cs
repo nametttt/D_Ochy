@@ -56,5 +56,10 @@ namespace air_project
         {
             Application.Current.Shutdown();
         }
+
+        private void admin_Selected(object sender, RoutedEventArgs e)
+        {
+            MainContent.Navigate(new Uri("MainHome.xaml", UriKind.Relative));
+        }
     }
 }

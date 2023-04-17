@@ -1,0 +1,66 @@
+﻿<Window x:Class="air_project.CustomerProfile"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:air_project" 
+        xmlns:HamburgerMenu="clr-namespace:HamburgerMenu;assembly=HamburgerMenu"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="Личный кабинет" Height="680" Width="1250" MinHeight="680" MinWidth="1100" Icon="/Resources/логотип.png">
+
+    <DockPanel>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.Background>
+                    <ImageBrush ImageSource="/Resources/Plane-stock.jpg"/>
+                </Grid.Background>
+
+            <Frame Grid.Column="1" Grid.ColumnSpan="2" x:Name="MainContent" NavigationUIVisibility="Hidden"/>
+            <HamburgerMenu:HamburgerMenu 
+                Grid.Column="0" 
+                Grid.ColumnSpan="2" 
+                Background="#FFE2C5BF" 
+                MenuIconColor="#764C4D" 
+                SelectionIndicatorColor="#764C4D" 
+                HorizontalAlignment="Left" 
+                FontFamily="Candara Light" 
+                FontSize="16" 
+                MenuItemForeground="Black">
+
+                    <HamburgerMenu:HamburgerMenuItem 
+                        Selected="profile_Selected"
+                    x:Name="profile" 
+                    Height="50"
+                    Text="Личный кабинет" 
+                    Icon="/Resources/profile.png"/>
+
+                    <HamburgerMenu:HamburgerMenuItem 
+                    x:Name="ticketsBuy" 
+                    Height="50"
+                    Text="Полететь далеко" 
+                    Icon="/Resources/plane.png"/>
+
+                    <HamburgerMenu:HamburgerMenuItem 
+                    x:Name="interest" 
+                    Height="50"
+                    Text="Интересное" 
+                    
+                    Icon="/Resources/aroundWorld.png" Selected="interest_Selected"/>
+
+
+                    <HamburgerMenu:HamburgerMenuItem 
+                    Text="Выход из аккаунта" 
+                    Height="50"
+                    x:Name="exit" 
+                    Icon="/Resources/exit.png"/>
+                </HamburgerMenu:HamburgerMenu>
+            </Grid>
+    </DockPanel>
+</Window>

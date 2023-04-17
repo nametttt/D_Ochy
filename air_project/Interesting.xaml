@@ -1,0 +1,176 @@
+﻿<Window x:Class="air_project.Interesting"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:air_project"
+        xmlns:HamburgerMenu="clr-namespace:HamburgerMenu;assembly=HamburgerMenu"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="Интересное" Height="650" Width="1250" MinHeight="650" MinWidth="1000" Icon="/Resources/логотип.png">
+
+    <DockPanel>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.Background>
+                    <ImageBrush ImageSource="Resources/Plane-stock.jpg"/>
+                </Grid.Background>
+
+            <ScrollViewer Grid.Column="1" 
+                   Grid.ColumnSpan="2">
+
+                <DockPanel >
+                    <local:MyOchy DockPanel.Dock="Top"/>
+                    
+
+                    <WrapPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                           Margin="0 0 0 50">
+                        
+                        <Grid Width="900">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="0.5*"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+
+                            </Grid.RowDefinitions>
+
+                            <Border CornerRadius="10"
+                                    BorderThickness="1"
+                                    Grid.ColumnSpan="2"
+                                    Margin="0 0 20 0"
+                                    Background="#FFFAE3D5">
+                                
+                                <StackPanel Margin="10" HorizontalAlignment="Left">
+                                    
+                                    <TextBlock Text="Русский мост" 
+                                               FontFamily="Arial Black"
+                                               Foreground="#FF764A4B"
+                                               FontSize="24"
+                                               Margin="10"/>
+                                    
+                                    <TextBlock Text="Русский мост — вантовый мост с самым длинным в мире наибольшим пролётом, соединяющий Владивосток с островом Русским. Имеет самый большой в мире пролёт среди вантовых мостов, длиной 1104 метра. А также второй по высоте мост в мире, высота составляет 324 метра." 
+                                               TextWrapping="Wrap" 
+                                               FontFamily="Candara Light" 
+                                               FontSize="16"
+                                               Margin="10 0 10 10"/>
+                                    
+                                    <Button DockPanel.Dock="Top" 
+                                            x:Name="btnMost"
+                                            Height="40"
+                                            Margin="10"
+                                            Content="Просмотреть билеты"
+                                            Style="{StaticResource Button}">
+                                    </Button>
+                                </StackPanel>
+
+                            </Border>
+
+
+                            <Border CornerRadius="10" Grid.Column="2" BorderBrush="#FF764A4B" BorderThickness="2" Height="250">
+                                    <Border.Background>
+                                        <ImageBrush Stretch="Fill" ImageSource="/Resources/most.jpg"/>
+                                    </Border.Background>
+                                </Border>
+
+
+                            <Border CornerRadius="10"
+                                    BorderThickness="1"
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Grid.ColumnSpan="2"
+                                    Margin="20 40 0 0"
+                                    Background="#FFFAE3D5">
+
+                                <StackPanel Margin="10" HorizontalAlignment="Left">
+
+                                    <TextBlock Text="Столица России" 
+                                               FontFamily="Arial Black"
+                                               Foreground="#FF764A4B"
+                                               FontSize="24"
+                                               Margin="10"/>
+
+                                    <TextBlock Text="Москва – столица России, расположенная на реке Москва. Она богата культурным и историческим наследием, включая Кремль, Красную площадь, Большой театр, Коломенское, музеи и галереи и многое другое. Москва также является крупнейшим экономическим, научным и образовательным центром России, с множеством бизнес-центров, университетов и научных институтов." 
+                                               TextWrapping="Wrap" 
+                                               FontFamily="Candara Light" 
+                                               FontSize="16"
+                                               Margin="10 0 10 10"/>
+
+                                    <Button DockPanel.Dock="Top" 
+                                            x:Name="btnMoscow"
+                                            Height="40"
+                                            Margin="10"
+                                            Content="Просмотреть билеты"
+                                            Style="{StaticResource Button}">
+                                    </Button>
+                                </StackPanel>
+
+                            </Border>
+
+
+                            <Border CornerRadius="10" Grid.Column="0" Grid.Row="1" BorderBrush="#FF764A4B" BorderThickness="2" Margin="0 40 0 0" Height="250">
+                                <Border.Background>
+                                    <ImageBrush Stretch="Fill" ImageSource="/Resources/moscow.jpg"/>
+                                </Border.Background>
+                            </Border>
+
+
+                            <Border CornerRadius="10"
+                                    BorderThickness="1"
+                                    Grid.ColumnSpan="2"
+                                    Grid.Row="2"
+                                    Margin="0 40 20 0"
+                                    Background="#FFFAE3D5">
+
+                                <StackPanel Margin="10" HorizontalAlignment="Left">
+
+                                    <TextBlock Text="Дотянуться до небес" 
+                                               FontFamily="Arial Black"
+                                               Foreground="#FF764A4B"
+                                               FontSize="24"
+                                               Margin="10"/>
+
+                                    <TextBlock Text="Эльбрус - высочайшая вершина России и Европы, расположенная в Кабардино-Балкарской Республике. Высота горы составляет 5 642 метра над уровнем моря. Эльбрус является популярным местом для альпинистов и любителей горных прогулок. На склонах горы расположены несколько горнолыжных курортов. Эльбрус является символом Кавказа и одной из самых известных гор в мире." 
+                                               TextWrapping="Wrap" 
+                                               FontFamily="Candara Light" 
+                                               FontSize="16"
+                                               Margin="10 0 10 10"/>
+
+                                    <Button DockPanel.Dock="Top" 
+                                            x:Name="btnElbrys"
+                                            Height="40"
+                                            Margin="10"
+                                            Content="Просмотреть билеты"
+                                            Style="{StaticResource Button}">
+                                    </Button>
+                                </StackPanel>
+
+                            </Border>
+
+
+                            <Border CornerRadius="10" Grid.Column="2" Grid.Row="2" BorderBrush="#FF764A4B" BorderThickness="2" Height="250" Margin="0 40 0 0">
+                                <Border.Background>
+                                    <ImageBrush Stretch="Fill" ImageSource="/Resources/elbrus.jpg"/>
+                                </Border.Background>
+                            </Border>
+
+                        </Grid>
+                    </WrapPanel>
+
+            </DockPanel>
+            </ScrollViewer>
+
+            </Grid>
+    </DockPanel>
+</Window>
