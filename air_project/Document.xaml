@@ -11,20 +11,12 @@
 
 
     <DockPanel>
+        <DockPanel.Background>
+                    <ImageBrush ImageSource="Resources/Plane-stock.jpg"/>
+                </DockPanel.Background>
         <ScrollViewer>
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50"/>
-                    <ColumnDefinition Width="200"/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-
-                <Grid.Background>
-                    <ImageBrush ImageSource="Resources/Plane-stock.jpg"/>
-                </Grid.Background>
-
-                <DockPanel Grid.Column="1" 
+            <DockPanel Grid.Column="1" 
                    Grid.ColumnSpan="2">
                     <local:MyOchy DockPanel.Dock="Top"/>
 
@@ -83,44 +75,6 @@
                         </Border>
                     </WrapPanel>
                 </DockPanel>
-                <HamburgerMenu:HamburgerMenu 
-                                Grid.Column="0" 
-                                Grid.ColumnSpan="2" 
-                                Background="#FFE2C5BF" 
-                                MenuIconColor="#764C4D" 
-                                SelectionIndicatorColor="#764C4D" 
-                                HorizontalAlignment="Left" 
-                                FontFamily="Candara Light" 
-                                FontSize="16" 
-                                MenuItemForeground="Black">
-
-                    <HamburgerMenu:HamburgerMenuItem Text="Личный кабинет" 
-                                                     x:Name="admin" 
-                                                     Height="50"
-                                                     Icon="/Resources/profile.png" Selected="admin_Selected"/>
-
-                    <HamburgerMenu:HamburgerMenuItem Text="Просмотр билетов" 
-                                                     x:Name="watchtickets" 
-                                                     Height="50"
-                                                     Icon="/Resources/plane.png" Selected="watchtickets_Selected"/>
-
-                    <HamburgerMenu:HamburgerMenuItem Text="Документация" 
-                                                     IsSelected="True"
-                                                     Height="50"
-                                                     x:Name="doc" 
-                                                     Icon="/Resources/doc.png"/>
-
-                    <HamburgerMenu:HamburgerMenuItem Text="Просмотр рейсов" 
-                                                     Height="50"
-                                                     x:Name="watchfly" 
-                                                     Icon="/Resources/watchflight.png" Selected="watchfly_Selected"/>
-
-                    <HamburgerMenu:HamburgerMenuItem Text="Выход из аккаунта" 
-                                                     Height="50"
-                                                     x:Name="exit"
-                                                     Icon="/Resources/exit.png" Selected="exit_Selected"/>
-                </HamburgerMenu:HamburgerMenu>
-            </Grid>
         </ScrollViewer>
     </DockPanel>
 </Window>

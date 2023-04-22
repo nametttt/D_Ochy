@@ -30,7 +30,7 @@ namespace air_project
 
         private void profile_Selected(object sender, RoutedEventArgs e)
         {
-            MainContent.Navigate(new Uri("/pages/CustomerPage.xaml", UriKind.Relative));
+            //MainContent.Navigate(new Uri("/pages/CustomerPage.xaml", UriKind.Relative));
         }
 
         private void interest_Selected(object sender, RoutedEventArgs e)

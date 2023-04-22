@@ -1,0 +1,76 @@
+﻿<Page x:Class="air_project.pages.Documentary"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:air_project"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Documentary">
+
+    <DockPanel>
+        <DockPanel.Background>
+            <ImageBrush ImageSource="/Resources/Plane-stock.jpg"/>
+        </DockPanel.Background>
+        <ScrollViewer>
+
+            <DockPanel Grid.Column="1" 
+                   Grid.ColumnSpan="2">
+                <local:MyOchy DockPanel.Dock="Top"/>
+
+                <WrapPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                           Margin="0 0 0 50">
+
+                    <Border CornerRadius="10"
+                                    Background="#FFFAE3D5"
+                                    BorderThickness="1"
+                                    Grid.Column="1"
+                                    Margin="30 0 30 0"
+                                    VerticalAlignment="Top"
+                                    Visibility="Visible">
+                        <StackPanel Width="900">
+                            <Grid Margin="20 20">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+
+                                <Label Content="Документация"
+                                       HorizontalAlignment="Center"
+                                       Grid.ColumnSpan="2"
+                                           Margin="10 10 10 30"
+                                       Grid.Row="0"
+                                       FontSize="40" 
+                                       FontFamily="Nirmala UI Semilight"/>
+
+                                <DataGrid Margin="10,10,10,10" 
+                                          Height="350" 
+                                          Grid.Row="1"
+                                          Grid.ColumnSpan="2"
+                                          FontFamily="Candara Light" 
+                                          FontSize="20" 
+                                          x:Name="datagrid" 
+                                          Background="#FFFFF5F3"/>
+
+                                <Button x:Name="AllTicket" 
+                                            Grid.Row="3"
+                                            Grid.ColumnSpan="2" 
+                                            Margin="10"
+                                            Height="40" 
+                                            Content="Отправить на печать"
+                                            Style="{StaticResource Button}"/>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                </WrapPanel>
+            </DockPanel>
+        </ScrollViewer>
+    </DockPanel>
+</Page>

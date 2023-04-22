@@ -26,23 +26,17 @@ namespace air_project
 
         private void watchtickets_Selected(object sender, RoutedEventArgs e)
         {
-            WatchTickets watch = new WatchTickets();
-            this.Hide();
-            watch.Show();
+            MainContent.Navigate(new Uri("/pages/WatchTicket.xaml", UriKind.Relative));
         }
 
         private void doc_Selected(object sender, RoutedEventArgs e)
         {
-            Document watch = new Document();
-            this.Hide();
-            watch.Show();
+            MainContent.Navigate(new Uri("/pages/Documentary.xaml", UriKind.Relative));
         }
 
         private void watchfly_Selected(object sender, RoutedEventArgs e)
         {
-            WatchFlights watch = new WatchFlights();
-            this.Hide();
-            watch.Show();
+            MainContent.Navigate(new Uri("/pages/WatchFlight.xaml", UriKind.Relative));
         }
 
         private void exit_Selected(object sender, RoutedEventArgs e)
@@ -59,7 +53,7 @@ namespace air_project
 
         private void admin_Selected(object sender, RoutedEventArgs e)
         {
-            MainContent.Navigate(new Uri("MainHome.xaml", UriKind.Relative));
+            MainContent.Navigate(new Uri("/pages/MainHome.xaml", UriKind.Relative));
         }
     }
 }

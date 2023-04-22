@@ -22,7 +22,7 @@
                     <ImageBrush ImageSource="/Resources/Plane-stock.jpg"/>
                 </Grid.Background>
 
-            <Frame Grid.Column="1" Grid.ColumnSpan="2" x:Name="MainContent" NavigationUIVisibility="Hidden"/>
+            <Frame Grid.Column="1" Grid.ColumnSpan="2" x:Name="MainContent" NavigationUIVisibility="Hidden" Source="/pages/MainCustomer.xaml"/>
             <HamburgerMenu:HamburgerMenu 
                 Grid.Column="0" 
                 Grid.ColumnSpan="2" 

@@ -11,20 +11,14 @@
 
 
     <DockPanel>
+
+
+        <DockPanel.Background>
+                    <ImageBrush ImageSource="Resources/Plane-stock.jpg"/>
+                </DockPanel.Background>
         <ScrollViewer>
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50"/>
-                    <ColumnDefinition Width="200"/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-
-                <Grid.Background>
-                    <ImageBrush ImageSource="Resources/Plane-stock.jpg"/>
-                </Grid.Background>
-
-                <DockPanel Grid.Column="1" 
+            <DockPanel Grid.Column="1" 
                    Grid.ColumnSpan="2">
                     <local:MyOchy DockPanel.Dock="Top"/>
 
@@ -32,16 +26,14 @@
                         HorizontalAlignment="Center"
                            Margin="0 0 0 50">
 
-                        <Border CornerRadius="20"
+                    <Border CornerRadius="10"
                                     BorderThickness="1"
                                     Grid.Column="1"
                                     Margin="30 0 30 0"
+                                    Background="#FFFAE3D5"
                                     VerticalAlignment="Top"
                                     Visibility="Visible">
-                            <Border.Background>
-                                <SolidColorBrush Color="#FFFFEDE2" Opacity="0.7"/>
-                            </Border.Background>
-                            <StackPanel Width="900">
+                        <StackPanel Width="900">
                                 <Grid Margin="20 20">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition/>
@@ -99,45 +91,6 @@
                         </Border>
                     </WrapPanel>
                 </DockPanel>
-                <HamburgerMenu:HamburgerMenu 
-                                Grid.Column="0" 
-                                Grid.ColumnSpan="2" 
-                                Background="#FFE2C5BF" 
-                                MenuIconColor="#764C4D" 
-                                SelectionIndicatorColor="#764C4D"
-                                HorizontalAlignment="Left" 
-                                FontFamily="Candara Light" 
-                                FontSize="16" 
-                                MenuItemForeground="Black">
-
-                    <HamburgerMenu:HamburgerMenuItem Text="Личный кабинет" 
-                                                     x:Name="buh" 
-                                                     IsSelected="False"
-                                                     Height="50"
-                                                     Icon="/Resources/profile.png" Selected="buh_Selected"/>
-
-                    <HamburgerMenu:HamburgerMenuItem Text="Просмотр билетов" 
-                                                     x:Name="watchtickets" 
-                                                     IsSelected="True"
-                                                     Height="50"
-                                                     Icon="/Resources/plane.png"/>
-
-                    <HamburgerMenu:HamburgerMenuItem Text="Документация" 
-                                                     Height="50"
-                                                     x:Name="doc" 
-                                                     Icon="/Resources/doc.png" Selected="doc_Selected"/>
-
-                    <HamburgerMenu:HamburgerMenuItem Text="Просмотр рейсов" 
-                                                     Height="50"
-                                                     x:Name="watchfly" 
-                                                     Icon="/Resources/watchflight.png" Selected="watchfly_Selected"/>
-
-                    <HamburgerMenu:HamburgerMenuItem Text="Выход из аккаунта" 
-                                                     Height="50"
-                                                     x:Name="exit"
-                                                     Icon="/Resources/exit.png" Selected="exit_Selected"/>
-                </HamburgerMenu:HamburgerMenu>
-            </Grid>
         </ScrollViewer>
     </DockPanel>
 </Window>

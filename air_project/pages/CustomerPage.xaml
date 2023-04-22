@@ -10,26 +10,20 @@
       ShowsNavigationUI="False">
 
     <DockPanel>
-        <ScrollViewer>
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50"/>
-                    <ColumnDefinition Width="200"/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
 
-                <Grid.Background>
+        <DockPanel.Background>
                     <ImageBrush ImageSource="/Resources/Plane-stock.jpg"/>
-                </Grid.Background>
+                </DockPanel.Background>
 
-                <DockPanel Grid.Column="1" 
+            <ScrollViewer Grid.Column="1" 
                    Grid.ColumnSpan="2">
+
+                <DockPanel>
                     <local:MyOchy DockPanel.Dock="Top"/>
 
                     <WrapPanel Orientation="Horizontal"
-                        HorizontalAlignment="Center"
-                           Margin="0 0 0 50">
+                        HorizontalAlignment="Center">
 
                         <Grid x:Name="Grid" Height="450">
                             <Grid.ColumnDefinitions>
@@ -97,7 +91,7 @@
                                     BorderThickness="1"
                                     Grid.Column="1"
                                     Background="#FFFAE3D5"
-                                    Margin="30 0 30 0"
+                                    Margin="30 0 0 0"
                                     x:Name="About"
                                     Height="450"
                                     VerticalAlignment="Top"
@@ -611,15 +605,21 @@
                                                       Height="38"
                                                       Width="200"/>
 
-                                            <ComboBox
+                                        <ComboBox
                                                       IsEditable="True" 
                                                       Text="Тип документа"
                                                       Margin="20 0 20 0"
                                                       Style="{StaticResource Combo}"
                                                       Height="38"
-                                                      Width="200"/>
+                                                      Width="200">
+                                            <ComboBoxItem Content="я"/>
+                                            <ComboBoxItem Content="х"/>
+                                            <ComboBoxItem Content="у"/>
+                                            <ComboBoxItem Content="й"/>
 
-                                            <Border Background="#FFE2C5BF" CornerRadius="10" BorderBrush="#FF947964" BorderThickness="1">
+                                        </ComboBox>
+
+                                        <Border Background="#FFE2C5BF" CornerRadius="10" BorderBrush="#FF947964" BorderThickness="1">
                                                 <Button
                                                    Height="38" 
                                                    Width="93"
@@ -718,8 +718,7 @@
 
                     </WrapPanel>
                 </DockPanel>
-            </Grid>
-        </ScrollViewer>
+            </ScrollViewer>
     </DockPanel>
 
 </Page>

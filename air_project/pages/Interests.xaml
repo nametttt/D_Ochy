@@ -5,35 +5,27 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:air_project"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="1200"
       Title="Interests"
       ShowsNavigationUI="False">
 
     <DockPanel>
 
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50"/>
-                <ColumnDefinition Width="200"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
 
-            <Grid.Background>
+        <DockPanel.Background>
                 <ImageBrush ImageSource="/Resources/Plane-stock.jpg"/>
-            </Grid.Background>
+            </DockPanel.Background>
 
-            <ScrollViewer Grid.Column="1" 
-                   Grid.ColumnSpan="2">
+            <ScrollViewer>
 
                 <DockPanel >
                     <local:MyOchy DockPanel.Dock="Top"/>
 
 
                     <WrapPanel Orientation="Horizontal"
-                        HorizontalAlignment="Center"
-                           Margin="0 0 0 50">
+                        HorizontalAlignment="Center">
 
-                        <Grid Width="900">
+                        <Grid Width="974">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition Width="0.5*"/>
@@ -60,7 +52,7 @@
                                                FontSize="24"
                                                Margin="10"/>
 
-                                    <TextBlock Text="Русский мост — вантовый мост с самым длинным в мире наибольшим пролётом, соединяющий Владивосток с островом Русским. Имеет самый большой в мире пролёт среди вантовых мостов, длиной 1104 метра. А также второй по высоте мост в мире, высота составляет 324 метра." 
+                                    <TextBlock Text="Русский мост - это крупнейший в России мост, который соединяет город Санкт-Петербург с островом Канонерский. Он был открыт в 2004 году и имеет длину более 4 километров. Мост имеет уникальную конструкцию, которая позволяет ему выдерживать сильные ветры и волнения. Русский мост является одной из главных достопримечательностей города и одним из самых красивых мостов в мире. Ежегодно тысячи туристов посещают его, чтобы насладиться великолепным видом на город и Финский залив." 
                                                TextWrapping="Wrap" 
                                                FontFamily="Candara Light" 
                                                FontSize="16"
@@ -78,9 +70,9 @@
                             </Border>
 
 
-                            <Border CornerRadius="10" Grid.Column="2" BorderBrush="#FF764A4B" BorderThickness="2" Height="250">
+                            <Border CornerRadius="10" Grid.Column="2" BorderBrush="#FF764A4B" BorderThickness="2">
                                 <Border.Background>
-                                    <ImageBrush Stretch="Fill" ImageSource="/Resources/most.jpg"/>
+                                    <ImageBrush ImageSource="/Resources/most.jpg"/>
                                 </Border.Background>
                             </Border>
 
@@ -119,9 +111,9 @@
                             </Border>
 
 
-                            <Border CornerRadius="10" Grid.Column="0" Grid.Row="1" BorderBrush="#FF764A4B" BorderThickness="2" Margin="0 40 0 0" Height="250">
+                            <Border CornerRadius="10" Grid.Column="0" Grid.Row="1" BorderBrush="#FF764A4B" BorderThickness="2" Margin="0 40 0 0">
                                 <Border.Background>
-                                    <ImageBrush Stretch="Fill" ImageSource="/Resources/moscow.jpg"/>
+                                    <ImageBrush ImageSource="/Resources/moscow.jpg"/>
                                 </Border.Background>
                             </Border>
 
@@ -130,7 +122,7 @@
                                     BorderThickness="1"
                                     Grid.ColumnSpan="2"
                                     Grid.Row="2"
-                                    Margin="0 40 20 0"
+                                    Margin="0 40 20 40"
                                     Background="#FFFAE3D5">
 
                                 <StackPanel Margin="10" HorizontalAlignment="Left">
@@ -159,9 +151,9 @@
                             </Border>
 
 
-                            <Border CornerRadius="10" Grid.Column="2" Grid.Row="2" BorderBrush="#FF764A4B" BorderThickness="2" Height="250" Margin="0 40 0 0">
+                            <Border CornerRadius="10" Grid.Column="2" Grid.Row="2" BorderBrush="#FF764A4B" BorderThickness="2" Margin="0 40 0 40">
                                 <Border.Background>
-                                    <ImageBrush Stretch="Fill" ImageSource="/Resources/elbrus.jpg"/>
+                                    <ImageBrush ImageSource="/Resources/elbrus.jpg"/>
                                 </Border.Background>
                             </Border>
 
@@ -171,7 +163,6 @@
                 </DockPanel>
             </ScrollViewer>
 
-        </Grid>
     </DockPanel>
 
 </Page>
