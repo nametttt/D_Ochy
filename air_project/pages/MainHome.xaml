@@ -11,20 +11,8 @@
 
     <DockPanel>
 
-            <DockPanel.Background>
-                    <ImageBrush ImageSource="/Resources/Plane-stock.jpg"/>
-                </DockPanel.Background>
-        <ScrollViewer>
 
-
-            <DockPanel>
-                    <local:MyOchy DockPanel.Dock="Top"/>
-
-                    <WrapPanel Orientation="Horizontal"
-                        HorizontalAlignment="Center"
-                           Margin="0 0 0 50">
-
-                        <Border CornerRadius="10"
+        <Border CornerRadius="10"
                                     BorderThickness="1"
                                     Grid.Column="1"
                                     Background="#FFFAE3D5"
@@ -32,102 +20,102 @@
                                     VerticalAlignment="Top"
                                     Visibility="Visible">
 
-                            <StackPanel Width="800">
-                                <Grid Margin="10 10 10 20">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="auto"/>
-                                        <RowDefinition Height="40*"/>
-                                    </Grid.RowDefinitions>
+            <StackPanel Width="800">
+                <Grid Margin="10 10 10 20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="40*"/>
+                    </Grid.RowDefinitions>
 
-                                    <StackPanel Grid.Column="0" Margin="0 0 10 0">
+                    <StackPanel Grid.Column="0" Margin="0 0 10 0">
 
-                                        <Label Content="Личные данные"
+                        <Label Content="Личные данные"
                                        HorizontalAlignment="Left"
                                        Margin="20,15,0,5"
                                        FontFamily="Arial Black"
                                        Foreground="#FF2E2F3F"
                                        FontSize="18"/>
 
-                                        <TextBox x:Name="Surname" 
+                        <TextBox x:Name="Surname" 
                                           Style="{StaticResource MyWaterMarkStyle}"
                                           Height="38" 
                                           Margin="20 10 20 0"
                                           Tag="Фамилия"/>
 
-                                        <TextBox x:Name="Name" 
+                        <TextBox x:Name="Name" 
                                           Style="{StaticResource MyWaterMarkStyle}"
                                           Height="38" 
                                           Margin="20 15 20 0"
                                           Tag="Имя"/>
 
-                                        <TextBox x:Name="Patronymic" 
+                        <TextBox x:Name="Patronymic" 
                                           Style="{StaticResource MyWaterMarkStyle}"
                                           Height="38" 
                                           Margin="20 15 20 0"
                                           Tag="Отчество"/>
 
-                                        <Label Content="Контактные данные"
+                        <Label Content="Контактные данные"
                                        HorizontalAlignment="Left"
                                        Margin="20,30,0,5"
                                        FontFamily="Arial Black"
                                        Foreground="#FF2E2F3F"
                                        FontSize="18"/>
 
-                                        <TextBox x:Name="Email" 
+                        <TextBox x:Name="Email" 
                                           Style="{StaticResource MyWaterMarkStyle}"
                                           Height="38" 
                                           Margin="20 10 20 20"
                                           Tag="Адрес электронной почты"/>
 
-                                        <Button DockPanel.Dock="Top" 
+                        <Button DockPanel.Dock="Top" 
                                         x:Name="btnAuth" 
                                         Margin="20 0 20 10"  
                                         Height="40" 
                                         Content="Сохранить изменения"
                                         Style="{StaticResource Button}"/>
-                                    </StackPanel>
+                    </StackPanel>
 
-                                    <StackPanel Grid.Column="1"  Margin="10 0 0 0">
+                    <StackPanel Grid.Column="1"  Margin="10 0 0 0">
 
-                                        <Label Content="Изменить пароль"
+                        <Label Content="Изменить пароль"
                                        HorizontalAlignment="Left"
                                        Margin="20,15,0,5"
                                        FontFamily="Arial Black"
                                        Foreground="#FF2E2F3F"
                                        FontSize="18"/>
 
-                                        <PasswordBox x:Name="NowPassword" 
+                        <PasswordBox x:Name="NowPassword" 
                                           Style="{StaticResource MyWaterMarkStyle1}"
                                           Height="38" 
                                           Margin="20 10 20 0"
                                           Tag="Текущий пароль"/>
 
-                                        <PasswordBox x:Name="NewPassword" 
+                        <PasswordBox x:Name="NewPassword" 
                                           Style="{StaticResource MyWaterMarkStyle1}"
                                           Height="38" 
                                           Margin="20 15 20 0"
                                           Tag="Новый пароль"/>
 
-                                        <PasswordBox x:Name="Password" 
+                        <PasswordBox x:Name="Password" 
                                           Style="{StaticResource MyWaterMarkStyle1}"
                                           Height="38" 
                                           Margin="20 15 20 20"
                                           Tag="Подтвердите пароль"/>
 
-                                        <Button DockPanel.Dock="Top" 
+                        <Button DockPanel.Dock="Top" 
                                         x:Name="btnPass" 
                                         Margin="20 0 20 0" 
                                         Height="40" 
                                         Content="Изменить пароль"
                                         Style="{StaticResource Button}"/>
-                                    </StackPanel>
+                    </StackPanel>
 
 
-                                        <TextBlock DockPanel.Dock="Top" 
+                    <TextBlock DockPanel.Dock="Top" 
                                                Grid.Column="0" 
                                                Grid.Row="1" 
                                                Margin="20 15 0 0"
@@ -136,9 +124,9 @@
                                                FontSize="14" >
                                          <Hyperlink 
                                                 Foreground="#30282D">Хотите выйти из аккаунта?</Hyperlink>
-                                        </TextBlock>
+                    </TextBlock>
 
-                                    <TextBlock DockPanel.Dock="Top" 
+                    <TextBlock DockPanel.Dock="Top" 
                                                HorizontalAlignment="Right" 
                                                FontFamily="Candara Light" 
                                                FontSize="14" 
@@ -147,15 +135,9 @@
                                                Margin="0 15 20 0">
                                         <Hyperlink 
                                             Foreground="#30282D">Хотите удалить аккаунт?</Hyperlink>
-                                    </TextBlock>
-                                </Grid>
-                            </StackPanel>
-                        </Border>
-                    </WrapPanel>
-                
-                </DockPanel>
-        </ScrollViewer>
-
+                    </TextBlock>
+                </Grid>
+            </StackPanel>
+        </Border>
     </DockPanel>
-
 </Page>

@@ -7,7 +7,7 @@
         xmlns:HamburgerMenu="clr-namespace:HamburgerMenu;assembly=HamburgerMenu"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Личный кабинет" Height="680" Width="1250" MinHeight="680" MinWidth="1100" Icon="/Resources/логотип.png" Closing="Window_Closing">
+        Title="Личный кабинет" Height="680" Width="1250" MinHeight="680" MinWidth="1100" Icon="/Resources/логотип.png">
 
     <DockPanel>
 
@@ -21,8 +21,18 @@
                 <Grid.Background>
                     <ImageBrush ImageSource="/Resources/Plane-stock.jpg"/>
                 </Grid.Background>
+            <ScrollViewer Grid.Column="1" 
+                   Grid.ColumnSpan="2">
 
-            <Frame Grid.Column="1" Grid.ColumnSpan="2" x:Name="MainContent" NavigationUIVisibility="Hidden" Source="/pages/MainCustomer.xaml"/>
+                <DockPanel>
+                    <local:MyOchy DockPanel.Dock="Top"/>
+
+                    <WrapPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                        <Frame Grid.Column="1" Grid.ColumnSpan="2" x:Name="MainContent" NavigationUIVisibility="Hidden" Source="/pages/CustomerPage.xaml"/>
+                    </WrapPanel>
+                </DockPanel>
+            </ScrollViewer>
             <HamburgerMenu:HamburgerMenu 
                 Grid.Column="0" 
                 Grid.ColumnSpan="2" 

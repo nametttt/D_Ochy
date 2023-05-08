@@ -7,13 +7,8 @@
       mc:Ignorable="d" 
       d:DesignHeight="650" d:DesignWidth="1100"
       Title="MainCustomer">
-    <ScrollViewer>
         <StackPanel>
-            <StackPanel.Background>
-                <ImageBrush ImageSource="/Resources/Plane-stock.jpg"/>
-            </StackPanel.Background>
             <DockPanel>
-                <local:MyOchy DockPanel.Dock="Top"/>
                 <StackPanel HorizontalAlignment="Center" 
                             Orientation="Horizontal" 
                             DockPanel.Dock="Top" 
@@ -101,5 +96,4 @@
                 </ListBox>
             </StackPanel>
         </StackPanel>
-    </ScrollViewer>
 </Page>

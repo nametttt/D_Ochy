@@ -10,22 +10,7 @@
       ShowsNavigationUI="False">
 
     <DockPanel>
-
-
-        <DockPanel.Background>
-                    <ImageBrush ImageSource="/Resources/Plane-stock.jpg"/>
-                </DockPanel.Background>
-
-            <ScrollViewer Grid.Column="1" 
-                   Grid.ColumnSpan="2">
-
-                <DockPanel>
-                    <local:MyOchy DockPanel.Dock="Top"/>
-
-                    <WrapPanel Orientation="Horizontal"
-                        HorizontalAlignment="Center">
-
-                        <Grid x:Name="Grid" Height="450">
+            <Grid x:Name="Grid" Height="450">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="0.5*"/>
                                 <ColumnDefinition Width="1*"/>
@@ -43,7 +28,7 @@
                                     Grid.Row="0"
                                     Background="#FFFAE3D5" >
 
-                                <DockPanel Width="210" LastChildFill="False">
+                                <DockPanel LastChildFill="False" Width="210">
 
                                     <StackPanel DockPanel.Dock="Top">
                                         <Button Height="40"
@@ -97,7 +82,7 @@
                                     VerticalAlignment="Top"
                                     Visibility="Visible">
 
-                                <StackPanel Width="700">
+                    <StackPanel Width="650">
                                     <Grid >
                                         <Grid Margin="10 10 10 20">
                                             <Grid.ColumnDefinitions>
@@ -150,8 +135,7 @@
                                           Tag="Адрес электронной почты"/>
 
                                                 <Button DockPanel.Dock="Top" 
-                                        x:Name="btnAuth" 
-                                        Width="290" 
+                                        x:Name="btnAuth"
                                         Height="40" 
                                         Content="Сохранить изменения"
                                         Style="{StaticResource Button}"/>
@@ -185,8 +169,7 @@
                                           Tag="Подтвердите пароль"/>
 
                                                 <Button DockPanel.Dock="Top" 
-                                        x:Name="btnPass" 
-                                        Width="290" 
+                                        x:Name="btnPass"
                                         Height="40" 
                                         Content="Изменить пароль"
                                         Style="{StaticResource Button}"/>
@@ -231,7 +214,7 @@
                                     VerticalAlignment="Top"
                                     Visibility="Hidden">
 
-                                <StackPanel Width="700" >
+                                <StackPanel>
                                     <Grid Margin="10 10 10 20">
 
                                         <StackPanel x:Name="HeightCard">
@@ -253,7 +236,6 @@
                                                 <TextBox 
                                           Style="{StaticResource MyWaterMarkStyle}"
                                           Height="38"
-                                          Width="180"
                                           Tag="Месяц"/>
 
                                                 <Label Content="/"
@@ -264,14 +246,12 @@
                                                    Foreground="Gray"/>
                                                 <TextBox 
                                                    Style="{StaticResource MyWaterMarkStyle}"
-                                                   Height="38" 
-                                                   Width="180"
+                                                   Height="38"
                                                    Tag="Год"/>
 
                                                 <PasswordBox
                                                   Style="{StaticResource MyWaterMarkStyle1}"
-                                                  Height="38" 
-                                                  Width="210"
+                                                  Height="38"
                                                   Margin="29 0 0 0"
                                                   Tag="CW/CVC"/>
                                             </WrapPanel>
@@ -297,7 +277,7 @@
 
 
                                             <StackPanel Margin="20 15 0 0">
-                                                <Border Width="300" 
+                                                <Border
                                                     Height="180" 
                                                     BorderThickness="2" 
                                                     BorderBrush="#33FFFFFF" 
@@ -323,8 +303,7 @@
                                                                 Grid.ColumnSpan="2"  
                                                                 Margin="10 0 0 0">
                                                             <Image Source="https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/chip.png" 
-                                                                   Height="40" 
-                                                                   Width="40"
+                                                                   Height="40"
                                                                    HorizontalAlignment="Left"/>
 
                                                             <TextBlock Text="**** **** **** 6388" 
@@ -366,7 +345,7 @@
                                     Height="{Binding ElementName=HeightTicket, Path=Height}"
                                     Visibility="Hidden">
 
-                                <StackPanel Width="700">
+                                <StackPanel>
                                     <Grid Margin="10 10 10 20">
 
                                         <StackPanel x:Name="HeightTicket">
@@ -548,7 +527,7 @@
                                     Height="{Binding ElementName=HeightDoc, Path=Height}"
                                     Visibility="Hidden">
 
-                                <StackPanel Width="700" >
+                                <StackPanel>
 
                                     <StackPanel x:Name="HeightDoc" Margin="10 10 10 20">
 
@@ -602,16 +581,14 @@
                                                       IsEditable="True" 
                                                       Text="Гражданство"
                                                       Style="{StaticResource Combo}"
-                                                      Height="38"
-                                                      Width="200"/>
+                                                      Height="38"/>
 
                                         <ComboBox
                                                       IsEditable="True" 
                                                       Text="Тип документа"
                                                       Margin="20 0 20 0"
                                                       Style="{StaticResource Combo}"
-                                                      Height="38"
-                                                      Width="200">
+                                                      Height="38">
                                             <ComboBoxItem Content="я"/>
                                             <ComboBoxItem Content="х"/>
                                             <ComboBoxItem Content="у"/>
@@ -621,8 +598,7 @@
 
                                         <Border Background="#FFE2C5BF" CornerRadius="10" BorderBrush="#FF947964" BorderThickness="1">
                                                 <Button
-                                                   Height="38" 
-                                                   Width="93"
+                                                   Height="38"
                                                    Content="М"
                                                    BorderThickness="0">
                                                     <Button.Background>
@@ -633,8 +609,7 @@
 
                                             <Border Background="#FFE2C5BF" CornerRadius="10" Margin="10 0 0 0" BorderBrush="#FF947964" BorderThickness="1">
                                                 <Button
-                                                   Height="38" 
-                                                   Width="93"
+                                                   Height="38"
                                                    BorderThickness="0"
                                                    Content="Ж">
                                                     <Button.Background>
@@ -657,20 +632,17 @@
                                             <TextBox 
                                                       Style="{StaticResource MyWaterMarkStyle}"
                                                       Height="38"
-                                                      Width="200"
                                                       Tag="Фамилия"/>
 
                                             <TextBox 
                                                    Style="{StaticResource MyWaterMarkStyle}"
-                                                   Height="38" 
-                                                   Width="200"
+                                                   Height="38"
                                                    Margin="20 0 20 0"
                                                    Tag="Имя"/>
 
                                             <TextBox
                                                   Style="{StaticResource MyWaterMarkStyle}"
                                                   Height="38" 
-                                                  Width="200"
                                                   Tag="Отчество"/>
                                         </WrapPanel>
 
@@ -678,13 +650,11 @@
                                             <TextBox 
                                                       Style="{StaticResource MyWaterMarkStyle}"
                                                       Height="38"
-                                                      Width="200"
                                                       Tag="Дата рождения"/>
 
                                             <TextBox 
                                                    Style="{StaticResource MyWaterMarkStyle}"
                                                    Height="38" 
-                                                   Width="420"
                                                    Margin="20 0 0 0"
                                                    Tag="Номер документа"/>
                                         </WrapPanel>
@@ -715,10 +685,5 @@
                                 </StackPanel>
                             </Border>
                         </Grid>
-
-                    </WrapPanel>
                 </DockPanel>
-            </ScrollViewer>
-    </DockPanel>
-
 </Page>

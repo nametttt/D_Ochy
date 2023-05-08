@@ -5,27 +5,18 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:air_project"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="1200"
+      d:DesignHeight="950" d:DesignWidth="1200"
       Title="Interests"
       ShowsNavigationUI="False">
 
     <DockPanel>
 
-
-        <DockPanel.Background>
-                <ImageBrush ImageSource="/Resources/Plane-stock.jpg"/>
-            </DockPanel.Background>
-
-            <ScrollViewer>
-
-                <DockPanel >
-                    <local:MyOchy DockPanel.Dock="Top"/>
-
+        <DockPanel >
 
                     <WrapPanel Orientation="Horizontal"
                         HorizontalAlignment="Center">
 
-                        <Grid Width="974">
+                        <Grid Width="975">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition Width="0.5*"/>
@@ -161,7 +152,6 @@
                     </WrapPanel>
 
                 </DockPanel>
-            </ScrollViewer>
 
     </DockPanel>
 
