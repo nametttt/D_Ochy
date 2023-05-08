@@ -17,8 +17,8 @@ namespace air_project
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public City()
         {
-            this.Flights = new HashSet<Flight>();
-            this.Flights1 = new HashSet<Flight>();
+            this.Flight = new HashSet<Flight>();
+            this.Flight1 = new HashSet<Flight>();
         }
     
         public int IdCity { get; set; }
@@ -27,8 +27,8 @@ namespace air_project
     
         public virtual Region Region { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Flight> Flights { get; set; }
+        public virtual ICollection<Flight> Flight { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Flight> Flights1 { get; set; }
+        public virtual ICollection<Flight> Flight1 { get; set; }
     }
 }

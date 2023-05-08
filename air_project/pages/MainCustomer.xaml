@@ -29,23 +29,21 @@
                             VerticalAlignment="Top"
                             Margin="10 20 10 10">
                     <ComboBox x:Name="txtFrom" 
-                             Margin="0,0,5,0" 
+                             Margin="0,0,20,0" 
                              HorizontalContentAlignment="Left" 
                              VerticalContentAlignment="Center" 
                              Width="160" 
-                             Height="39" 
+                             Height="38" 
                              Background="#FFFFF3E8" 
                              FontFamily="Candara Light" 
                              FontSize="18"
                              IsEditable="True" 
                              Text="Откуда"/>
-                    <ComboBox IsEditable="True" Text="Куда" x:Name="txtTo" Margin="0,0,20,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"  Width="160" Height="39" Background="#FFFFF3E8" FontFamily="Candara Light" FontSize="18" BorderBrush="{x:Null}"/>
-                    <TextBox x:Name="txtvilet" IsReadOnly="True" Margin="0,0,5,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" TextWrapping="Wrap" Width="116" Height="39" Background="#FFFFF3E8" FontSize="18" FontFamily="Candara Light" BorderBrush="{x:Null}">Дата вылета</TextBox>
+                    <ComboBox IsEditable="True" Text="Куда" x:Name="txtTo" Margin="0,0,20,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"  Width="160" Height="38" Background="#FFFFF3E8" FontFamily="Candara Light" FontSize="18" BorderBrush="{x:Null}"/>
+                    <TextBox x:Name="txtvilet" IsReadOnly="True" Margin="20,0,10,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" TextWrapping="Wrap" Width="116" Height="38" Background="#FFFFF3E8" FontSize="18" FontFamily="Candara Light" BorderBrush="{x:Null}">Дата вылета</TextBox>
                     <Image  Source="/Resources/calendar.png" Width="20" Height="20" Margin="0,0,5,0" MouseDown="Image_MouseDown"/>
-                    <TextBox x:Name="txtottuda" IsReadOnly="True" Margin="0,0,5,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" TextWrapping="Wrap" Width="116" Height="39" Background="#FFFFF3E8" FontFamily="Candara Light" FontSize="18" BorderBrush="{x:Null}">Обратно</TextBox>
-                    <Image Source="/Resources/calendar.png" Width="20" Height="20" Margin="0,0,5,0" MouseDown="Image_MouseDown_1"/>
-                    <TextBox x:Name="txtNumSeats" HorizontalAlignment="Left" Margin="0,0,30,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" TextWrapping="Wrap" Width="160" Height="39" Background="#FFFFF3E8" FontFamily="Candara Light" FontSize="18" BorderBrush="{x:Null}">Кол-во пассажиров</TextBox>
-                    <Button x:Name="btnSearchTickets" Content="Поиск билетов" Margin="0,0,0,0" RenderTransformOrigin="1.071,0.553" Width="136" Height="39" Visibility="Visible" BorderBrush="{x:Null}">
+                    <TextBox x:Name="txtNumSeats" HorizontalAlignment="Left" Margin="30,0,30,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" TextWrapping="Wrap" Width="160" Height="38" Background="#FFFFF3E8" FontFamily="Candara Light" FontSize="18" BorderBrush="{x:Null}">Кол-во пассажиров</TextBox>
+                    <Button x:Name="btnSearchTickets" Content="Поиск билетов" Margin="0,0,0,0" RenderTransformOrigin="1.071,0.553" Width="136" Height="38" Visibility="Visible" BorderBrush="{x:Null}" Click="btnSearchTickets_Click">
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="5"/>
@@ -61,7 +59,7 @@
             </Popup>
 
             <Popup IsOpen="False" StaysOpen="False" x:Name="calenPop" AllowsTransparency="True">
-                <Calendar Visibility="Collapsed" x:Name="prilet" SelectedDatesChanged="prilet_SelectedDatesChanged"/>
+                <Calendar Visibility="Collapsed" x:Name="prilet" SelectedDatesChanged="otpr_SelectedDatesChanged"/>
             </Popup>
 
             <StackPanel Margin="70 40 70 10" x:Name="tanushka" VerticalAlignment="Top">

@@ -38,7 +38,7 @@ namespace air_project.pages
 
             using (AirTicketsEntities db = new AirTicketsEntities())
             {
-                foreach (var i in db.Cities)
+                foreach (var i in db.City)
                 {
                     txtFrom.Items.Add(i.CityName);
                     txtTo.Items.Add(i.CityName);
@@ -68,10 +68,6 @@ namespace air_project.pages
             txtvilet.Text = otpr.SelectedDate.Value.Date.ToString("dd.MM.yyyy");
         }
 
-        private void prilet_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
-        {
-            txtottuda.Text = prilet.SelectedDate.Value.ToString("dd.MM.yyyy");
-        }
 
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -80,22 +76,15 @@ namespace air_project.pages
             calendarPopup.PlacementTarget = txtvilet;
         }
 
-        private void Image_MouseDown_1(object sender, MouseButtonEventArgs e)
-        {
-            prilet.Visibility = Visibility.Visible;
-            calenPop.IsOpen = true;
-            calenPop.PlacementTarget = txtottuda;
-        }
-
 
 
         private void txtFrom_TextInput(object sender, TextCompositionEventArgs e)
         {
             using (AirTicketsEntities db = new AirTicketsEntities())
             {
-                foreach (var i in db.Cities)
+                foreach (var i in db.City)
                 {
-                    var result = from item in db.Cities
+                    var result = from item in db.City
                                  where item.CityName.StartsWith(txtFrom.Text)
                                  select item;
 
@@ -104,6 +93,11 @@ namespace air_project.pages
                 }
 
             }
+        }
+
+        private void btnSearchTickets_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

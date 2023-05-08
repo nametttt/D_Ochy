@@ -19,23 +19,34 @@ namespace air_project
     /// </summary>
     public partial class CustomerProfile : Window
     {
-        public CustomerProfile()
+        public User _user;
+        public CustomerProfile(User user)
         {
             InitializeComponent();
+            _user = user;
+            MessageBox.Show(_user.Login);
         }
-
-        
-
-        
 
         private void profile_Selected(object sender, RoutedEventArgs e)
         {
-            //MainContent.Navigate(new Uri("/pages/CustomerPage.xaml", UriKind.Relative));
+            MainContent.Navigate(new Uri("/pages/CustomerPage.xaml", UriKind.Relative));
         }
 
         private void interest_Selected(object sender, RoutedEventArgs e)
         {
             MainContent.Navigate(new Uri("/pages/Interests.xaml", UriKind.Relative));
+        }
+
+        private void ticketsBuy_Selected(object sender, RoutedEventArgs e)
+        {
+            MainContent.Navigate(new Uri("/pages/MainCustomer.xaml", UriKind.Relative));
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Auth auth = new Auth();
+            auth.Show();
+            this.Hide();
         }
     }
 }

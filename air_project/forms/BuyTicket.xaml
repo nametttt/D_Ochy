@@ -55,7 +55,7 @@
                                 <Border Grid.Row="2" Margin="20" BorderBrush="LightGray" BorderThickness="1">
                                     <StackPanel>
                                         <Frame Source="/pages/BookingPage.xaml"/>
-                                    <TextBlock Text="я сосу" x:Name="txtPlace"></TextBlock>
+                                    <TextBlock Text="" x:Name="txtPlace"></TextBlock>
                                     </StackPanel>
                                 </Border>
                                 <WrapPanel Grid.Row="3">

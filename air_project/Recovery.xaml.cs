@@ -26,12 +26,28 @@ namespace air_project
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            Auth auth = new Auth();
+            auth.Show();
+            this.Hide();
         }
 
         private void btnAuth_Click(object sender, RoutedEventArgs e)
         {
+            using (AirTicketsEntities db = new AirTicketsEntities())
+            {
+                string userEmail = txtLogin.Text;
 
+                User existingUser = db.User.FirstOrDefault(u => u.Login == userEmail);
+                if (existingUser == null)
+                {
+                    MessageBox.Show("Пользователя с такой почтой не существует!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                CheckRecKod recKod = new CheckRecKod(txtLogin.Text);
+                recKod.Show();
+                this.Hide();
+            }
         }
     }
 }

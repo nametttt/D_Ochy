@@ -27,16 +27,11 @@ namespace air_project
 
         private void buh_Selected(object sender, RoutedEventArgs e)
         {
-            BuhProfile buh = new BuhProfile();
-            this.Hide();
-            buh.Show();
+           
         }
 
         private void doc_Selected(object sender, RoutedEventArgs e)
         {
-            Document buh = new Document();
-            this.Hide();
-            buh.Show();
         }
 
         private void watchfly_Selected(object sender, RoutedEventArgs e)

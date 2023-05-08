@@ -7,7 +7,7 @@
         xmlns:HamburgerMenu="clr-namespace:HamburgerMenu;assembly=HamburgerMenu"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Личный кабинет" Height="680" Width="1250" MinHeight="680" MinWidth="1100" Icon="/Resources/логотип.png">
+        Title="Личный кабинет" Height="680" Width="1250" MinHeight="680" MinWidth="1100" Icon="/Resources/логотип.png" Closing="Window_Closing">
 
     <DockPanel>
 
@@ -43,6 +43,7 @@
 
                     <HamburgerMenu:HamburgerMenuItem 
                     x:Name="ticketsBuy" 
+                        Selected="ticketsBuy_Selected"
                     Height="50"
                     Text="Полететь далеко" 
                     Icon="/Resources/plane.png"/>

@@ -25,17 +25,15 @@ namespace air_project
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Card> Cards { get; set; }
-        public virtual DbSet<City> Cities { get; set; }
-        public virtual DbSet<Country> Countries { get; set; }
-        public virtual DbSet<Customer> Customers { get; set; }
-        public virtual DbSet<Document> Documents { get; set; }
-        public virtual DbSet<Employee> Employees { get; set; }
-        public virtual DbSet<Flight> Flights { get; set; }
-        public virtual DbSet<Region> Regions { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<Ticket> Tickets { get; set; }
+        public virtual DbSet<Card> Card { get; set; }
+        public virtual DbSet<City> City { get; set; }
+        public virtual DbSet<Country> Country { get; set; }
+        public virtual DbSet<Document> Document { get; set; }
+        public virtual DbSet<Flight> Flight { get; set; }
+        public virtual DbSet<Passenger> Passenger { get; set; }
+        public virtual DbSet<Region> Region { get; set; }
+        public virtual DbSet<Ticket> Ticket { get; set; }
         public virtual DbSet<Type_Document> Type_Document { get; set; }
-        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<User> User { get; set; }
     }
 }

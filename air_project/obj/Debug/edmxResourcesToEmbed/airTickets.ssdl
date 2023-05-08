@@ -8,8 +8,8 @@
     <Property Name="Month" Type="nvarchar" MaxLength="20" Nullable="false" />
     <Property Name="Year" Type="int" Nullable="false" />
     <Property Name="CW/CVC" Type="int" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
-    <Property Name="IdCustomer" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OwnerName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="UserLogin" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="City">
     <Key>
@@ -26,38 +26,15 @@
     <Property Name="IdCountry" Type="int" Nullable="false" />
     <Property Name="CountryName" Type="varchar" MaxLength="128" Nullable="false" />
   </EntityType>
-  <EntityType Name="Customer">
-    <Key>
-      <PropertyRef Name="IdCustomer" />
-    </Key>
-    <Property Name="IdCustomer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Patronymic" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Bithday" Type="date" />
-    <Property Name="Gender" Type="nvarchar" MaxLength="50" />
-    <Property Name="Phone" Type="nvarchar" MaxLength="20" />
-  </EntityType>
   <EntityType Name="Document">
     <Key>
       <PropertyRef Name="IdDocument" />
     </Key>
     <Property Name="IdDocument" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="IdCustomer" Type="int" Nullable="false" />
+    <Property Name="IdPassenger" Type="int" Nullable="false" />
     <Property Name="IdType" Type="int" Nullable="false" />
-    <Property Name="Series" Type="int" Nullable="false" />
     <Property Name="Number" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Employee">
-    <Key>
-      <PropertyRef Name="Login" />
-    </Key>
-    <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Patronymic" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+    <Property Name="ExpirationDate" Type="date" />
   </EntityType>
   <EntityType Name="Flight">
     <Key>
@@ -70,6 +47,20 @@
     <Property Name="Arrival_Date" Type="datetime" Nullable="false" />
     <Property Name="Seats_Number" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="Passenger">
+    <Key>
+      <PropertyRef Name="IdPassenger" />
+    </Key>
+    <Property Name="IdPassenger" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserLogin" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Patronymic" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Bithday" Type="date" Nullable="false" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Citizenship" Type="int" Nullable="false" />
+    <Property Name="IdDocument" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="Region">
     <Key>
       <PropertyRef Name="IdRegion" />
@@ -77,16 +68,6 @@
     <Property Name="IdRegion" Type="int" Nullable="false" />
     <Property Name="IdCountry" Type="int" Nullable="false" />
     <Property Name="RegionName" Type="varchar" MaxLength="128" Nullable="false" />
-  </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="Ticket">
     <Key>
@@ -96,7 +77,7 @@
     <Property Name="IdFlight" Type="int" Nullable="false" />
     <Property Name="Place" Type="int" Nullable="false" />
     <Property Name="Cost" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-    <Property Name="IdCustomer" Type="int" />
+    <Property Name="IdPassenger" Type="int" />
   </EntityType>
   <EntityType Name="Type_Document">
     <Key>
@@ -110,11 +91,17 @@
       <PropertyRef Name="Login" />
     </Key>
     <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Patronymic" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="20" />
     <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Role" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <Association Name="FK__Region__Country___589C25F3">
-    <End Role="Country" Type="Self.Country" Multiplicity="1" />
+    <End Role="Country" Type="Self.Country" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Region" Type="Self.Region" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Country">
@@ -126,38 +113,44 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Card_User">
-    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Card" Type="Self.Card" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="User">
         <PropertyRef Name="Login" />
       </Principal>
       <Dependent Role="Card">
-        <PropertyRef Name="IdCustomer" />
+        <PropertyRef Name="UserLogin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_City_Region">
+    <End Role="Region" Type="Self.Region" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="City" Type="Self.City" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Region">
+        <PropertyRef Name="IdRegion" />
+      </Principal>
+      <Dependent Role="City">
+        <PropertyRef Name="IdRegion" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Customer_User">
-    <End Role="User" Type="Self.User" Multiplicity="1" />
-    <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+    <End Role="User" Type="Self.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Passenger" Type="Self.Passenger" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="User">
         <PropertyRef Name="Login" />
       </Principal>
-      <Dependent Role="Customer">
-        <PropertyRef Name="Login" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Document_Customer">
-    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
-    <End Role="Document" Type="Self.Document" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Customer">
-        <PropertyRef Name="IdCustomer" />
-      </Principal>
-      <Dependent Role="Document">
-        <PropertyRef Name="IdCustomer" />
+      <Dependent Role="Passenger">
+        <PropertyRef Name="UserLogin" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -173,27 +166,53 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Employee_User">
-    <End Role="User" Type="Self.User" Multiplicity="1" />
-    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+  <Association Name="FK_Documents_Country">
+    <End Role="Country" Type="Self.Country" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Passenger" Type="Self.Passenger" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="Login" />
+      <Principal Role="Country">
+        <PropertyRef Name="IdCountry" />
       </Principal>
-      <Dependent Role="Employee">
-        <PropertyRef Name="Login" />
+      <Dependent Role="Passenger">
+        <PropertyRef Name="Citizenship" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Ticket_Customer">
-    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
-    <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+  <Association Name="FK_Flight_City">
+    <End Role="City" Type="Self.City" Multiplicity="1" />
+    <End Role="Flight" Type="Self.Flight" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Customer">
-        <PropertyRef Name="IdCustomer" />
+      <Principal Role="City">
+        <PropertyRef Name="IdCity" />
       </Principal>
-      <Dependent Role="Ticket">
-        <PropertyRef Name="IdCustomer" />
+      <Dependent Role="Flight">
+        <PropertyRef Name="Departure_City" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Flight_City1">
+    <End Role="City" Type="Self.City" Multiplicity="1" />
+    <End Role="Flight" Type="Self.Flight" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="IdCity" />
+      </Principal>
+      <Dependent Role="Flight">
+        <PropertyRef Name="Arrival_City" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Passenger_Document">
+    <End Role="Document" Type="Self.Document" Multiplicity="1" />
+    <End Role="Passenger" Type="Self.Passenger" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Document">
+        <PropertyRef Name="IdDocument" />
+      </Principal>
+      <Dependent Role="Passenger">
+        <PropertyRef Name="IdDocument" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -211,16 +230,26 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Ticket_Passenger">
+    <End Role="Passenger" Type="Self.Passenger" Multiplicity="0..1" />
+    <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Passenger">
+        <PropertyRef Name="IdPassenger" />
+      </Principal>
+      <Dependent Role="Ticket">
+        <PropertyRef Name="IdPassenger" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="Хранилище AirTicketsModelContainer">
     <EntitySet Name="Card" EntityType="Self.Card" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Document" EntityType="Self.Document" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Flight" EntityType="Self.Flight" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Passenger" EntityType="Self.Passenger" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Region" EntityType="Self.Region" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Ticket" EntityType="Self.Ticket" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Type_Document" EntityType="Self.Type_Document" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
@@ -232,28 +261,40 @@
       <End Role="User" EntitySet="User" />
       <End Role="Card" EntitySet="Card" />
     </AssociationSet>
+    <AssociationSet Name="FK_City_Region" Association="Self.FK_City_Region">
+      <End Role="Region" EntitySet="Region" />
+      <End Role="City" EntitySet="City" />
+    </AssociationSet>
     <AssociationSet Name="FK_Customer_User" Association="Self.FK_Customer_User">
       <End Role="User" EntitySet="User" />
-      <End Role="Customer" EntitySet="Customer" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Document_Customer" Association="Self.FK_Document_Customer">
-      <End Role="Customer" EntitySet="Customer" />
-      <End Role="Document" EntitySet="Document" />
+      <End Role="Passenger" EntitySet="Passenger" />
     </AssociationSet>
     <AssociationSet Name="FK_Document_Type_Document" Association="Self.FK_Document_Type_Document">
       <End Role="Type_Document" EntitySet="Type_Document" />
       <End Role="Document" EntitySet="Document" />
     </AssociationSet>
-    <AssociationSet Name="FK_Employee_User" Association="Self.FK_Employee_User">
-      <End Role="User" EntitySet="User" />
-      <End Role="Employee" EntitySet="Employee" />
+    <AssociationSet Name="FK_Documents_Country" Association="Self.FK_Documents_Country">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="Passenger" EntitySet="Passenger" />
     </AssociationSet>
-    <AssociationSet Name="FK_Ticket_Customer" Association="Self.FK_Ticket_Customer">
-      <End Role="Customer" EntitySet="Customer" />
-      <End Role="Ticket" EntitySet="Ticket" />
+    <AssociationSet Name="FK_Flight_City" Association="Self.FK_Flight_City">
+      <End Role="City" EntitySet="City" />
+      <End Role="Flight" EntitySet="Flight" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Flight_City1" Association="Self.FK_Flight_City1">
+      <End Role="City" EntitySet="City" />
+      <End Role="Flight" EntitySet="Flight" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Passenger_Document" Association="Self.FK_Passenger_Document">
+      <End Role="Document" EntitySet="Document" />
+      <End Role="Passenger" EntitySet="Passenger" />
     </AssociationSet>
     <AssociationSet Name="FK_Ticket_Flight" Association="Self.FK_Ticket_Flight">
       <End Role="Flight" EntitySet="Flight" />
+      <End Role="Ticket" EntitySet="Ticket" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ticket_Passenger" Association="Self.FK_Ticket_Passenger">
+      <End Role="Passenger" EntitySet="Passenger" />
       <End Role="Ticket" EntitySet="Ticket" />
     </AssociationSet>
   </EntityContainer>

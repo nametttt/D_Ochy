@@ -6,7 +6,14 @@
         xmlns:local="clr-namespace:air_project"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Регистрация" Height="600" Width="380" MinHeight="600" MinWidth="380" Icon="Resources/логотип.png" Background="#FFFCD7C0">
+        Title="Регистрация" 
+        Height="650" 
+        Width="500" 
+        MinHeight="650" 
+        MinWidth="500" 
+        Icon="Resources/логотип.png" 
+        Background="#FFFCD7C0" Closing="Window_Closing">
+    
     <Grid>
         <DockPanel LastChildFill="False">
             <Label DockPanel.Dock="Top"
@@ -14,88 +21,86 @@
                    FontSize="24" 
                    FontWeight="Bold" 
                    HorizontalAlignment="Center" 
-                   Margin="0 15 0 15" />
+                   Margin="0 25 0 15" />
             
             <Image DockPanel.Dock="Top" 
                    Source="Resources/вход.png" 
-                   Width="70" 
-                   Height="70" 
+                   Width="80" 
+                   Height="80" 
                    Margin="0 0 0 25" />
 
 
             <TextBox x:Name="txtSurname" 
                      DockPanel.Dock="Top" 
                      Style="{StaticResource MyWaterMarkStyle}"
-                     Width="300" 
-                     Height="39" 
-                     Margin="0 0 0 15"
+                     Height="38" 
+                     Margin="50 0 50 15"
                      Tag="Фамилия"/>
             
             <TextBox x:Name="txtName" 
                      DockPanel.Dock="Top" 
                      Style="{StaticResource MyWaterMarkStyle}"
-                     Width="300" 
-                     Height="39" 
-                     Margin="0 0 0 15"
+                     Height="38" 
+                     Margin="50 0 50 15"
                      Tag="Имя"/>
 
             <TextBox x:Name="txtPatronymic" 
                      DockPanel.Dock="Top" 
                      Style="{StaticResource MyWaterMarkStyle}"
-                     Width="300" 
-                     Height="39" 
-                     Margin="0 0 0 15"
+                     Height="38" 
+                     Margin="50 0 50 15"
                      Tag="Отчество"/>
 
             <TextBox x:Name="txtLogin" 
                      DockPanel.Dock="Top" 
                      Style="{StaticResource MyWaterMarkStyle}"
-                     Width="300" 
-                     Height="39" 
-                     Margin="0 0 0 15"
+                     Height="38" 
+                     Margin="50 0 50 15"
                      Tag="Адрес электронной почты"/>
 
             <PasswordBox x:Name="txtPassword" 
                      DockPanel.Dock="Top" 
                      Style="{StaticResource MyWaterMarkStyle1}"
-                     Width="300" 
-                     Height="39" 
-                     Margin="0 0 0 15"
-                     Tag="Пароль"/>
+                     Height="38" 
+                     Margin="50 0 50 15"
+                     Tag="Пароль (не менее 6 символов)"/>
 
             <PasswordBox x:Name="txtPassword1" 
                      DockPanel.Dock="Top"
                      Style="{StaticResource MyWaterMarkStyle1}"
-                     Width="300" 
-                     Height="39" 
-                     Margin="0 0 0 10"
+                     Height="38" 
+                     Margin="50 0 50 10"
                      Tag="Повторите пароль"/>
 
             <StackPanel Orientation="Horizontal" 
                         DockPanel.Dock="Top"
-                        HorizontalAlignment="Center"
-                        Margin="0 0 0 10">
+                        Margin="50 5 50 10">
 
                 <CheckBox DockPanel.Dock="Top" 
                           x:Name="sogl"
                           IsChecked="True"
-                          Margin="0 6 0 0"/>
+                          Margin="0 4 2 0">
+                    <CheckBox.LayoutTransform>
+                        <ScaleTransform ScaleX="1.3" ScaleY="1.3" />
+                    </CheckBox.LayoutTransform>
+                </CheckBox>
 
                 <Label DockPanel.Dock="Top" 
                        Content="Даю согласие на обработку персональных данных" 
                        HorizontalAlignment="Left" 
-                       FontSize="12" 
+                       FontFamily="Candara Regular"
+                       FontSize="15"
                        Foreground="#30282D">
                 </Label>
                 
             </StackPanel>
 
             <Button DockPanel.Dock="Top" 
-                    x:Name="btnAuth" 
-                    Width="300" 
+                    x:Name="btnReg" 
+                    Margin="50 5 50 10"
                     Height="40" 
                     Content="Зарегистрироваться"
-                    Style="{StaticResource Button}">
+                    Style="{StaticResource Button}" Click="btnReg_Click">
             </Button>
         </DockPanel>
     </Grid>

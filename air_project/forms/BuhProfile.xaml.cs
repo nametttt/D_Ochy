@@ -19,7 +19,7 @@ namespace air_project
     /// </summary>
     public partial class BuhProfile : Window
     {
-        public BuhProfile()
+        public BuhProfile(User user)
         {
             InitializeComponent();
         }
@@ -48,7 +48,9 @@ namespace air_project
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            Application.Current.Shutdown();
+            Auth auth = new Auth();
+            auth.Show();
+            this.Hide();
         }
 
         private void admin_Selected(object sender, RoutedEventArgs e)

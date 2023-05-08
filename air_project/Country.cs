@@ -17,13 +17,16 @@ namespace air_project
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Country()
         {
-            this.Regions = new HashSet<Region>();
+            this.Region = new HashSet<Region>();
+            this.Passenger = new HashSet<Passenger>();
         }
     
         public int IdCountry { get; set; }
         public string CountryName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Region> Regions { get; set; }
+        public virtual ICollection<Region> Region { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Passenger> Passenger { get; set; }
     }
 }

@@ -71,41 +71,41 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="airTickets.Context.cs">
+    <Compile Include="AirTickets.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>airTickets.Context.tt</DependentUpon>
+      <DependentUpon>AirTickets.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="airTickets.cs">
+    <Compile Include="AirTickets.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>airTickets.tt</DependentUpon>
+      <DependentUpon>AirTickets.tt</DependentUpon>
     </Compile>
-    <Compile Include="airTickets.Designer.cs">
+    <Compile Include="AirTickets.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>airTickets.edmx</DependentUpon>
+      <DependentUpon>AirTickets.edmx</DependentUpon>
     </Compile>
     <Compile Include="Card.cs">
-      <DependentUpon>airTickets.tt</DependentUpon>
+      <DependentUpon>AirTickets.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CheckRecKod.xaml.cs">
+      <DependentUpon>CheckRecKod.xaml</DependentUpon>
     </Compile>
     <Compile Include="City.cs">
-      <DependentUpon>airTickets.tt</DependentUpon>
+      <DependentUpon>AirTickets.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Confirmation.xaml.cs">
+      <DependentUpon>Confirmation.xaml</DependentUpon>
     </Compile>
     <Compile Include="Country.cs">
-      <DependentUpon>airTickets.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Customer.cs">
-      <DependentUpon>airTickets.tt</DependentUpon>
+      <DependentUpon>AirTickets.tt</DependentUpon>
     </Compile>
     <Compile Include="Document.cs">
-      <DependentUpon>airTickets.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Employee.cs">
-      <DependentUpon>airTickets.tt</DependentUpon>
+      <DependentUpon>AirTickets.tt</DependentUpon>
     </Compile>
     <Compile Include="Flight.cs">
-      <DependentUpon>airTickets.tt</DependentUpon>
+      <DependentUpon>AirTickets.tt</DependentUpon>
     </Compile>
     <Compile Include="forms\AdminProfile.xaml.cs">
       <DependentUpon>AdminProfile.xaml</DependentUpon>
@@ -116,6 +116,7 @@
     <Compile Include="forms\BuyTicket.xaml.cs">
       <DependentUpon>BuyTicket.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GetHash.cs" />
     <Compile Include="pages\BookingPage.xaml.cs">
       <DependentUpon>BookingPage.xaml</DependentUpon>
     </Compile>
@@ -124,9 +125,6 @@
     </Compile>
     <Compile Include="forms\CustomerProfile.xaml.cs">
       <DependentUpon>CustomerProfile.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Document.xaml.cs">
-      <DependentUpon>Document.xaml</DependentUpon>
     </Compile>
     <Compile Include="Interesting.xaml.cs">
       <DependentUpon>Interesting.xaml</DependentUpon>
@@ -146,8 +144,15 @@
     <Compile Include="MyOchy.xaml.cs">
       <DependentUpon>MyOchy.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MyUser.cs" />
     <Compile Include="pages\WatchTicket.xaml.cs">
       <DependentUpon>WatchTicket.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Window1.xaml.cs">
+      <DependentUpon>Window1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Passenger.cs">
+      <DependentUpon>AirTickets.tt</DependentUpon>
     </Compile>
     <Compile Include="Recovery.xaml.cs">
       <DependentUpon>Recovery.xaml</DependentUpon>
@@ -159,22 +164,19 @@
       <DependentUpon>WatchFlight.xaml</DependentUpon>
     </Compile>
     <Compile Include="Region.cs">
-      <DependentUpon>airTickets.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sysdiagram.cs">
-      <DependentUpon>airTickets.tt</DependentUpon>
+      <DependentUpon>AirTickets.tt</DependentUpon>
     </Compile>
     <Compile Include="Ticket.cs">
-      <DependentUpon>airTickets.tt</DependentUpon>
+      <DependentUpon>AirTickets.tt</DependentUpon>
     </Compile>
     <Compile Include="TicketsControl.xaml.cs">
       <DependentUpon>TicketsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Type_Document.cs">
-      <DependentUpon>airTickets.tt</DependentUpon>
+      <DependentUpon>AirTickets.tt</DependentUpon>
     </Compile>
     <Compile Include="User.cs">
-      <DependentUpon>airTickets.tt</DependentUpon>
+      <DependentUpon>AirTickets.tt</DependentUpon>
     </Compile>
     <Compile Include="WatchFlights.xaml.cs">
       <DependentUpon>WatchFlights.xaml</DependentUpon>
@@ -182,6 +184,14 @@
     <Compile Include="WatchTickets.xaml.cs">
       <DependentUpon>WatchTickets.xaml</DependentUpon>
     </Compile>
+    <Page Include="CheckRecKod.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Confirmation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="forms\AdminProfile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -217,10 +227,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Document.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Interesting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -246,6 +252,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="pages\WatchTicket.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pages\Window1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -293,12 +303,12 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EntityDeploy Include="airTickets.edmx">
+    <EntityDeploy Include="AirTickets.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>airTickets.Designer.cs</LastGenOutput>
+      <LastGenOutput>AirTickets.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="airTickets.edmx.diagram">
-      <DependentUpon>airTickets.edmx</DependentUpon>
+    <None Include="AirTickets.edmx.diagram">
+      <DependentUpon>AirTickets.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -351,19 +361,19 @@
     <Resource Include="Resources\most.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="airTickets.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>airTickets.edmx</DependentUpon>
-      <LastGenOutput>airTickets.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="airTickets.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>airTickets.edmx</DependentUpon>
-      <LastGenOutput>airTickets.cs</LastGenOutput>
-    </Content>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Content Include="AirTickets.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AirTickets.edmx</DependentUpon>
+      <LastGenOutput>AirTickets.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="AirTickets.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AirTickets.edmx</DependentUpon>
+      <LastGenOutput>AirTickets.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

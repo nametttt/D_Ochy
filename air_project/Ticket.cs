@@ -18,9 +18,9 @@ namespace air_project
         public int IdFlight { get; set; }
         public int Place { get; set; }
         public decimal Cost { get; set; }
-        public Nullable<int> IdCustomer { get; set; }
+        public Nullable<int> IdPassenger { get; set; }
     
-        public virtual Customer Customer { get; set; }
         public virtual Flight Flight { get; set; }
+        public virtual Passenger Passenger { get; set; }
     }
 }

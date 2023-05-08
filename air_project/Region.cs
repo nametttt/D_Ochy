@@ -17,7 +17,7 @@ namespace air_project
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Region()
         {
-            this.Cities = new HashSet<City>();
+            this.City = new HashSet<City>();
         }
     
         public int IdRegion { get; set; }
@@ -25,7 +25,7 @@ namespace air_project
         public string RegionName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<City> Cities { get; set; }
+        public virtual ICollection<City> City { get; set; }
         public virtual Country Country { get; set; }
     }
 }

@@ -4,30 +4,28 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c181da9417cd4bcabb2dba140391d9f3" Name="Diagram1">
-        <EntityTypeShape EntityType="AirTicketsModel.Card" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="AirTicketsModel.City" Width="1.5" PointX="3.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="AirTicketsModel.Country" Width="1.5" PointX="1.5" PointY="15" IsExpanded="true" />
-        <EntityTypeShape EntityType="AirTicketsModel.Customer" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="AirTicketsModel.Document" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="AirTicketsModel.Employee" Width="1.5" PointX="3" PointY="11.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="AirTicketsModel.Flight" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AirTicketsModel.Region" Width="1.5" PointX="1.5" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="AirTicketsModel.sysdiagram" Width="1.5" PointX="5.75" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="AirTicketsModel.Ticket" Width="1.5" PointX="8.25" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="AirTicketsModel.Type_Document" Width="1.5" PointX="3" PointY="18.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="AirTicketsModel.User" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
+      <Diagram DiagramId="301021da98f3430b99389c488d674fa7" Name="Diagram1">
+        <EntityTypeShape EntityType="AirTicketsModel.Card" Width="1.5" PointX="3" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="AirTicketsModel.City" Width="1.5" PointX="5.25" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AirTicketsModel.Country" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AirTicketsModel.Document" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AirTicketsModel.Flight" Width="1.5" PointX="7.5" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AirTicketsModel.Passenger" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AirTicketsModel.Region" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="AirTicketsModel.Ticket" Width="1.5" PointX="9.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AirTicketsModel.Type_Document" Width="1.5" PointX="1.5" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AirTicketsModel.User" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
         <AssociationConnector Association="AirTicketsModel.FK_Card_User" ManuallyRouted="false" />
-        <AssociationConnector Association="AirTicketsModel.FK__City__Region_id__5B78929E" ManuallyRouted="false" />
+        <AssociationConnector Association="AirTicketsModel.FK_City_Region" ManuallyRouted="false" />
         <AssociationConnector Association="AirTicketsModel.FK_Flight_City" ManuallyRouted="false" />
         <AssociationConnector Association="AirTicketsModel.FK_Flight_City1" ManuallyRouted="false" />
         <AssociationConnector Association="AirTicketsModel.FK__Region__Country___589C25F3" ManuallyRouted="false" />
-        <AssociationConnector Association="AirTicketsModel.FK_Customer_User" ManuallyRouted="false" />
-        <AssociationConnector Association="AirTicketsModel.FK_Document_Customer" ManuallyRouted="false" />
-        <AssociationConnector Association="AirTicketsModel.FK_Ticket_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="AirTicketsModel.FK_Documents_Country" ManuallyRouted="false" />
         <AssociationConnector Association="AirTicketsModel.FK_Document_Type_Document" ManuallyRouted="false" />
-        <AssociationConnector Association="AirTicketsModel.FK_Employee_User" ManuallyRouted="false" />
+        <AssociationConnector Association="AirTicketsModel.FK_Passenger_Document" ManuallyRouted="false" />
         <AssociationConnector Association="AirTicketsModel.FK_Ticket_Flight" ManuallyRouted="false" />
+        <AssociationConnector Association="AirTicketsModel.FK_Customer_User" ManuallyRouted="false" />
+        <AssociationConnector Association="AirTicketsModel.FK_Ticket_Passenger" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

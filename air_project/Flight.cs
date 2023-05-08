@@ -17,7 +17,7 @@ namespace air_project
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Flight()
         {
-            this.Tickets = new HashSet<Ticket>();
+            this.Ticket = new HashSet<Ticket>();
         }
     
         public int IdFlight { get; set; }
@@ -30,6 +30,6 @@ namespace air_project
         public virtual City City { get; set; }
         public virtual City City1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Ticket> Tickets { get; set; }
+        public virtual ICollection<Ticket> Ticket { get; set; }
     }
 }

@@ -18,8 +18,8 @@ namespace air_project
         public string Month { get; set; }
         public int Year { get; set; }
         public int CW_CVC { get; set; }
-        public string Name { get; set; }
-        public string IdCustomer { get; set; }
+        public string OwnerName { get; set; }
+        public string UserLogin { get; set; }
     
         public virtual User User { get; set; }
     }

@@ -6,8 +6,15 @@
         xmlns:local="clr-namespace:air_project"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Вход" Height="410" Width="380" MinHeight="410" MinWidth="380"
-               Closing="Window_Closing" Icon="Resources/логотип.png" Background="#FFFCD7C0">
+        Title="Вход" 
+        Height="450" 
+        Width="500" 
+        MinHeight="450" 
+        MinWidth="500"
+        Closing="Window_Closing" 
+        Icon="Resources/логотип.png" 
+        Background="#FFFCD7C0">
+    
     <Grid>
         <DockPanel LastChildFill="False">
             
@@ -16,36 +23,33 @@
                    FontSize="18" 
                    FontWeight="Bold"
                    HorizontalAlignment="Center"
-                   Margin="0 15 0 15" />
-            
+                   Margin="0 25 0 15" />
+
             <Image DockPanel.Dock="Top"
-                   Width="70" 
-                   Height="70"
+                   Width="80" 
+                   Height="80"
                    Margin="0 0 0 25"
                    Source="Resources/вход.png" />
-            
+
             <TextBox x:Name="txtLogin"
                      DockPanel.Dock="Top"
                      Style="{StaticResource MyWaterMarkStyle}"
-                     Width="300" 
                      Height="38"
-                     Margin="0 0 0 15"
+                     Margin="50 0 50 15"
                      Tag="Адрес электронной почты"/>
-            
-            <TextBox x:Name="txtPassword"
+
+            <PasswordBox x:Name="txtPassword"
                      DockPanel.Dock="Top"
-                     Style="{StaticResource MyWaterMarkStyle}"
-                     Width="300" 
+                     Style="{StaticResource MyWaterMarkStyle1}"
                      Height="38" 
-                     Margin="0 0 0 15"
+                     Margin="50 0 50 20"
                      Tag="Пароль"/>
             
             <Button x:Name="btnAuth"
-                    DockPanel.Dock="Top" 
-                    Width="300" 
+                    DockPanel.Dock="Top"
                     Height="40" 
                     Content="Войти" 
-                    Margin="0 0 0 5" 
+                    Margin="50 0 50 10" 
                     Click="btnAuth_Click"
                     Style="{StaticResource Button}"/>
 
@@ -54,18 +58,17 @@
                 
                 <Label DockPanel.Dock="Top" 
                        Content="Нет профиля?" 
+                       FontFamily="Candara  Regular"
                        HorizontalAlignment="Center"  
-                       FontSize="14" 
-                       Foreground="#30282D" />
+                       FontSize="16"/>
 
                 <TextBlock DockPanel.Dock="Top"
                            HorizontalAlignment="Center"
-                           FontFamily="Candara Light"
-                           FontSize="14"
-                           Width="185"
+                           FontFamily="Candara Regular"
+                           FontSize="16"
                            Height="20" 
-                           Margin="0 5 0 0">
-                    <Hyperlink Foreground="#30282D"
+                           Margin="10 0 0 0">
+                    <Hyperlink Foreground="#FF6D0000"
                                PreviewMouseDown="Reg_PreviewMouseDown">
                                Зарегистрируйтесь, это легко! </Hyperlink>
                 </TextBlock>
@@ -74,12 +77,11 @@
             
             <TextBlock DockPanel.Dock="Top" 
                        HorizontalAlignment="Center" 
-                       FontFamily="Candara Light" 
-                       FontSize="14" 
-                       Width="108" 
+                       FontFamily="Candara Regular" 
+                       FontSize="16" 
                        Height="20" 
                        Margin="0 5 0 0">
-                    <Hyperlink Foreground="#30282D" 
+                    <Hyperlink Foreground="#FF6D0000" 
                                PreviewMouseDown="Recovery_PreviewMouseDown">
                                Не помню пароль </Hyperlink>
             </TextBlock>

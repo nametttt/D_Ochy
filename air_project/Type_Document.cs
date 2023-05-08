@@ -17,13 +17,13 @@ namespace air_project
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Type_Document()
         {
-            this.Documents = new HashSet<Document>();
+            this.Document = new HashSet<Document>();
         }
     
         public int IdType { get; set; }
         public string Type { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Document> Documents { get; set; }
+        public virtual ICollection<Document> Document { get; set; }
     }
 }

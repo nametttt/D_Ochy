@@ -1,19 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="Хранилище AirTicketsModelContainer" CdmEntityContainer="AirTicketsEntities">
-    <EntitySetMapping Name="Cards">
+    <EntitySetMapping Name="Card">
       <EntityTypeMapping TypeName="AirTicketsModel.Card">
         <MappingFragment StoreEntitySet="Card">
           <ScalarProperty Name="IdCard" ColumnName="IdCard" />
           <ScalarProperty Name="Month" ColumnName="Month" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CW_CVC" ColumnName="CW/CVC" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="IdCustomer" ColumnName="IdCustomer" />
+          <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
+          <ScalarProperty Name="UserLogin" ColumnName="UserLogin" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Cities">
+    <EntitySetMapping Name="City">
       <EntityTypeMapping TypeName="AirTicketsModel.City">
         <MappingFragment StoreEntitySet="City">
           <ScalarProperty Name="IdCity" ColumnName="IdCity" />
@@ -22,7 +22,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Countries">
+    <EntitySetMapping Name="Country">
       <EntityTypeMapping TypeName="AirTicketsModel.Country">
         <MappingFragment StoreEntitySet="Country">
           <ScalarProperty Name="IdCountry" ColumnName="IdCountry" />
@@ -30,43 +30,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Customers">
-      <EntityTypeMapping TypeName="AirTicketsModel.Customer">
-        <MappingFragment StoreEntitySet="Customer">
-          <ScalarProperty Name="IdCustomer" ColumnName="IdCustomer" />
-          <ScalarProperty Name="Login" ColumnName="Login" />
-          <ScalarProperty Name="Surname" ColumnName="Surname" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
-          <ScalarProperty Name="Bithday" ColumnName="Bithday" />
-          <ScalarProperty Name="Gender" ColumnName="Gender" />
-          <ScalarProperty Name="Phone" ColumnName="Phone" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Documents">
+    <EntitySetMapping Name="Document">
       <EntityTypeMapping TypeName="AirTicketsModel.Document">
         <MappingFragment StoreEntitySet="Document">
           <ScalarProperty Name="IdDocument" ColumnName="IdDocument" />
-          <ScalarProperty Name="IdCustomer" ColumnName="IdCustomer" />
+          <ScalarProperty Name="IdPassenger" ColumnName="IdPassenger" />
           <ScalarProperty Name="IdType" ColumnName="IdType" />
-          <ScalarProperty Name="Series" ColumnName="Series" />
           <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Employees">
-      <EntityTypeMapping TypeName="AirTicketsModel.Employee">
-        <MappingFragment StoreEntitySet="Employee">
-          <ScalarProperty Name="Login" ColumnName="Login" />
-          <ScalarProperty Name="Surname" ColumnName="Surname" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
-          <ScalarProperty Name="Phone" ColumnName="Phone" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Flights">
+    <EntitySetMapping Name="Flight">
       <EntityTypeMapping TypeName="AirTicketsModel.Flight">
         <MappingFragment StoreEntitySet="Flight">
           <ScalarProperty Name="IdFlight" ColumnName="IdFlight" />
@@ -78,7 +53,22 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Regions">
+    <EntitySetMapping Name="Passenger">
+      <EntityTypeMapping TypeName="AirTicketsModel.Passenger">
+        <MappingFragment StoreEntitySet="Passenger">
+          <ScalarProperty Name="IdPassenger" ColumnName="IdPassenger" />
+          <ScalarProperty Name="UserLogin" ColumnName="UserLogin" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+          <ScalarProperty Name="Bithday" ColumnName="Bithday" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Citizenship" ColumnName="Citizenship" />
+          <ScalarProperty Name="IdDocument" ColumnName="IdDocument" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Region">
       <EntityTypeMapping TypeName="AirTicketsModel.Region">
         <MappingFragment StoreEntitySet="Region">
           <ScalarProperty Name="IdRegion" ColumnName="IdRegion" />
@@ -87,25 +77,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="sysdiagrams">
-      <EntityTypeMapping TypeName="AirTicketsModel.sysdiagram">
-        <MappingFragment StoreEntitySet="sysdiagrams">
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-          <ScalarProperty Name="version" ColumnName="version" />
-          <ScalarProperty Name="definition" ColumnName="definition" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Tickets">
+    <EntitySetMapping Name="Ticket">
       <EntityTypeMapping TypeName="AirTicketsModel.Ticket">
         <MappingFragment StoreEntitySet="Ticket">
           <ScalarProperty Name="IdTicket" ColumnName="IdTicket" />
           <ScalarProperty Name="IdFlight" ColumnName="IdFlight" />
           <ScalarProperty Name="Place" ColumnName="Place" />
           <ScalarProperty Name="Cost" ColumnName="Cost" />
-          <ScalarProperty Name="IdCustomer" ColumnName="IdCustomer" />
+          <ScalarProperty Name="IdPassenger" ColumnName="IdPassenger" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -117,10 +96,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Users">
+    <EntitySetMapping Name="User">
       <EntityTypeMapping TypeName="AirTicketsModel.User">
         <MappingFragment StoreEntitySet="User">
           <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="Role" ColumnName="Role" />
         </MappingFragment>

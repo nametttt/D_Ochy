@@ -14,13 +14,20 @@ namespace air_project
     
     public partial class Document
     {
-        public int IdDocument { get; set; }
-        public int IdCustomer { get; set; }
-        public int IdType { get; set; }
-        public int Series { get; set; }
-        public int Number { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Document()
+        {
+            this.Passenger = new HashSet<Passenger>();
+        }
     
-        public virtual Customer Customer { get; set; }
+        public int IdDocument { get; set; }
+        public int IdPassenger { get; set; }
+        public int IdType { get; set; }
+        public int Number { get; set; }
+        public Nullable<System.DateTime> ExpirationDate { get; set; }
+    
         public virtual Type_Document Type_Document { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Passenger> Passenger { get; set; }
     }
 }

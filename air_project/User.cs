@@ -17,18 +17,31 @@ namespace air_project
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
-            this.Cards = new HashSet<Card>();
-            this.Customers = new HashSet<Customer>();
+            this.Card = new HashSet<Card>();
+            this.Passenger = new HashSet<Passenger>();
         }
     
         public string Login { get; set; }
+        public string Surname { get; set; }
+        public string Name { get; set; }
+        public string Patronymic { get; set; }
+        public string Phone { get; set; }
         public string Password { get; set; }
         public string Role { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Card> Cards { get; set; }
+        public virtual ICollection<Card> Card { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Customer> Customers { get; set; }
-        public virtual Employee Employee { get; set; }
+        public virtual ICollection<Passenger> Passenger { get; set; }
+
+        public User(string login, string surname, string name, string patronymic, string password, string role)
+        {
+            Login = login;
+            Surname = surname;
+            Name = name;
+            Patronymic = patronymic;
+            Password = password;
+            Role = "Покупатель";
+        }
     }
 }

@@ -12,28 +12,28 @@ namespace air_project
     using System;
     using System.Collections.Generic;
     
-    public partial class Customer
+    public partial class Passenger
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Customer()
+        public Passenger()
         {
-            this.Documents = new HashSet<Document>();
-            this.Tickets = new HashSet<Ticket>();
+            this.Ticket = new HashSet<Ticket>();
         }
     
-        public int IdCustomer { get; set; }
-        public string Login { get; set; }
+        public int IdPassenger { get; set; }
+        public string UserLogin { get; set; }
         public string Surname { get; set; }
         public string Name { get; set; }
         public string Patronymic { get; set; }
-        public Nullable<System.DateTime> Bithday { get; set; }
+        public System.DateTime Bithday { get; set; }
         public string Gender { get; set; }
-        public string Phone { get; set; }
+        public int Citizenship { get; set; }
+        public int IdDocument { get; set; }
     
+        public virtual Country Country { get; set; }
+        public virtual Document Document { get; set; }
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Document> Documents { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Ticket> Tickets { get; set; }
+        public virtual ICollection<Ticket> Ticket { get; set; }
     }
 }

@@ -34,8 +34,6 @@ C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\WatchTickets.g.cs
 C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\WatchTickets.baml
 C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\WatchFlights.g.cs
 C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\WatchFlights.baml
-C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\Document.g.cs
-C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\Document.baml
 C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\Interesting.g.cs
 C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\Interesting.baml
 C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\pages\CustomerPage.g.cs
@@ -65,3 +63,9 @@ C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\forms\BuyTicket.g.
 C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\forms\BuyTicket.baml
 C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\pages\BookingPage.g.cs
 C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\pages\BookingPage.baml
+C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\CheckRecKod.g.cs
+C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\Confirmation.g.cs
+C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\CheckRecKod.baml
+C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\Confirmation.baml
+C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\pages\Window1.g.cs
+C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\pages\Window1.baml
