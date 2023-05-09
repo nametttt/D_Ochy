@@ -20,7 +20,7 @@
             
             <Label DockPanel.Dock="Top" 
                    Content="Вход"
-                   FontSize="18" 
+                   FontSize="24" 
                    FontWeight="Bold"
                    HorizontalAlignment="Center"
                    Margin="0 25 0 15" />

@@ -7,7 +7,7 @@
         xmlns:HamburgerMenu="clr-namespace:HamburgerMenu;assembly=HamburgerMenu"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Личный кабинет" Height="680" Width="1250" MinHeight="680" MinWidth="1100" Icon="/Resources/логотип.png">
+        Title="Личный кабинет" Height="680" Width="1250" MinHeight="680" MinWidth="1100" Icon="/Resources/логотип.png" Closing="Window_Closing_1">
 
     <DockPanel>
 
@@ -29,7 +29,7 @@
 
                     <WrapPanel Orientation="Horizontal"
                         HorizontalAlignment="Center">
-                        <Frame Grid.Column="1" Grid.ColumnSpan="2" x:Name="MainContent" NavigationUIVisibility="Hidden" Source="/pages/CustomerPage.xaml"/>
+                        <Frame Grid.Column="1" Grid.ColumnSpan="2" x:Name="MainContent" NavigationUIVisibility="Hidden" Margin="0 0 0 30"/>
                     </WrapPanel>
                 </DockPanel>
             </ScrollViewer>
@@ -45,7 +45,7 @@
                 MenuItemForeground="Black">
 
                     <HamburgerMenu:HamburgerMenuItem 
-                        Selected="profile_Selected"
+                        Selected="Profile_Selected"
                     x:Name="profile" 
                     Height="50"
                     Text="Личный кабинет" 
@@ -53,7 +53,7 @@
 
                     <HamburgerMenu:HamburgerMenuItem 
                     x:Name="ticketsBuy" 
-                        Selected="ticketsBuy_Selected"
+                        Selected="TicketsBuy_Selected"
                     Height="50"
                     Text="Полететь далеко" 
                     Icon="/Resources/plane.png"/>
@@ -61,13 +61,14 @@
                     <HamburgerMenu:HamburgerMenuItem 
                     x:Name="interest" 
                     Height="50"
-                    Text="Интересное" 
-                    
-                    Icon="/Resources/aroundWorld.png" Selected="interest_Selected"/>
+                    Text="Интересное"
+                    Icon="/Resources/aroundWorld.png" 
+                    Selected="Interest_Selected"/>
 
 
                     <HamburgerMenu:HamburgerMenuItem 
                     Text="Выход из аккаунта" 
+                    Selected="Exit_Selected"
                     Height="50"
                     x:Name="exit" 
                     Icon="/Resources/exit.png"/>

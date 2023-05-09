@@ -9,10 +9,13 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Application = System.Windows.Application;
+using MessageBox = System.Windows.MessageBox;
 
 namespace air_project
 {
@@ -32,20 +35,28 @@ namespace air_project
             {
                 try
                 {
+                    string login = txtLogin.Text.Trim();
+                    string password = txtPassword.Password.Trim();
+
+                    if (string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(password))
+                    {
+                        MessageBox.Show("Пожалуйста, введите логин и пароль!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+
                     foreach (User user in air.User)
                     {
                         GetHash g = new GetHash();
-                        if (txtLogin.Text == user.Login && g.GetHashString(txtPassword.Password) == user.Password && user.Role == "Покупатель")
+                        if (login == user.Login && password == user.Password && user.Role == "Покупатель")
                         {
-                            MessageBox.Show($"Добро пожаловать, {user.Name}!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
-
                             CustomerProfile w1 = new CustomerProfile(user);
+                            w1.LoadCustomerPage();
+                            MessageBox.Show($"Добро пожаловать, {user.Name}!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                             w1.Show();
                             this.Hide();
                             return;
                         }
-
-                        else if (txtLogin.Text == user.Login && (txtPassword.Password) == user.Password && user.Role == "Администратор")
+                        else if (login == user.Login && password == user.Password && user.Role == "Администратор")
                         {
                             MessageBox.Show($"Добро пожаловать, {user.Name}!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
 
@@ -54,7 +65,7 @@ namespace air_project
                             this.Hide();
                             return;
                         }
-                        else if (txtLogin.Text == user.Login && (txtPassword.Password) == user.Password && user.Role == "Бухгалтер")
+                        else if (login == user.Login && password == user.Password && user.Role == "Бухгалтер")
                         {
                             MessageBox.Show($"Добро пожаловать, {user.Name}!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
 
@@ -63,18 +74,16 @@ namespace air_project
                             this.Hide();
                             return;
                         }
-                        else
-                        {
-                            MessageBox.Show("Пользователь еще не зарегистрирован!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                        }
                     }
+
+                    MessageBox.Show("Введен неверный логин или пароль!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 catch
                 {
                     MessageBox.Show("Произошла ошибка!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-        }
+    }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {

@@ -37,9 +37,9 @@ namespace air_project
         {
             try
             {
-                if (txtLogin.Text == "" || txtName.Text == "" || txtSurname.Text == "" || txtPatronymic.Text == "" || txtPassword.Password == "" || txtPassword1.Password == "" || sogl.IsChecked == false)
+                if (string.IsNullOrEmpty(txtLogin.Text) || string.IsNullOrEmpty(txtName.Text) || string.IsNullOrEmpty(txtSurname.Text) || string.IsNullOrEmpty(txtPatronymic.Text) || string.IsNullOrEmpty(txtPassword.Password) || string.IsNullOrEmpty(txtPassword1.Password) || !sogl.IsChecked.GetValueOrDefault())
                 {
-                    MessageBox.Show("Заполните все данные!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Заполните все данные!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
 
                 else
@@ -55,7 +55,7 @@ namespace air_project
                                 {
                                     if (db.User.Any(u => u.Login == txtLogin.Text))
                                     {
-                                        MessageBox.Show("Пользователь с такой почтой уже существует!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                        MessageBox.Show("Пользователь с такой почтой уже существует!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                                         return;
                                     }
                                     else
@@ -76,23 +76,23 @@ namespace air_project
                             }
                             else
                             {
-                                MessageBox.Show("Некорректный адрес электронной почты!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                MessageBox.Show("Некорректный адрес электронной почты!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                             }
                         }
                         else
                         {
-                            MessageBox.Show("Пароли не совпадают!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show("Пароли не совпадают!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Длина пароля не менее 6 символов!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Длина пароля не менее 6 символов!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Произошла ошибка!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Произошла ошибка: " + ex.Message, "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

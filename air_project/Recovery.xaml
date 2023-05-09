@@ -19,20 +19,20 @@
         <DockPanel LastChildFill="False">
             <Label DockPanel.Dock="Top" 
                    Content="Не помню пароль" 
-                   FontSize="18" 
+                   FontSize="24" 
                    FontWeight="Bold" 
                    HorizontalAlignment="Center" 
                    Margin="0 25 0 15"/>
             
             <Image DockPanel.Dock="Top" 
                    Source="Resources/вход.png" 
-                   Width="80" 
-                   Height="80" 
+                   Width="100" 
+                   Height="100" 
                    Margin="0 0 0 25"/>
             
             <TextBlock DockPanel.Dock="Top" 
                        TextAlignment="Justify"
-                       FontSize="16" 
+                       FontSize="17" 
                        Foreground="#30282D" 
                        TextWrapping="Wrap"
                        Text="Укажите адрес электронной почты от вашего аккаунта на OCHY. На эту почту мы пришлем код для быстрого входа в аккаунт."

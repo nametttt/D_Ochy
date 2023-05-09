@@ -69,3 +69,4 @@ C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\CheckRecKod.baml
 C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\Confirmation.baml
 C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\pages\Window1.g.cs
 C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\pages\Window1.baml
+C:\Users\tanus\source\repos\air_project\air_project\bin\Debug\MaskedTextBox.dll
