@@ -31,10 +31,8 @@
       <PropertyRef Name="IdDocument" />
     </Key>
     <Property Name="IdDocument" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="IdPassenger" Type="int" Nullable="false" />
     <Property Name="IdType" Type="int" Nullable="false" />
-    <Property Name="Number" Type="int" Nullable="false" />
-    <Property Name="ExpirationDate" Type="date" />
+    <Property Name="Number" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Flight">
     <Key>

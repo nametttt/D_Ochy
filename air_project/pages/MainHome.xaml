@@ -68,8 +68,14 @@
                         <TextBox x:Name="Email" 
                                           Style="{StaticResource MyWaterMarkStyle}"
                                           Height="38" 
-                                          Margin="20 10 20 20"
+                                          Margin="20 10 20 15"
                                           Tag="Адрес электронной почты"/>
+                        
+                        <TextBox x:Name="Phone" 
+                                          Style="{StaticResource MyWaterMarkStyle}"
+                                          Height="38" 
+                                          Margin="20 0 20 20"
+                                          Tag="Номер телефона"/>
 
                         <Button DockPanel.Dock="Top" 
                                         x:Name="btnAuth" 
@@ -120,7 +126,7 @@
                                                Grid.Row="1" 
                                                Margin="20 15 0 0"
                                                HorizontalAlignment="Left" 
-                                               FontFamily="Candara Light" 
+                                               FontFamily="Candara" 
                                                FontSize="14" >
                                          <Hyperlink 
                                                 Foreground="#30282D">Хотите выйти из аккаунта?</Hyperlink>
@@ -128,7 +134,7 @@
 
                     <TextBlock DockPanel.Dock="Top" 
                                                HorizontalAlignment="Right" 
-                                               FontFamily="Candara Light" 
+                                               FontFamily="Candara" 
                                                FontSize="14" 
                                                Grid.Column="1" 
                                                Grid.Row="1" 

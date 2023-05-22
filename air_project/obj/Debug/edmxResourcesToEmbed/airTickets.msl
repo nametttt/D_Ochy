@@ -33,11 +33,9 @@
     <EntitySetMapping Name="Document">
       <EntityTypeMapping TypeName="AirTicketsModel.Document">
         <MappingFragment StoreEntitySet="Document">
-          <ScalarProperty Name="IdDocument" ColumnName="IdDocument" />
-          <ScalarProperty Name="IdPassenger" ColumnName="IdPassenger" />
-          <ScalarProperty Name="IdType" ColumnName="IdType" />
           <ScalarProperty Name="Number" ColumnName="Number" />
-          <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
+          <ScalarProperty Name="IdDocument" ColumnName="IdDocument" />
+          <ScalarProperty Name="IdType" ColumnName="IdType" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

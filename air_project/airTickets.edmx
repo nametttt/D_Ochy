@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище AirTicketsModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище AirTicketsModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Card">
           <Key>
             <PropertyRef Name="IdCard" />
@@ -36,10 +36,8 @@
             <PropertyRef Name="IdDocument" />
           </Key>
           <Property Name="IdDocument" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IdPassenger" Type="int" Nullable="false" />
           <Property Name="IdType" Type="int" Nullable="false" />
-          <Property Name="Number" Type="int" Nullable="false" />
-          <Property Name="ExpirationDate" Type="date" />
+          <Property Name="Number" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Flight">
           <Key>
@@ -303,8 +301,7 @@
             <End Role="Ticket" EntitySet="Ticket" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AirTicketsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -345,10 +342,8 @@
             <PropertyRef Name="IdDocument" />
           </Key>
           <Property Name="IdDocument" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdPassenger" Type="Int32" Nullable="false" />
           <Property Name="IdType" Type="Int32" Nullable="false" />
-          <Property Name="Number" Type="Int32" Nullable="false" />
-          <Property Name="ExpirationDate" Type="DateTime" Precision="0" />
+          <Property Name="Number" Type="String" Nullable="false" />
           <NavigationProperty Name="Type_Document" Relationship="Self.FK_Document_Type_Document" FromRole="Document" ToRole="Type_Document" />
           <NavigationProperty Name="Passenger" Relationship="Self.FK_Passenger_Document" FromRole="Document" ToRole="Passenger" />
         </EntityType>
@@ -666,11 +661,9 @@
           <EntitySetMapping Name="Document">
             <EntityTypeMapping TypeName="AirTicketsModel.Document">
               <MappingFragment StoreEntitySet="Document">
-                <ScalarProperty Name="IdDocument" ColumnName="IdDocument" />
-                <ScalarProperty Name="IdPassenger" ColumnName="IdPassenger" />
-                <ScalarProperty Name="IdType" ColumnName="IdType" />
                 <ScalarProperty Name="Number" ColumnName="Number" />
-                <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
+                <ScalarProperty Name="IdDocument" ColumnName="IdDocument" />
+                <ScalarProperty Name="IdType" ColumnName="IdType" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -34,6 +34,7 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
                                 <TextBlock Text="Бронирование билета" FontSize="24" Margin="20" FontWeight="Bold"/>
@@ -52,99 +53,17 @@
                                     <TextBlock Text="Date:" Grid.Column="4" VerticalAlignment="Center"/>
                                     <TextBlock Text="{Binding SelectedFlight.Date}" Grid.Column="5" Margin="10,0,0,0" VerticalAlignment="Center"/>
                                 </Grid>
-                                <Border Grid.Row="2" Margin="20" BorderBrush="LightGray" BorderThickness="1">
-                                    <StackPanel>
+                                    <StackPanel  Grid.Row="2" Margin="20">
                                         <Frame Source="/pages/BookingPage.xaml"/>
                                     <TextBlock Text="" x:Name="txtPlace"></TextBlock>
                                     </StackPanel>
-                                </Border>
                                 <WrapPanel Grid.Row="3">
                                     <TextBlock Text="Информация о пассажире" FontSize="18" FontWeight="Bold" Margin="20"/>
-
-
-                                    <WrapPanel Margin="20 15 20 0" >
-                                        <ComboBox
-                                                      IsEditable="True" 
-                                                      Text="Гражданство"
-                                                      Style="{StaticResource Combo}"
-                                                      Height="38"
-                                                      Width="200"/>
-
-                                        <ComboBox
-                                                      IsEditable="True" 
-                                                      Text="Тип документа"
-                                                      Margin="20 0 20 0"
-                                                      Style="{StaticResource Combo}"
-                                                      Height="38"
-                                                      Width="200">
-                                            <ComboBoxItem Content="я"/>
-                                            <ComboBoxItem Content="х"/>
-                                            <ComboBoxItem Content="у"/>
-                                            <ComboBoxItem Content="й"/>
-
-                                        </ComboBox>
-
-                                        <Border Background="#FFE2C5BF" CornerRadius="10" BorderBrush="#FF947964" BorderThickness="1">
-                                            <Button
-                                                   Height="38" 
-                                                   Width="93"
-                                                   Content="М"
-                                                   BorderThickness="0">
-                                                <Button.Background>
-                                                    <ImageBrush ImageSource="/Resources/man.png" Stretch="Uniform" AlignmentX="Left"/>
-                                                </Button.Background>
-                                            </Button>
-                                        </Border>
-
-                                        <Border Background="#FFE2C5BF" CornerRadius="10" Margin="10 0 0 0" BorderBrush="#FF947964" BorderThickness="1">
-                                            <Button
-                                                   Height="38" 
-                                                   Width="93"
-                                                   BorderThickness="0"
-                                                   Content="Ж">
-                                                <Button.Background>
-                                                    <ImageBrush Stretch="Uniform" AlignmentX="Left" ImageSource="/Resources/woman.png"/>
-                                                </Button.Background>
-                                            </Button>
-                                        </Border>
-
-                                    </WrapPanel>
-                                    <WrapPanel Margin="20 15 20 0">
-                                        <TextBox 
-                                                      Style="{StaticResource MyWaterMarkStyle}"
-                                                      Height="38"
-                                                      Width="200"
-                                                      Tag="Фамилия"/>
-
-                                        <TextBox 
-                                                   Style="{StaticResource MyWaterMarkStyle}"
-                                                   Height="38" 
-                                                   Width="200"
-                                                   Margin="20 0 20 0"
-                                                   Tag="Имя"/>
-
-                                        <TextBox
-                                                  Style="{StaticResource MyWaterMarkStyle}"
-                                                  Height="38" 
-                                                  Width="200"
-                                                  Tag="Отчество"/>
-                                    </WrapPanel>
-
-                                    <WrapPanel Margin="20 15 20 0" >
-                                        <TextBox 
-                                                      Style="{StaticResource MyWaterMarkStyle}"
-                                                      Height="38"
-                                                      Width="200"
-                                                      Tag="Дата рождения"/>
-
-                                        <TextBox 
-                                                   Style="{StaticResource MyWaterMarkStyle}"
-                                                   Height="38" 
-                                                   Width="420"
-                                                   Margin="20 0 0 0"
-                                                   Tag="Номер документа"/>
-                                    </WrapPanel>
                                 </WrapPanel>
+                                <StackPanel Grid.Row="4">
+                                    <local:MyDocs />
+
+                                </StackPanel>
                             </Grid>
                         </StackPanel>
                     </Border>

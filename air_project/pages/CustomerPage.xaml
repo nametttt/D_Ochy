@@ -9,7 +9,7 @@
       Title="CustomerPage"
       ShowsNavigationUI="False">
 
-    <DockPanel>
+    <DockPanel >
             <Grid x:Name="Grid" Height="500">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="0.5*"/>
@@ -80,7 +80,7 @@
                                     Height="500"
                                     x:Name="About"
                                     VerticalAlignment="Top"
-                                    Visibility="Hidden">
+                                    Visibility="Visible">
 
                     <StackPanel>
                                     <Grid>
@@ -221,6 +221,7 @@
                                     Height="{Binding ElementName=HeightCard, Path=Height}"
                                     VerticalAlignment="Top"
                                     Visibility="Hidden">
+                                
 
                                 <StackPanel>
                                     <Grid Margin="10 10 10 20">
@@ -297,60 +298,49 @@
                                        FontSize="18"/>
 
 
-                                            <StackPanel Margin="20 15 0 0">
-                                                <Border
-                                                    Height="180" 
-                                                    BorderThickness="2" 
-                                                    BorderBrush="#33FFFFFF" 
-                                                    Background="#FF7C132F" 
-                                                    CornerRadius="10" 
-                                                    HorizontalAlignment="Left">
-                                                    <Grid Width="300">
-                                                        <Grid.Background>
-                                                            <ImageBrush ImageSource="/Resources/pngcard.png"/>
-                                                        </Grid.Background>
-                                                        <Grid.RowDefinitions>
-                                                            <RowDefinition Height="1*"/>
-                                                            <RowDefinition Height="2*"/>
-                                                            <RowDefinition Height="0.5*"/>
-                                                        </Grid.RowDefinitions>
-                                                        <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="1*"/>
-                                                            <ColumnDefinition Width="2*"/>
-                                                        </Grid.ColumnDefinitions>
+                            <ItemsControl ItemsSource="{Binding cards}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Height="180" BorderThickness="2" BorderBrush="#33FFFFFF" Background="#FF7C132F" CornerRadius="10" HorizontalAlignment="Left" >
+                                            <Grid Width="300">
+                                                <Grid.Background>
+                                                    <ImageBrush ImageSource="/Resources/pngcard.png"/>
+                                                </Grid.Background>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="1*"/>
+                                                    <RowDefinition Height="2*"/>
+                                                    <RowDefinition Height="0.5*"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="1*"/>
+                                                    <ColumnDefinition Width="2*"/>
+                                                </Grid.ColumnDefinitions>
 
-                                                        <StackPanel Orientation="Vertical" 
-                                                                Grid.Row="1" 
-                                                                Grid.ColumnSpan="2"  
-                                                                Margin="10 0 0 0">
-                                                            <Image Source="https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/chip.png" 
-                                                                   Height="40"
-                                                                   HorizontalAlignment="Left"/>
+                                                <StackPanel Orientation="Vertical" Grid.Row="1" Grid.ColumnSpan="2" Margin="10 0 0 0">
+                                                    <Image Source="{Binding ChipImage}" Height="40" HorizontalAlignment="Left"/>
+                                                    <TextBlock Text="{Binding CardNumber}" Foreground="#FFFFFFFF" FontSize="16"/>
+                                                </StackPanel>
 
-                                                            <TextBlock Text="**** **** **** 6388" 
-                                                                       Foreground="#FFFFFFFF" 
-                                                                       FontSize="16"/>
-                                                        </StackPanel>
+                                                <StackPanel Grid.Row="2" Grid.Column="0">
+                                                    <TextBlock Text="{Binding ExpiryDate}" Margin="10,0,0,0" Foreground="#FFFFFFFF"/>
+                                                </StackPanel>
 
-                                                        <StackPanel Grid.Row="2" Grid.Column="0">
-                                                            <TextBlock Text="02/24" 
-                                                                       Margin="10,0,0,0" 
-                                                                       Foreground="#FFFFFFFF"/>
-                                                        </StackPanel>
+                                                <StackPanel Grid.Row="2" Grid.Column="1">
+                                                    <TextBlock Text="{Binding CardHolder}" Margin="10,0,10,0" Foreground="#FFFFFFFF" HorizontalAlignment="Right"/>
+                                                </StackPanel>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel Orientation="Horizontal" />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                            </ItemsControl>
 
-                                                        <StackPanel Grid.Row="2" Grid.Column="1">
-                                                            <TextBlock Text="Shaykhullina Adelina" 
-                                                                       Margin="10,0,10,0" 
-                                                                       Foreground="#FFFFFFFF" 
-                                                                       HorizontalAlignment="Right"/>
-                                                        </StackPanel>
 
-                                                    </Grid>
-                                                </Border>
-
-                                            </StackPanel>
-
-                                        </StackPanel>
+                        </StackPanel>
                                     </Grid>
                                 </StackPanel>
                             </Border>
@@ -548,142 +538,17 @@
                                     VerticalAlignment="Top"
                                     MinHeight="500"
                                     Height="{Binding ElementName=HeightDoc, Path=Height}"
-                                    Visibility="Visible">
+                                    Visibility="Hidden">
 
                                 <StackPanel>
 
-                                    <StackPanel x:Name="HeightDoc" Margin="10 10 10 20">
+                                    <StackPanel x:Name="HeightDoc">
+                        <local:MyDocs  x:Name="contr"/>
 
-                                        <Label Content="Новый документ"
-                                       HorizontalAlignment="Left"
-                                       Margin="20,15,0,5"
-                                       FontFamily="Arial Black"
-                                       Foreground="#FF2E2F3F"
-                                       FontSize="18"/>
-
-                                        <WrapPanel Margin="20 15 20 0" >
-
-                                            <!--<Grid>
-                                                <ComboBox Name="myCom"  
-                                                          Height="38"  
-                                                          Width="200"  
-                                                          HorizontalContentAlignment="Center"  
-                                                          VerticalContentAlignment="Center" Background="Black">
-                                                    <ComboBox.ItemTemplate>
-                                                        <ItemContainerTemplate>
-                                                            <WrapPanel>
-                                                                <TextBlock><Run Text="{Binding Name}"/></TextBlock>
-                                                            </WrapPanel>
-                                                        </ItemContainerTemplate>
-                                                    </ComboBox.ItemTemplate>
-                                                </ComboBox>
-                                                <Label  Height="50"  
-                                                        Width="180"   
-                                                        HorizontalAlignment="Left"  
-                                                        DataContext="{Binding ElementName=myCom,Path=SelectedItem}"  
-                                                        Content="Гражданство">
-                                                    <Label.Style>
-                                                        <Style TargetType="Label">
-                                                            <Setter Property="FontSize" Value="12"></Setter>
-                                                            <Setter Property="Background" Value="Transparent"></Setter>
-                                                            <Setter Property="HorizontalContentAlignment" Value="Left"/>
-                                                            <Setter Property="VerticalContentAlignment" Value="Top"/>
-                                                            <Setter Property="Foreground" Value="{x:Static SystemColors.GrayTextBrush}"/>
-                                                            <Style.Triggers>
-                                                                <DataTrigger Binding="{Binding ElementName=myCom,Path=SelectedItem}" Value="{x:Null}">
-                                                                    <Setter Property="HorizontalContentAlignment" Value="Left"/>
-                                                                    <Setter Property="VerticalContentAlignment" Value="Center"/>
-                                                                    <Setter Property="FontSize" Value="16"></Setter>
-                                                                </DataTrigger>
-                                                            </Style.Triggers>
-                                                        </Style>
-                                                    </Label.Style>
-                                                </Label>
-                                            </Grid>-->
-                                            <ComboBox
-                                                      IsEditable="True" 
-                                                      Text="Гражданство"
-                                                      Style="{StaticResource Combo}"
-                                                      Height="38"/>
-
-                                        <ComboBox
-                                                      IsEditable="True" 
-                                                      Text="Тип документа"
-                                                      Margin="20 0 20 0"
-                                                      Style="{StaticResource Combo}"
-                                                      Height="38">
-                                            <ComboBoxItem Content="я"/>
-                                            <ComboBoxItem Content="х"/>
-                                            <ComboBoxItem Content="у"/>
-                                            <ComboBoxItem Content="й"/>
-
-                                        </ComboBox>
-
-                            <StackPanel Background="#FFE2C5BF">
-                                <Button Height="38" BorderThickness="0" Width="150">
-                                    <Button.Background>
-                                        <ImageBrush ImageSource="/Resources/man.png" Stretch="Uniform" AlignmentX="Left"/>
-                                    </Button.Background>
-                                    <Button.Content>
-                                        <TextBlock FontFamily="Arial" FontSize="20">М</TextBlock>
-                                    </Button.Content>
-                                </Button>
-                            </StackPanel>
-
-                            <Border Background="#FFE2C5BF" CornerRadius="10" Margin="10 0 0 0" BorderBrush="#FF947964" BorderThickness="1">
-                                                <Button
-                                                   Height="38" Width="150"
-                                                   BorderThickness="0"
-                                                   Content="Ж">
-                                                    <Button.Background>
-                                                        <ImageBrush Stretch="Uniform" AlignmentX="Left" ImageSource="/Resources/woman.png"/>
-                                                    </Button.Background>
-                                                </Button>
-                                            </Border>
-
-                                        </WrapPanel>
-
-
-                                        <Label Content="Данные документа"
-                                                   HorizontalAlignment="Left"
-                                                   Margin="20,20,0,0"
-                                                   FontFamily="Arial Black"
-                                                   Foreground="#FF2E2F3F"
-                                                   FontSize="16"/>
-
-                                        <WrapPanel Margin="20 15 20 0" >
-                                            <TextBox 
-                                                      Style="{StaticResource MyWaterMarkStyle}"
-                                                      Height="38"
-                                                      Tag="Фамилия"/>
-
-                                            <TextBox 
-                                                   Style="{StaticResource MyWaterMarkStyle}"
-                                                   Height="38"
-                                                   Margin="20 0 20 0"
-                                                   Tag="Имя"/>
-
-                                            <TextBox
-                                                  Style="{StaticResource MyWaterMarkStyle}"
-                                                  Height="38" 
-                                                  Tag="Отчество"/>
-                                        </WrapPanel>
-
-                                        <WrapPanel Margin="20 15 20 0" >
-                                            <TextBox 
-                                                      Style="{StaticResource MyWaterMarkStyle}"
-                                                      Height="38"
-                                                      Tag="Дата рождения"/>
-
-                                            <TextBox 
-                                                   Style="{StaticResource MyWaterMarkStyle}"
-                                                   Height="38" 
-                                                   Margin="20 0 0 0"
-                                                   Tag="Номер документа"/>
-                                        </WrapPanel>
-                                        <Button Margin="20" 
+                        <Button Margin="20" 
                                                     Height="40" 
                                                     Content="Сохранить документ"
+                                                    Click="Button_Click_1"
                                                     Style="{StaticResource Button}"/>
 
                                         <Label Content="Мои документы"
@@ -693,17 +558,21 @@
                                                    Foreground="#FF2E2F3F"
                                                    FontSize="18"/>
                                         <StackPanel>
-                                            <Border CornerRadius="10"
-                                                    BorderThickness="1"
-                                                    Background="#FFFEF9F4"
-                                                    Margin="20 15 20 0"
-                                                    BorderBrush="#FFA4848A">
+                            <ItemsControl ItemsSource="{Binding docs}" Margin="0 0 0 20">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border CornerRadius="10" BorderThickness="1" Background="#FFFEF9F4" Margin="20 15 20 0" BorderBrush="#FFA4848A">
+                                            <StackPanel Orientation="Horizontal" Margin="20 15 20 15">
+                                                <TextBlock Text="{Binding Title}" FontSize="16" />
+                                                <TextBlock Text=", " FontSize="16" />
+                                                <TextBlock Text="{Binding Owner}" FontSize="16" />
+                                            </StackPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
 
-                                                <StackPanel Orientation="Horizontal"  Margin="20 15 20 15" >
-                                                    <TextBlock Text="Паспорт, Яковлева Татьяна" FontSize="16" />
-                                                </StackPanel>
-                                            </Border>
-                                        </StackPanel>
+                        </StackPanel>
                                     </StackPanel>
                                 </StackPanel>
                             </Border>

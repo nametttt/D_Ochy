@@ -66,7 +66,7 @@
                                           Height="350" 
                                           Grid.Row="2"
                                           Grid.ColumnSpan="2"
-                                          FontFamily="Candara Light" 
+                                          FontFamily="Candara" 
                                           FontSize="20" 
                                           x:Name="datagrid" 
                                           Background="#FFF1E4E0"/>

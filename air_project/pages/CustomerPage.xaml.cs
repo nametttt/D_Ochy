@@ -1,6 +1,7 @@
 ﻿using air_project.pages;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -21,20 +22,55 @@ using TextBox = System.Windows.Controls.TextBox;
 
 namespace air_project
 {
+
+    public class doc
+    {
+        public string Title { get; set; }
+        public string Owner { get; set; }
+
+        public doc(string title, string owner)
+        {
+            Title = title;
+            Owner = owner;
+        }
+    }
+
+
     /// <summary>
     /// Логика взаимодействия для CustomerPage.xaml
     /// </summary>
     public partial class CustomerPage : Page
     {
+        public ObservableCollection<doc> docs { get; set; }
+
+
+        Color desiredColor = Color.FromArgb(0xFF, 0xE2, 0xC5, 0xBF); // ne
+        Color checkedColor = Color.FromArgb(0xFF, 0xA7, 0x87, 0x8E); //da
         public AirTicketsEntities _context = new AirTicketsEntities();
         public User _user;
 
         public CustomerPage(User user)
         {
-            InitializeComponent();
             _user = user;
+           docs = new ObservableCollection<doc>();
+
+            using (AirTicketsEntities db = new AirTicketsEntities())
+            {
+                foreach (var i in db.Passenger)
+                {
+                    if (i.UserLogin == _user.Login)
+                    {
+                        doc doc = new doc(i.Document.Type_Document.Type, $"{i.Surname} {i.Name} {i.Patronymic}");
+                        docs.Add(doc);
+                    }
+                }
+            }
+                InitializeComponent();
             OutputData();
+            AddCard( user);
         }
+
+        public List<cardList> cards { get; set; }
 
 
         public void OutputData()
@@ -48,6 +84,28 @@ namespace air_project
                     Patronymic.Text = user.Patronymic;
                     Phone.Text = user.Phone;
                     Email.Text = user.Login;
+                }
+            }
+        }
+
+
+        public void AddCard(User user)
+        {
+            using (AirTicketsEntities db = new AirTicketsEntities())
+            {
+                DataContext = this;
+                cards = new List<cardList>();
+
+                foreach (var i in db.Card)
+                {
+                    if (i.UserLogin == user.Login)
+                    {
+
+                        var x = new cardList("https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/chip.png",
+                            i.IdCard.ToString(), $"{i.Month}/{i.Year}", i.OwnerName.ToString());
+    
+                        cards.Add(x);
+                    }
                 }
             }
         }
@@ -81,7 +139,9 @@ namespace air_project
 
         private void Card_Click(object sender, RoutedEventArgs e)
         {
-            Grid.Height = Cards.ActualHeight;
+
+            
+                Grid.Height = Cards.ActualHeight;
             About.Visibility = Visibility.Hidden;
             Docs.Visibility = Visibility.Hidden;
             Cards.Visibility = Visibility.Visible;
@@ -130,7 +190,7 @@ namespace air_project
             if (result == MessageBoxResult.Yes)
             {
                 Window parentWindow = Window.GetWindow(this);
-                parentWindow.Close();
+                parentWindow.Hide();
                 Auth auth = new Auth();
                 auth.Show();
             }
@@ -151,7 +211,7 @@ namespace air_project
                 }
                 _context.SaveChanges();
                 Window parentWindow = Window.GetWindow(this);
-                parentWindow.Close();
+                parentWindow.Hide();
                 Auth auth = new Auth();
                 auth.Show();
             }
@@ -369,5 +429,49 @@ namespace air_project
                 e.Handled = true;
             }
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (contr.male.Background is SolidColorBrush brs && brs.Color == desiredColor && contr.female.Background is SolidColorBrush br && br.Color == checkedColor)
+            {
+                MessageBox.Show("Выберите пол");
+                return;
+            }
+            int selectedCountry = contr.countries.SelectedIndex;
+            int docType = contr.typeDoc.SelectedIndex +1;
+            string selectedSex = (contr.male.Background is SolidColorBrush brush && brush.Color == checkedColor) ? "Мужской" : "Женский";
+            string surname = contr.Surname.Text;
+            string name = contr.Name.Text;
+            string patronymic = contr.Patronymic.Text;
+            
+            DateTime birthday = DateTime.Parse(contr.Birthday.Text);
+            string docNumber = contr.DocNum.Text;
+
+            using(AirTicketsEntities db = new AirTicketsEntities())
+            {
+                Document doc = new Document(docType, docNumber);
+                Passenger ps = new Passenger(_user.Login, surname, name, patronymic, birthday, selectedSex, selectedCountry, docType, doc);
+                db.Passenger.Add(ps);
+                db.SaveChanges();
+            }
+        }
     }
+
+    public class cardList
+    {
+        public string ChipImage { get; set; }
+        public string CardNumber { get; set; }
+        public string ExpiryDate { get; set; }
+        public string CardHolder { get; set; }
+
+        public cardList(string chipImage, string cardNumber, string expiryDate, string cardHolder)
+        {
+            ChipImage = chipImage;
+            CardNumber = cardNumber;
+            ExpiryDate = expiryDate;
+            CardHolder = cardHolder;
+        }
+    }
+
+
 }

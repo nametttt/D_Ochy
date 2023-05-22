@@ -37,10 +37,8 @@
       <PropertyRef Name="IdDocument" />
     </Key>
     <Property Name="IdDocument" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="IdPassenger" Type="Int32" Nullable="false" />
     <Property Name="IdType" Type="Int32" Nullable="false" />
-    <Property Name="Number" Type="Int32" Nullable="false" />
-    <Property Name="ExpirationDate" Type="DateTime" Precision="0" />
+    <Property Name="Number" Type="String" Nullable="false" />
     <NavigationProperty Name="Type_Document" Relationship="Self.FK_Document_Type_Document" FromRole="Document" ToRole="Type_Document" />
     <NavigationProperty Name="Passenger" Relationship="Self.FK_Passenger_Document" FromRole="Document" ToRole="Passenger" />
   </EntityType>

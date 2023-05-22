@@ -32,7 +32,7 @@
                                 MenuIconColor="#764C4D" 
                                 SelectionIndicatorColor="#764C4D" 
                                 HorizontalAlignment="Left" 
-                                FontFamily="Candara Light" 
+                                FontFamily="Candara" 
                                 FontSize="16" 
                                
                                 MenuItemForeground="Black">

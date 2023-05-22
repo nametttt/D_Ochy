@@ -20,9 +20,11 @@ namespace air_project
     /// </summary>
     public partial class MainHome : Page
     {
-        public MainHome()
+        public User _user;
+        public MainHome(User user)
         {
             InitializeComponent();
+            _user = user;
         }
     }
 }

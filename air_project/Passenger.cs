@@ -35,5 +35,18 @@ namespace air_project
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ticket> Ticket { get; set; }
+
+        public Passenger( string userLogin, string surname, string name, string patronymic, DateTime bithday, string gender, int citizenship, int idDocument,  Document document)
+        {
+            UserLogin = userLogin;
+            Surname = surname;
+            Name = name;
+            Patronymic = patronymic;
+            Bithday = bithday;
+            Gender = gender;
+            Citizenship = citizenship;
+            IdDocument = idDocument;
+            Document = document;
+        }
     }
 }

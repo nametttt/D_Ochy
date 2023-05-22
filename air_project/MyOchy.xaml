@@ -24,7 +24,7 @@
                HorizontalAlignment="Left" 
                Margin="0,52,0,0" 
                VerticalAlignment="Top" 
-               FontFamily="Candara Light" 
+               FontFamily="Candara" 
                FontSize="20"/>
     </StackPanel>
 </UserControl>

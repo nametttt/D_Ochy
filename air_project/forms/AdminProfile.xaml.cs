@@ -19,9 +19,19 @@ namespace air_project
     /// </summary>
     public partial class AdminProfile : Window
     {
+        public User _user;
+        
         public AdminProfile(User user)
         {
             InitializeComponent();
+            _user = user;
+
+        }
+
+        public void LoadAdminPage()
+        {
+            MainHome mainhome = new MainHome(_user);
+            MainContent.Content = mainhome;
         }
 
         private void exit_Selected(object sender, RoutedEventArgs e)
@@ -36,6 +46,47 @@ namespace air_project
             Auth auth = new Auth();
             auth.Show();
             this.Hide();
+        }
+
+        private void admin_Selected(object sender, RoutedEventArgs e)
+        {
+            MainContent.Source = new Uri("/pages/MainHome.xaml", UriKind.Relative);
+            MainContent.NavigationService.Navigate(new MainHome(_user));
+        }
+
+        private void addticket_Selected(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void changeticket_Selected(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void addfly_Selected(object sender, RoutedEventArgs e)
+        {
+            MainContent.Navigate(new Uri("/pages/AddFlight.xaml", UriKind.Relative));
+        }
+
+        private void changefly_Selected(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void HamburgerMenuItem_Selected(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void usersWatch_Selected(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void exit_Selected_1(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

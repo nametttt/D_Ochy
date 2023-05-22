@@ -21,13 +21,17 @@ namespace air_project
         }
     
         public int IdDocument { get; set; }
-        public int IdPassenger { get; set; }
         public int IdType { get; set; }
-        public int Number { get; set; }
-        public Nullable<System.DateTime> ExpirationDate { get; set; }
+        public string Number { get; set; }
     
         public virtual Type_Document Type_Document { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Passenger> Passenger { get; set; }
+
+        public Document( int idType, string number)
+        {
+            IdType = idType;
+            Number = number;
+        }
     }
 }

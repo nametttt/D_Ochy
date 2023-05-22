@@ -49,6 +49,7 @@
     <Reference Include="MaskedTextBox, Version=0.1.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaskedTextBox.0.1.3\lib\net47\MaskedTextBox.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -68,6 +69,21 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=4.5.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.5.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=4.5.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.5.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=4.5.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.5.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=4.5.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.5.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=4.5.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.5.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -120,6 +136,12 @@
       <DependentUpon>BuyTicket.xaml</DependentUpon>
     </Compile>
     <Compile Include="GetHash.cs" />
+    <Compile Include="MyDocs.xaml.cs">
+      <DependentUpon>MyDocs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\AddFlight.xaml.cs">
+      <DependentUpon>AddFlight.xaml</DependentUpon>
+    </Compile>
     <Compile Include="pages\BookingPage.xaml.cs">
       <DependentUpon>BookingPage.xaml</DependentUpon>
     </Compile>
@@ -151,9 +173,6 @@
     <Compile Include="pages\WatchTicket.xaml.cs">
       <DependentUpon>WatchTicket.xaml</DependentUpon>
     </Compile>
-    <Compile Include="pages\Window1.xaml.cs">
-      <DependentUpon>Window1.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Passenger.cs">
       <DependentUpon>AirTickets.tt</DependentUpon>
     </Compile>
@@ -171,9 +190,6 @@
     </Compile>
     <Compile Include="Ticket.cs">
       <DependentUpon>AirTickets.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TicketsControl.xaml.cs">
-      <DependentUpon>TicketsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Type_Document.cs">
       <DependentUpon>AirTickets.tt</DependentUpon>
@@ -218,6 +234,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MyDocs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pages\AddFlight.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="pages\BookingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -258,10 +282,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="pages\Window1.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Recovery.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -271,10 +291,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="pages\WatchFlight.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="TicketsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -377,6 +393,8 @@
       <DependentUpon>AirTickets.edmx</DependentUpon>
       <LastGenOutput>AirTickets.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\userticket.png" />
+    <Resource Include="Resources\down.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Color = System.Windows.Media.Color;
 
 namespace air_project.pages
 {
@@ -34,15 +35,18 @@ namespace air_project.pages
             string[] number;
             btn = (Button)sender;
 
-            if (btn.Background is SolidColorBrush brush && brush.Color == Colors.Green)
+            Color desiredColor = Color.FromArgb(0xFF, 0xE2, 0xC5, 0xBF);
+            Color checkedColor = Color.FromArgb(0xFF, 0xA7, 0x87, 0x8E);
+
+            if (btn.Background is SolidColorBrush brush && brush.Color == desiredColor)
             {
-                btn.Background = new SolidColorBrush(Colors.Red);
+                btn.Background = new SolidColorBrush(checkedColor);
                 number = btn.Name.Split('n');
-                ass += number[1]+" ";
+                ass += number[1] + " ";
             }
             else
             {
-                btn.Background = new SolidColorBrush(Colors.Green);
+                btn.Background = new SolidColorBrush(desiredColor);
                 number = btn.Name.Split('n');
                 ass = ass.Replace($"{number[1]} ", "");
             }
