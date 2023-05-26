@@ -43,37 +43,25 @@
                                 FontFamily="Candara" 
                                 FontSize="16" 
                                 MenuItemForeground="Black">
-                    
+
                     <HamburgerMenu:HamburgerMenuItem Text="Личный кабинет" 
                                                      Height="50"
                                                      x:Name="admin" 
                                                      Selected="admin_Selected"
                                                      Icon="/Resources/profile.png"/>
-                    
-                    <HamburgerMenu:HamburgerMenuItem Text="Добавление билетов" 
-                                                     Height="50"
-                                                     Selected="addticket_Selected"
-                                                     x:Name="addticket" 
-                                                     Icon="/Resources/add-ticket.png"/>
-                    
+
                     <HamburgerMenu:HamburgerMenuItem Text="Изменение билетов"
                                                      Height="50"
                                                      Selected="changeticket_Selected"
                                                      x:Name="changeticket"
                                                      Icon="/Resources/delete-ticket.png" />
-                    
+
                     <HamburgerMenu:HamburgerMenuItem Text="Добавление рейсов" 
                                                      Height="50"
                                                      Selected="addfly_Selected"
                                                      x:Name="addfly" 
                                                      Icon="/Resources/airport.png"/>
-                    
-                    <HamburgerMenu:HamburgerMenuItem Text="Измение рейсов" 
-                                                     Selected="changefly_Selected"
-                                                     Height="50"
-                                                     x:Name="changefly" 
-                                                     Icon="/Resources/replace.png"/>
-                    
+
                     <HamburgerMenu:HamburgerMenuItem Text="Просмотр пользователей" 
                                                      Height="50"
                                                      x:Name="usersWatch"

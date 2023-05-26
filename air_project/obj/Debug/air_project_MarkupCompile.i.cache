@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\tanus\source\repos\air_project\air_project\App.xaml
-23-1332740080
+271697839849
 21304781927
-43-446364307
+491708586231
 281697698962
-CheckRecKod.xaml;Confirmation.xaml;forms\AdminProfile.xaml;Auth.xaml;forms\BuhProfile.xaml;forms\BuyTicket.xaml;MyDocs.xaml;pages\AddFlight.xaml;pages\BookingPage.xaml;pages\CustomerPage.xaml;forms\CustomerProfile.xaml;Interesting.xaml;pages\Documentary.xaml;pages\Interests.xaml;pages\MainCustomer.xaml;pages\MainHome.xaml;MyOchy.xaml;pages\WatchTicket.xaml;Recovery.xaml;Reg.xaml;pages\WatchFlight.xaml;WatchFlights.xaml;WatchTickets.xaml;
+CheckRecKod.xaml;Confirmation.xaml;forms\AdminProfile.xaml;Auth.xaml;forms\BuhProfile.xaml;forms\BuyTicket.xaml;MyCards.xaml;MyDocs.xaml;pages\AddFlight.xaml;pages\AddTicket.xaml;pages\AddUser.xaml;pages\BookingPage.xaml;pages\CustomerPage.xaml;forms\CustomerProfile.xaml;Interesting.xaml;pages\Documentary.xaml;pages\Interests.xaml;pages\MainCustomer.xaml;pages\MainHome.xaml;MyOchy.xaml;pages\WatchTicket.xaml;pages\Window1.xaml;Recovery.xaml;Reg.xaml;pages\WatchFlight.xaml;WatchFlights.xaml;WatchTickets.xaml;
 
-True
+False
 

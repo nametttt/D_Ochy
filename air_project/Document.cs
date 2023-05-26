@@ -17,21 +17,25 @@ namespace air_project
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Document()
         {
-            this.Passenger = new HashSet<Passenger>();
+            this.Purchases_Ticket = new HashSet<Purchases_Ticket>();
         }
     
         public int IdDocument { get; set; }
         public int IdType { get; set; }
         public string Number { get; set; }
+        public int IdPassenger { get; set; }
     
+        public virtual Passenger Passenger { get; set; }
         public virtual Type_Document Type_Document { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Passenger> Passenger { get; set; }
+        public virtual ICollection<Purchases_Ticket> Purchases_Ticket { get; set; }
 
-        public Document( int idType, string number)
+
+        public Document(int IdType, string Number, int IdPassenger)
         {
-            IdType = idType;
-            Number = number;
+            this.IdType = IdType;
+            this.Number = Number;
+            this.IdPassenger = IdPassenger;
         }
     }
 }

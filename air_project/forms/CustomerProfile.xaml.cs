@@ -1,4 +1,5 @@
-﻿using System;
+﻿using air_project.pages;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -48,6 +49,7 @@ namespace air_project
         private void TicketsBuy_Selected(object sender, RoutedEventArgs e)
         {
             MainContent.Navigate(new Uri("/pages/MainCustomer.xaml", UriKind.Relative));
+            MainContent.NavigationService.Navigate(new MainCustomer(_user));
         }
 
         private void Exit_Selected(object sender, RoutedEventArgs e)

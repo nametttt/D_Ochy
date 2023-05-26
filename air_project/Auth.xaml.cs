@@ -79,9 +79,10 @@ namespace air_project
 
                     MessageBox.Show("Введен неверный логин или пароль!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                catch
+                catch (Exception ex)
                 {
                     MessageBox.Show("Произошла ошибка!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    var i = ex;
                 }
             }
     }

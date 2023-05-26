@@ -26,6 +26,7 @@ namespace air_project
         public int Arrival_City { get; set; }
         public System.DateTime Arrival_Date { get; set; }
         public int Seats_Number { get; set; }
+        public int RetailValue { get; set; }
     
         public virtual City City { get; set; }
         public virtual City City1 { get; set; }

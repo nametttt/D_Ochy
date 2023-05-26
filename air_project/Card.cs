@@ -14,13 +14,21 @@ namespace air_project
     
     public partial class Card
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Card()
+        {
+            this.Purchases = new HashSet<Purchases>();
+        }
+    
         public long IdCard { get; set; }
-        public string Month { get; set; }
+        public int Month { get; set; }
         public int Year { get; set; }
         public int CW_CVC { get; set; }
         public string OwnerName { get; set; }
         public string UserLogin { get; set; }
     
         public virtual User User { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Purchases> Purchases { get; set; }
     }
 }

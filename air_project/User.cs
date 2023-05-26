@@ -34,7 +34,6 @@ namespace air_project
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Passenger> Passenger { get; set; }
 
-
         public User(string login, string surname, string name, string patronymic, string password, string role)
         {
             Login = login;
@@ -43,7 +42,6 @@ namespace air_project
             Patronymic = patronymic;
             Password = password;
             Role = "Покупатель";
-           
         }
     }
 }

@@ -27,6 +27,8 @@ namespace air_project
         public MyDocs()
         {
             InitializeComponent();
+
+            otpr.DisplayDateEnd = DateTime.Today;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -95,6 +97,28 @@ namespace air_project
                     typeDoc.Items.Add(type.Type);
                 }
             }
+        }
+
+        private void otpr_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Birthday.Text = otpr.SelectedDate.Value.Date.ToString("dd.MM.yyyy");
+            otpr.Visibility = Visibility.Hidden;
+        }
+
+        private void myGrid_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (otpr.Visibility == Visibility.Visible)
+            {
+                otpr.Visibility = Visibility.Hidden;
+
+            }
+            else
+            {
+                otpr.Visibility = Visibility.Visible;
+                calendarPopup.IsOpen = true;
+                calendarPopup.StaysOpen = true;
+            }
+
         }
     }
 }

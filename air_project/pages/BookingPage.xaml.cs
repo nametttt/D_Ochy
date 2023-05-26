@@ -25,6 +25,9 @@ namespace air_project.pages
     {
         Button btn;
         string ass = "";
+        public List<string> number= new List<string> { };
+        BuyTicket x = null;
+
         public BookingPage()
         {
             InitializeComponent();
@@ -32,7 +35,18 @@ namespace air_project.pages
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string[] number;
+           
+
+            foreach (Window window in Application.Current.Windows)
+            {
+                if (window is BuyTicket)
+                {
+                    x = (BuyTicket)window;
+                    break;
+                }
+            }
+
+            
             btn = (Button)sender;
 
             Color desiredColor = Color.FromArgb(0xFF, 0xE2, 0xC5, 0xBF);
@@ -40,24 +54,25 @@ namespace air_project.pages
 
             if (btn.Background is SolidColorBrush brush && brush.Color == desiredColor)
             {
+                if (number.Count == x.Colvo)
+                {
+                    MessageBox.Show("Максимум");
+                    return;
+                }
                 btn.Background = new SolidColorBrush(checkedColor);
-                number = btn.Name.Split('n');
-                ass += number[1] + " ";
+                number.Add(btn.Name.Split('n')[1]);
+                MessageBox.Show(number[0]);
+                ass += number.Last() + " ";
             }
             else
             {
                 btn.Background = new SolidColorBrush(desiredColor);
-                number = btn.Name.Split('n');
-                ass = ass.Replace($"{number[1]} ", "");
+                ass = ass.Replace($"{btn.Name.Split('n')[1]} ", "");
+                number.Remove(btn.Name.Split('n')[1]);
             }
 
         }
 
-        private void btnAdd_Click(object sender, RoutedEventArgs e)
-        {
-            var x = (BuyTicket)Application.Current.MainWindow;
-            string s = ass; 
-            x.txtPlace.Text = s;
-        }
+       
     }
 }

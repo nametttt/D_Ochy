@@ -31,6 +31,8 @@ namespace air_project
         public virtual DbSet<Document> Document { get; set; }
         public virtual DbSet<Flight> Flight { get; set; }
         public virtual DbSet<Passenger> Passenger { get; set; }
+        public virtual DbSet<Purchases> Purchases { get; set; }
+        public virtual DbSet<Purchases_Ticket> Purchases_Ticket { get; set; }
         public virtual DbSet<Region> Region { get; set; }
         public virtual DbSet<Ticket> Ticket { get; set; }
         public virtual DbSet<Type_Document> Type_Document { get; set; }

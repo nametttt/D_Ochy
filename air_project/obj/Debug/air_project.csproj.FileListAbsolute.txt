@@ -88,3 +88,11 @@ C:\Users\tanus\source\repos\air_project\air_project\bin\Debug\sv\Xceed.Wpf.Avalo
 C:\Users\tanus\source\repos\air_project\air_project\bin\Debug\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
 C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\MyDocs.g.cs
 C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\MyDocs.baml
+C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\MyCards.g.cs
+C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\MyCards.baml
+C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\pages\AddTicket.g.cs
+C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\pages\AddTicket.baml
+C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\pages\AddUser.g.cs
+C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\pages\AddUser.baml
+C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\pages\Window1.g.cs
+C:\Users\tanus\source\repos\air_project\air_project\obj\Debug\pages\Window1.baml

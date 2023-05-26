@@ -37,11 +37,10 @@ namespace air_project
             {
                 using(AirTicketsEntities db = new AirTicketsEntities())
                 {
-                    MessageBox.Show("Спасибо за код!", "OCHY", MessageBoxButton.OK, MessageBoxImage.Information);
                     User user = new User(myUser.Email, myUser.Surname, myUser.UserName, myUser.Patronymic, myUser.Password, "Покупатель");
                     db.User.Add(user);
                     db.SaveChangesAsync();
-                    MessageBox.Show("Пользователь успешно зарегистрирован!");
+                    MessageBox.Show("Пользователь успешно зарегистрирован!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                     Auth auth = new Auth();
                     auth.Show();
                     this.Hide();
@@ -49,7 +48,7 @@ namespace air_project
             }
             else
             {
-                MessageBox.Show("Код не совпадает!", "OCHY", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Код не совпадает!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

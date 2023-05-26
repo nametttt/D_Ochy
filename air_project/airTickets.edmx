@@ -10,7 +10,7 @@
             <PropertyRef Name="IdCard" />
           </Key>
           <Property Name="IdCard" Type="bigint" Nullable="false" />
-          <Property Name="Month" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Month" Type="int" Nullable="false" />
           <Property Name="Year" Type="int" Nullable="false" />
           <Property Name="CW/CVC" Type="int" Nullable="false" />
           <Property Name="OwnerName" Type="nvarchar" MaxLength="100" Nullable="false" />
@@ -38,6 +38,7 @@
           <Property Name="IdDocument" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdType" Type="int" Nullable="false" />
           <Property Name="Number" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IdPassenger" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Flight">
           <Key>
@@ -49,6 +50,7 @@
           <Property Name="Arrival_City" Type="int" Nullable="false" />
           <Property Name="Arrival_Date" Type="datetime" Nullable="false" />
           <Property Name="Seats_Number" Type="int" Nullable="false" />
+          <Property Name="RetailValue" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Passenger">
           <Key>
@@ -62,6 +64,22 @@
           <Property Name="Bithday" Type="date" Nullable="false" />
           <Property Name="Gender" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Citizenship" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Purchases">
+          <Key>
+            <PropertyRef Name="IdPurchases" />
+          </Key>
+          <Property Name="IdPurchases" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCard" Type="bigint" Nullable="false" />
+          <Property Name="PurchaseDate" Type="date" Nullable="false" />
+          <Property Name="TotalCost" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Purchases_Ticket">
+          <Key>
+            <PropertyRef Name="IdTicket" />
+          </Key>
+          <Property Name="IdTicket" Type="int" Nullable="false" />
+          <Property Name="IdPurchases" Type="int" Nullable="false" />
           <Property Name="IdDocument" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Region">
@@ -79,8 +97,6 @@
           <Property Name="IdTicket" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdFlight" Type="int" Nullable="false" />
           <Property Name="Place" Type="int" Nullable="false" />
-          <Property Name="Cost" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="IdPassenger" Type="int" />
         </EntityType>
         <EntityType Name="Type_Document">
           <Key>
@@ -157,6 +173,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Document_Passenger">
+          <End Role="Passenger" Type="Self.Passenger" Multiplicity="1" />
+          <End Role="Document" Type="Self.Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Passenger">
+              <PropertyRef Name="IdPassenger" />
+            </Principal>
+            <Dependent Role="Document">
+              <PropertyRef Name="IdPassenger" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Document_Type_Document">
           <End Role="Type_Document" Type="Self.Type_Document" Multiplicity="1" />
           <End Role="Document" Type="Self.Document" Multiplicity="*" />
@@ -207,15 +235,51 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Passenger_Document">
+        <Association Name="FK_Purchases_Card">
+          <End Role="Card" Type="Self.Card" Multiplicity="1" />
+          <End Role="Purchases" Type="Self.Purchases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Card">
+              <PropertyRef Name="IdCard" />
+            </Principal>
+            <Dependent Role="Purchases">
+              <PropertyRef Name="IdCard" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Purchases_Ticket_Document">
           <End Role="Document" Type="Self.Document" Multiplicity="1" />
-          <End Role="Passenger" Type="Self.Passenger" Multiplicity="*" />
+          <End Role="Purchases_Ticket" Type="Self.Purchases_Ticket" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Document">
               <PropertyRef Name="IdDocument" />
             </Principal>
-            <Dependent Role="Passenger">
+            <Dependent Role="Purchases_Ticket">
               <PropertyRef Name="IdDocument" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Purchases_Ticket_Purchases">
+          <End Role="Purchases" Type="Self.Purchases" Multiplicity="1" />
+          <End Role="Purchases_Ticket" Type="Self.Purchases_Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Purchases">
+              <PropertyRef Name="IdPurchases" />
+            </Principal>
+            <Dependent Role="Purchases_Ticket">
+              <PropertyRef Name="IdPurchases" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Purchases_Ticket_Ticket">
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="1" />
+          <End Role="Purchases_Ticket" Type="Self.Purchases_Ticket" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Ticket">
+              <PropertyRef Name="IdTicket" />
+            </Principal>
+            <Dependent Role="Purchases_Ticket">
+              <PropertyRef Name="IdTicket" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -233,18 +297,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Ticket_Passenger">
-          <End Role="Passenger" Type="Self.Passenger" Multiplicity="0..1" />
-          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Passenger">
-              <PropertyRef Name="IdPassenger" />
-            </Principal>
-            <Dependent Role="Ticket">
-              <PropertyRef Name="IdPassenger" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="Хранилище AirTicketsModelContainer">
           <EntitySet Name="Card" EntityType="Self.Card" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
@@ -252,6 +304,8 @@
           <EntitySet Name="Document" EntityType="Self.Document" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Flight" EntityType="Self.Flight" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Passenger" EntityType="Self.Passenger" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Purchases" EntityType="Self.Purchases" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Purchases_Ticket" EntityType="Self.Purchases_Ticket" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Region" EntityType="Self.Region" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ticket" EntityType="Self.Ticket" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Type_Document" EntityType="Self.Type_Document" Schema="dbo" store:Type="Tables" />
@@ -272,6 +326,10 @@
             <End Role="User" EntitySet="User" />
             <End Role="Passenger" EntitySet="Passenger" />
           </AssociationSet>
+          <AssociationSet Name="FK_Document_Passenger" Association="Self.FK_Document_Passenger">
+            <End Role="Passenger" EntitySet="Passenger" />
+            <End Role="Document" EntitySet="Document" />
+          </AssociationSet>
           <AssociationSet Name="FK_Document_Type_Document" Association="Self.FK_Document_Type_Document">
             <End Role="Type_Document" EntitySet="Type_Document" />
             <End Role="Document" EntitySet="Document" />
@@ -288,16 +346,24 @@
             <End Role="City" EntitySet="City" />
             <End Role="Flight" EntitySet="Flight" />
           </AssociationSet>
-          <AssociationSet Name="FK_Passenger_Document" Association="Self.FK_Passenger_Document">
+          <AssociationSet Name="FK_Purchases_Card" Association="Self.FK_Purchases_Card">
+            <End Role="Card" EntitySet="Card" />
+            <End Role="Purchases" EntitySet="Purchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchases_Ticket_Document" Association="Self.FK_Purchases_Ticket_Document">
             <End Role="Document" EntitySet="Document" />
-            <End Role="Passenger" EntitySet="Passenger" />
+            <End Role="Purchases_Ticket" EntitySet="Purchases_Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchases_Ticket_Purchases" Association="Self.FK_Purchases_Ticket_Purchases">
+            <End Role="Purchases" EntitySet="Purchases" />
+            <End Role="Purchases_Ticket" EntitySet="Purchases_Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchases_Ticket_Ticket" Association="Self.FK_Purchases_Ticket_Ticket">
+            <End Role="Ticket" EntitySet="Ticket" />
+            <End Role="Purchases_Ticket" EntitySet="Purchases_Ticket" />
           </AssociationSet>
           <AssociationSet Name="FK_Ticket_Flight" Association="Self.FK_Ticket_Flight">
             <End Role="Flight" EntitySet="Flight" />
-            <End Role="Ticket" EntitySet="Ticket" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Ticket_Passenger" Association="Self.FK_Ticket_Passenger">
-            <End Role="Passenger" EntitySet="Passenger" />
             <End Role="Ticket" EntitySet="Ticket" />
           </AssociationSet>
         </EntityContainer>
@@ -310,12 +376,13 @@
             <PropertyRef Name="IdCard" />
           </Key>
           <Property Name="IdCard" Type="Int64" Nullable="false" />
-          <Property Name="Month" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Month" Type="Int32" Nullable="false" />
           <Property Name="Year" Type="Int32" Nullable="false" />
           <Property Name="CW_CVC" Type="Int32" Nullable="false" />
           <Property Name="OwnerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="UserLogin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="User" Relationship="Self.FK_Card_User" FromRole="Card" ToRole="User" />
+          <NavigationProperty Name="Purchases" Relationship="Self.FK_Purchases_Card" FromRole="Card" ToRole="Purchases" />
         </EntityType>
         <EntityType Name="City">
           <Key>
@@ -343,9 +410,11 @@
           </Key>
           <Property Name="IdDocument" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdType" Type="Int32" Nullable="false" />
-          <Property Name="Number" Type="String" Nullable="false" />
+          <Property Name="Number" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdPassenger" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Passenger" Relationship="Self.FK_Document_Passenger" FromRole="Document" ToRole="Passenger" />
           <NavigationProperty Name="Type_Document" Relationship="Self.FK_Document_Type_Document" FromRole="Document" ToRole="Type_Document" />
-          <NavigationProperty Name="Passenger" Relationship="Self.FK_Passenger_Document" FromRole="Document" ToRole="Passenger" />
+          <NavigationProperty Name="Purchases_Ticket" Relationship="Self.FK_Purchases_Ticket_Document" FromRole="Document" ToRole="Purchases_Ticket" />
         </EntityType>
         <EntityType Name="Flight">
           <Key>
@@ -360,6 +429,7 @@
           <NavigationProperty Name="City" Relationship="Self.FK_Flight_City" FromRole="Flight" ToRole="City" />
           <NavigationProperty Name="City1" Relationship="Self.FK_Flight_City1" FromRole="Flight" ToRole="City" />
           <NavigationProperty Name="Ticket" Relationship="Self.FK_Ticket_Flight" FromRole="Flight" ToRole="Ticket" />
+          <Property Name="RetailValue" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Passenger">
           <Key>
@@ -373,11 +443,31 @@
           <Property Name="Bithday" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Citizenship" Type="Int32" Nullable="false" />
-          <Property Name="IdDocument" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Country" Relationship="Self.FK_Documents_Country" FromRole="Passenger" ToRole="Country" />
-          <NavigationProperty Name="Document" Relationship="Self.FK_Passenger_Document" FromRole="Passenger" ToRole="Document" />
+          <NavigationProperty Name="Document" Relationship="Self.FK_Document_Passenger" FromRole="Passenger" ToRole="Document" />
           <NavigationProperty Name="User" Relationship="Self.FK_Customer_User" FromRole="Passenger" ToRole="User" />
-          <NavigationProperty Name="Ticket" Relationship="Self.FK_Ticket_Passenger" FromRole="Passenger" ToRole="Ticket" />
+        </EntityType>
+        <EntityType Name="Purchases">
+          <Key>
+            <PropertyRef Name="IdPurchases" />
+          </Key>
+          <Property Name="IdPurchases" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCard" Type="Int64" Nullable="false" />
+          <Property Name="PurchaseDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TotalCost" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Card" Relationship="Self.FK_Purchases_Card" FromRole="Purchases" ToRole="Card" />
+          <NavigationProperty Name="Purchases_Ticket" Relationship="Self.FK_Purchases_Ticket_Purchases" FromRole="Purchases" ToRole="Purchases_Ticket" />
+        </EntityType>
+        <EntityType Name="Purchases_Ticket">
+          <Key>
+            <PropertyRef Name="IdTicket" />
+          </Key>
+          <Property Name="IdTicket" Type="Int32" Nullable="false" />
+          <Property Name="IdPurchases" Type="Int32" Nullable="false" />
+          <Property Name="IdDocument" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Document" Relationship="Self.FK_Purchases_Ticket_Document" FromRole="Purchases_Ticket" ToRole="Document" />
+          <NavigationProperty Name="Purchases" Relationship="Self.FK_Purchases_Ticket_Purchases" FromRole="Purchases_Ticket" ToRole="Purchases" />
+          <NavigationProperty Name="Ticket" Relationship="Self.FK_Purchases_Ticket_Ticket" FromRole="Purchases_Ticket" ToRole="Ticket" />
         </EntityType>
         <EntityType Name="Region">
           <Key>
@@ -396,10 +486,8 @@
           <Property Name="IdTicket" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdFlight" Type="Int32" Nullable="false" />
           <Property Name="Place" Type="Int32" Nullable="false" />
-          <Property Name="Cost" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="IdPassenger" Type="Int32" />
           <NavigationProperty Name="Flight" Relationship="Self.FK_Ticket_Flight" FromRole="Ticket" ToRole="Flight" />
-          <NavigationProperty Name="Passenger" Relationship="Self.FK_Ticket_Passenger" FromRole="Ticket" ToRole="Passenger" />
+          <NavigationProperty Name="Purchases_Ticket" Relationship="Self.FK_Purchases_Ticket_Ticket" FromRole="Ticket" ToRole="Purchases_Ticket" />
         </EntityType>
         <EntityType Name="Type_Document">
           <Key>
@@ -434,6 +522,18 @@
             </Principal>
             <Dependent Role="Card">
               <PropertyRef Name="UserLogin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Purchases_Card">
+          <End Role="Card" Type="Self.Card" Multiplicity="1" />
+          <End Role="Purchases" Type="Self.Purchases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Card">
+              <PropertyRef Name="IdCard" />
+            </Principal>
+            <Dependent Role="Purchases">
+              <PropertyRef Name="IdCard" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -503,6 +603,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Document_Passenger">
+          <End Role="Passenger" Type="Self.Passenger" Multiplicity="1" />
+          <End Role="Document" Type="Self.Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Passenger">
+              <PropertyRef Name="IdPassenger" />
+            </Principal>
+            <Dependent Role="Document">
+              <PropertyRef Name="IdPassenger" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Document_Type_Document">
           <End Role="Type_Document" Type="Self.Type_Document" Multiplicity="1" />
           <End Role="Document" Type="Self.Document" Multiplicity="*" />
@@ -515,14 +627,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Passenger_Document">
+        <Association Name="FK_Purchases_Ticket_Document">
           <End Role="Document" Type="Self.Document" Multiplicity="1" />
-          <End Role="Passenger" Type="Self.Passenger" Multiplicity="*" />
+          <End Role="Purchases_Ticket" Type="Self.Purchases_Ticket" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Document">
               <PropertyRef Name="IdDocument" />
             </Principal>
-            <Dependent Role="Passenger">
+            <Dependent Role="Purchases_Ticket">
               <PropertyRef Name="IdDocument" />
             </Dependent>
           </ReferentialConstraint>
@@ -555,15 +667,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Ticket_Passenger">
-          <End Role="Passenger" Type="Self.Passenger" Multiplicity="0..1" />
-          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+        <Association Name="FK_Purchases_Ticket_Purchases">
+          <End Role="Purchases" Type="Self.Purchases" Multiplicity="1" />
+          <End Role="Purchases_Ticket" Type="Self.Purchases_Ticket" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Passenger">
-              <PropertyRef Name="IdPassenger" />
+            <Principal Role="Purchases">
+              <PropertyRef Name="IdPurchases" />
             </Principal>
-            <Dependent Role="Ticket">
-              <PropertyRef Name="IdPassenger" />
+            <Dependent Role="Purchases_Ticket">
+              <PropertyRef Name="IdPurchases" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Purchases_Ticket_Ticket">
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="1" />
+          <End Role="Purchases_Ticket" Type="Self.Purchases_Ticket" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Ticket">
+              <PropertyRef Name="IdTicket" />
+            </Principal>
+            <Dependent Role="Purchases_Ticket">
+              <PropertyRef Name="IdTicket" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -574,6 +698,8 @@
           <EntitySet Name="Document" EntityType="Self.Document" />
           <EntitySet Name="Flight" EntityType="Self.Flight" />
           <EntitySet Name="Passenger" EntityType="Self.Passenger" />
+          <EntitySet Name="Purchases" EntityType="Self.Purchases" />
+          <EntitySet Name="Purchases_Ticket" EntityType="Self.Purchases_Ticket" />
           <EntitySet Name="Region" EntityType="Self.Region" />
           <EntitySet Name="Ticket" EntityType="Self.Ticket" />
           <EntitySet Name="Type_Document" EntityType="Self.Type_Document" />
@@ -581,6 +707,10 @@
           <AssociationSet Name="FK_Card_User" Association="Self.FK_Card_User">
             <End Role="User" EntitySet="User" />
             <End Role="Card" EntitySet="Card" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchases_Card" Association="Self.FK_Purchases_Card">
+            <End Role="Card" EntitySet="Card" />
+            <End Role="Purchases" EntitySet="Purchases" />
           </AssociationSet>
           <AssociationSet Name="FK_City_Region" Association="Self.FK_City_Region">
             <End Role="Region" EntitySet="Region" />
@@ -602,13 +732,17 @@
             <End Role="Country" EntitySet="Country" />
             <End Role="Passenger" EntitySet="Passenger" />
           </AssociationSet>
+          <AssociationSet Name="FK_Document_Passenger" Association="Self.FK_Document_Passenger">
+            <End Role="Passenger" EntitySet="Passenger" />
+            <End Role="Document" EntitySet="Document" />
+          </AssociationSet>
           <AssociationSet Name="FK_Document_Type_Document" Association="Self.FK_Document_Type_Document">
             <End Role="Type_Document" EntitySet="Type_Document" />
             <End Role="Document" EntitySet="Document" />
           </AssociationSet>
-          <AssociationSet Name="FK_Passenger_Document" Association="Self.FK_Passenger_Document">
+          <AssociationSet Name="FK_Purchases_Ticket_Document" Association="Self.FK_Purchases_Ticket_Document">
             <End Role="Document" EntitySet="Document" />
-            <End Role="Passenger" EntitySet="Passenger" />
+            <End Role="Purchases_Ticket" EntitySet="Purchases_Ticket" />
           </AssociationSet>
           <AssociationSet Name="FK_Ticket_Flight" Association="Self.FK_Ticket_Flight">
             <End Role="Flight" EntitySet="Flight" />
@@ -618,9 +752,13 @@
             <End Role="User" EntitySet="User" />
             <End Role="Passenger" EntitySet="Passenger" />
           </AssociationSet>
-          <AssociationSet Name="FK_Ticket_Passenger" Association="Self.FK_Ticket_Passenger">
-            <End Role="Passenger" EntitySet="Passenger" />
+          <AssociationSet Name="FK_Purchases_Ticket_Purchases" Association="Self.FK_Purchases_Ticket_Purchases">
+            <End Role="Purchases" EntitySet="Purchases" />
+            <End Role="Purchases_Ticket" EntitySet="Purchases_Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchases_Ticket_Ticket" Association="Self.FK_Purchases_Ticket_Ticket">
             <End Role="Ticket" EntitySet="Ticket" />
+            <End Role="Purchases_Ticket" EntitySet="Purchases_Ticket" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -661,15 +799,17 @@
           <EntitySetMapping Name="Document">
             <EntityTypeMapping TypeName="AirTicketsModel.Document">
               <MappingFragment StoreEntitySet="Document">
-                <ScalarProperty Name="Number" ColumnName="Number" />
                 <ScalarProperty Name="IdDocument" ColumnName="IdDocument" />
                 <ScalarProperty Name="IdType" ColumnName="IdType" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="IdPassenger" ColumnName="IdPassenger" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Flight">
             <EntityTypeMapping TypeName="AirTicketsModel.Flight">
               <MappingFragment StoreEntitySet="Flight">
+                <ScalarProperty Name="RetailValue" ColumnName="RetailValue" />
                 <ScalarProperty Name="IdFlight" ColumnName="IdFlight" />
                 <ScalarProperty Name="Departure_City" ColumnName="Departure_City" />
                 <ScalarProperty Name="Departure_Date" ColumnName="Departure_Date" />
@@ -690,6 +830,24 @@
                 <ScalarProperty Name="Bithday" ColumnName="Bithday" />
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="Citizenship" ColumnName="Citizenship" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Purchases">
+            <EntityTypeMapping TypeName="AirTicketsModel.Purchases">
+              <MappingFragment StoreEntitySet="Purchases">
+                <ScalarProperty Name="IdPurchases" ColumnName="IdPurchases" />
+                <ScalarProperty Name="IdCard" ColumnName="IdCard" />
+                <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
+                <ScalarProperty Name="TotalCost" ColumnName="TotalCost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Purchases_Ticket">
+            <EntityTypeMapping TypeName="AirTicketsModel.Purchases_Ticket">
+              <MappingFragment StoreEntitySet="Purchases_Ticket">
+                <ScalarProperty Name="IdTicket" ColumnName="IdTicket" />
+                <ScalarProperty Name="IdPurchases" ColumnName="IdPurchases" />
                 <ScalarProperty Name="IdDocument" ColumnName="IdDocument" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -709,8 +867,6 @@
                 <ScalarProperty Name="IdTicket" ColumnName="IdTicket" />
                 <ScalarProperty Name="IdFlight" ColumnName="IdFlight" />
                 <ScalarProperty Name="Place" ColumnName="Place" />
-                <ScalarProperty Name="Cost" ColumnName="Cost" />
-                <ScalarProperty Name="IdPassenger" ColumnName="IdPassenger" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -140,7 +140,7 @@
                                           Height="38" 
                                           Margin="20 15 20 20"
                                           TextChanged="Phone_TextChanged"
-                                          Tag="Номер телефона"/>
+                                          Tag="Телефон +X(XXX)XXX-XX-XX"/>
 
                                 <Button DockPanel.Dock="Top" 
                                         x:Name="btnAuth"
@@ -216,6 +216,7 @@
                                     BorderThickness="1"
                                     Grid.Column="1"
                                     Background="#FFFAE3D5"
+                                    MinHeight="500"
                                     Margin="30 0 0 30"
                                     x:Name="Cards"
                                     Height="{Binding ElementName=HeightCard, Path=Height}"

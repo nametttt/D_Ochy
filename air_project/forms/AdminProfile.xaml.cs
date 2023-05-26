@@ -62,6 +62,7 @@ namespace air_project
         private void changeticket_Selected(object sender, RoutedEventArgs e)
         {
 
+            MainContent.Navigate(new Uri("/pages/AddTicket.xaml", UriKind.Relative));
         }
 
         private void addfly_Selected(object sender, RoutedEventArgs e)

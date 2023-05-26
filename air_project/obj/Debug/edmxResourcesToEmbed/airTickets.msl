@@ -33,15 +33,17 @@
     <EntitySetMapping Name="Document">
       <EntityTypeMapping TypeName="AirTicketsModel.Document">
         <MappingFragment StoreEntitySet="Document">
-          <ScalarProperty Name="Number" ColumnName="Number" />
           <ScalarProperty Name="IdDocument" ColumnName="IdDocument" />
           <ScalarProperty Name="IdType" ColumnName="IdType" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="IdPassenger" ColumnName="IdPassenger" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Flight">
       <EntityTypeMapping TypeName="AirTicketsModel.Flight">
         <MappingFragment StoreEntitySet="Flight">
+          <ScalarProperty Name="RetailValue" ColumnName="RetailValue" />
           <ScalarProperty Name="IdFlight" ColumnName="IdFlight" />
           <ScalarProperty Name="Departure_City" ColumnName="Departure_City" />
           <ScalarProperty Name="Departure_Date" ColumnName="Departure_Date" />
@@ -62,6 +64,24 @@
           <ScalarProperty Name="Bithday" ColumnName="Bithday" />
           <ScalarProperty Name="Gender" ColumnName="Gender" />
           <ScalarProperty Name="Citizenship" ColumnName="Citizenship" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Purchases">
+      <EntityTypeMapping TypeName="AirTicketsModel.Purchases">
+        <MappingFragment StoreEntitySet="Purchases">
+          <ScalarProperty Name="IdPurchases" ColumnName="IdPurchases" />
+          <ScalarProperty Name="IdCard" ColumnName="IdCard" />
+          <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
+          <ScalarProperty Name="TotalCost" ColumnName="TotalCost" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Purchases_Ticket">
+      <EntityTypeMapping TypeName="AirTicketsModel.Purchases_Ticket">
+        <MappingFragment StoreEntitySet="Purchases_Ticket">
+          <ScalarProperty Name="IdTicket" ColumnName="IdTicket" />
+          <ScalarProperty Name="IdPurchases" ColumnName="IdPurchases" />
           <ScalarProperty Name="IdDocument" ColumnName="IdDocument" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -81,8 +101,6 @@
           <ScalarProperty Name="IdTicket" ColumnName="IdTicket" />
           <ScalarProperty Name="IdFlight" ColumnName="IdFlight" />
           <ScalarProperty Name="Place" ColumnName="Place" />
-          <ScalarProperty Name="Cost" ColumnName="Cost" />
-          <ScalarProperty Name="IdPassenger" ColumnName="IdPassenger" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

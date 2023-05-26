@@ -23,6 +23,8 @@ namespace air_project.pages
         public AddFlight()
         {
             InitializeComponent();
+            UpdateFlight();
+            int dcity, acity;
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -37,12 +39,17 @@ namespace air_project.pages
                 {
                     arrcity.Items.Add(city.CityName);
                 }
+                foreach (Flight f in air.Flight)
+                {
+                    idFlight.Items.Add(f.IdFlight);
+                }
 
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        public void UpdateFlight()
         {
+            datagrid.ItemsSource = null;
             using (AirTicketsEntities air = new AirTicketsEntities())
             {
                 var query1 = from city1 in air.City
@@ -60,6 +67,10 @@ namespace air_project.pages
                              };
                 datagrid.ItemsSource = query1.ToList();
             }
+        }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateFlight();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -86,19 +97,19 @@ namespace air_project.pages
                             Departure_Date = Convert.ToDateTime(depdate.Text),
                             Arrival_City = arrivalCityId,
                             Arrival_Date = Convert.ToDateTime(arrdate.Text),
-                            Seats_Number = 34
+                            Seats_Number = 36,
+                            RetailValue = Convert.ToInt32(cost.Text)
                         };
 
                         air.Flight.Add(flight);
                         air.SaveChanges();
 
-                        for (int i = 1; i <= 34; i++)
+                        for (int i = 1; i <= 36; i++)
                         {
                             Ticket ticket = new Ticket()
                             {
                                 IdFlight = flight.IdFlight,
                                 Place = i,
-                                Cost = Convert.ToDecimal(cost.Text)
                             };
 
                             air.Ticket.Add(ticket);
@@ -119,6 +130,48 @@ namespace air_project.pages
                 MessageBox.Show("Произошла ошибка!");
             }
 
+        }
+
+        private void idFlight_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                using (AirTicketsEntities air = new AirTicketsEntities())
+                {
+                    cost.IsEnabled = false;
+                    if (idFlight.SelectedItem != null)
+                    {
+                        foreach (var flight in air.Flight)
+                        {
+                            if (flight.IdFlight == Convert.ToInt32(idFlight))
+                            {
+
+                                //foreach (var City in air.City)
+                                //{
+                                //    if (City.IdCity == flight.Departure_City)
+                                //    {
+                                //        depcity.SelectedItem = City.CityName;
+                                //    }
+
+                                //    if (City.IdCity == flight.Arrival_City)
+                                //    {
+                                //        arrcity.SelectedItem = City.CityName;
+                                //    }
+                                //}
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        Add.IsEnabled = false;
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Произошла ошибка!");
+            }
         }
     }
 }

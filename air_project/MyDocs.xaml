@@ -4,11 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:air_project"
+            xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
              Loaded="UserControl_Loaded"
              d:DesignHeight="450" d:DesignWidth="800">
 
-    <StackPanel x:Name="HeightDoc" Margin="10 10 10 20">
+    <StackPanel x:Name="HeightDoc" Margin="0 0 0 10">
 
         <Label Content="Новый документ"
                                        HorizontalAlignment="Left"
@@ -101,11 +102,18 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <DatePicker 
-                                                Grid.Column="0"
-                                                      x:Name="Birthday"
-                                                      Margin="0 0 13 0"
-                                                      Tag="Дата рождения"/>
+            <Grid Height="38" Grid.Column="0" Margin="0 0 13 0" MouseDown="myGrid_MouseDown"  x:Name="myGrid">
+
+                <TextBox x:Name="Birthday"
+                             Style="{StaticResource MyWaterMarkStyle}"
+                             IsReadOnly="True"
+                             Tag="Дата рождения"/>
+
+                <Image HorizontalAlignment="Right" 
+                               Source="/Resources/calendar.png" 
+                               Stretch="Uniform"
+                               Margin="0 8 10 8"/>
+            </Grid>
 
             <TextBox 
                                                 Grid.Column="1"
@@ -116,5 +124,29 @@
                                                    Margin="13 0 0 0"
                                                    Tag="Номер документа"/>
         </Grid>
+        
+        <Popup x:Name="calendarPopup" 
+       IsOpen="False"
+       StaysOpen="False" 
+       AllowsTransparency="True"
+       Placement="Bottom"
+       PlacementTarget="{Binding ElementName=myGrid}">
+
+            <Calendar Margin="0 0 20 0"
+              Visibility="Collapsed" 
+              Name="otpr"
+              DisplayDateStart="01.01.1920"
+              SelectedDatesChanged="otpr_SelectedDatesChanged">
+                
+                <Calendar.LayoutTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Calendar.LayoutTransform>
+            </Calendar>
+        </Popup>
     </StackPanel>
 </UserControl>

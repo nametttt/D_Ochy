@@ -136,11 +136,20 @@
       <DependentUpon>BuyTicket.xaml</DependentUpon>
     </Compile>
     <Compile Include="GetHash.cs" />
+    <Compile Include="MyCards.xaml.cs">
+      <DependentUpon>MyCards.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MyDocs.xaml.cs">
       <DependentUpon>MyDocs.xaml</DependentUpon>
     </Compile>
     <Compile Include="pages\AddFlight.xaml.cs">
       <DependentUpon>AddFlight.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\AddTicket.xaml.cs">
+      <DependentUpon>AddTicket.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\AddUser.xaml.cs">
+      <DependentUpon>AddUser.xaml</DependentUpon>
     </Compile>
     <Compile Include="pages\BookingPage.xaml.cs">
       <DependentUpon>BookingPage.xaml</DependentUpon>
@@ -173,7 +182,16 @@
     <Compile Include="pages\WatchTicket.xaml.cs">
       <DependentUpon>WatchTicket.xaml</DependentUpon>
     </Compile>
+    <Compile Include="pages\Window1.xaml.cs">
+      <DependentUpon>Window1.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Passenger.cs">
+      <DependentUpon>AirTickets.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Purchases.cs">
+      <DependentUpon>AirTickets.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Purchases_Ticket.cs">
       <DependentUpon>AirTickets.tt</DependentUpon>
     </Compile>
     <Compile Include="Recovery.xaml.cs">
@@ -234,11 +252,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MyCards.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MyDocs.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="pages\AddFlight.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pages\AddTicket.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pages\AddUser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -279,6 +309,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="pages\WatchTicket.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pages\Window1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -383,6 +417,10 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\userticket.png" />
+    <Resource Include="Resources\down.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="AirTickets.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>AirTickets.edmx</DependentUpon>
@@ -393,8 +431,7 @@
       <DependentUpon>AirTickets.edmx</DependentUpon>
       <LastGenOutput>AirTickets.cs</LastGenOutput>
     </Content>
-    <Resource Include="Resources\userticket.png" />
-    <Resource Include="Resources\down.png" />
+    <Resource Include="Resources\fontickets.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

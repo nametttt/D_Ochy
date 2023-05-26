@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:air_project.pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="700" d:DesignWidth="800"
       Title="BookingPage">
 
 
@@ -23,11 +23,17 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Candara"/>
+            <Setter Property="FontSize" Value="20"/>
+
+        </Style>
     </Page.Resources>
-        <Grid >
+    <Grid Margin="5 10 5 0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="70"></RowDefinition>
+                <RowDefinition Height="10"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="70"></RowDefinition>
                 <RowDefinition Height="70"></RowDefinition>
                 <RowDefinition Height="70"></RowDefinition>
@@ -44,66 +50,68 @@
                 <ColumnDefinition Width="{Binding ActualHeight, ElementName=middleRow, Mode=OneWay}"></ColumnDefinition>
                 <ColumnDefinition Width="{Binding ActualHeight, ElementName=middleRow, Mode=OneWay}"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="A" TextAlignment="Center" VerticalAlignment="Center" />
-            <TextBlock Grid.Row="0" Grid.Column="1" Text="B" TextAlignment="Center" VerticalAlignment="Center"/>
-            <TextBlock Grid.Row="0" Grid.Column="2" Text="C" TextAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="A" TextAlignment="Center" VerticalAlignment="Center" />
+            <TextBlock Grid.Row="2" Grid.Column="1" Text="B" TextAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="2" Grid.Column="2" Text="C" TextAlignment="Center" VerticalAlignment="Center"/>
 
-            <TextBlock Grid.Row="0" Grid.Column="4" Text="D" TextAlignment="Center" VerticalAlignment="Center"/>
-            <TextBlock Grid.Row="0" Grid.Column="5" Text="E" TextAlignment="Center" VerticalAlignment="Center"/>
-            <TextBlock Grid.Row="0" Grid.Column="6" Text="F" TextAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="2" Grid.Column="4" Text="D" TextAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="2" Grid.Column="5" Text="E" TextAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="2" Grid.Column="6" Text="F" TextAlignment="Center" VerticalAlignment="Center"/>
 
-            <TextBlock Grid.Row="1" Grid.Column="3" Text="1" TextAlignment="Center" VerticalAlignment="Center"/>
-            <TextBlock Grid.Row="2" Grid.Column="3" Text="2" TextAlignment="Center" VerticalAlignment="Center"/>
-            <TextBlock Grid.Row="3" Grid.Column="3" Text="3" TextAlignment="Center" VerticalAlignment="Center"/>
-            <TextBlock Grid.Row="4" Grid.Column="3" Text="4" TextAlignment="Center" VerticalAlignment="Center"/>
-            <TextBlock Grid.Row="5" Grid.Column="3" Text="5" TextAlignment="Center" VerticalAlignment="Center"/>
-            <TextBlock Grid.Row="6" Grid.Column="3" Text="6" TextAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="3" Grid.Column="3" Text="1" TextAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="4" Grid.Column="3" Text="2" TextAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="5" Grid.Column="3" Text="3" TextAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="6" Grid.Column="3" Text="4" TextAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="7" Grid.Column="3" Text="5" TextAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="8" Grid.Column="3" Text="6" TextAlignment="Center" VerticalAlignment="Center"/>
 
-            <Button Grid.Row="1" Grid.Column="0" x:Name="btn1"  Click="Button_Click"/>
-            <Button Grid.Row="1" Grid.Column="1" x:Name="btn2"  Click="Button_Click"/>
-            <Button Grid.Row="1" Grid.Column="2" x:Name="btn3"  Click="Button_Click"/>
-            <Button Grid.Row="1" Grid.Column="4" x:Name="btn4"  Click="Button_Click"/>
-            <Button Grid.Row="1" Grid.Column="5" x:Name="btn5"  Click="Button_Click"/>
-            <Button Grid.Row="1" Grid.Column="6" x:Name="btn6"  Click="Button_Click"/>
+            <Button Grid.Row="3" Grid.Column="0" x:Name="btn1"  Click="Button_Click"/>
+            <Button Grid.Row="3" Grid.Column="1" x:Name="btn2"  Click="Button_Click"/>
+            <Button Grid.Row="3" Grid.Column="2" x:Name="btn3"  Click="Button_Click"/>
+            <Button Grid.Row="3" Grid.Column="4" x:Name="btn4"  Click="Button_Click"/>
+            <Button Grid.Row="3" Grid.Column="5" x:Name="btn5"  Click="Button_Click"/>
+            <Button Grid.Row="3" Grid.Column="6" x:Name="btn6"  Click="Button_Click"/>
 
-            <Button Grid.Row="2" Grid.Column="0" x:Name="btn7"  Click="Button_Click"/>
-            <Button Grid.Row="2" Grid.Column="1" x:Name="btn8"  Click="Button_Click"/>
-            <Button Grid.Row="2" Grid.Column="2" x:Name="btn9"  Click="Button_Click"/>
-            <Button Grid.Row="2" Grid.Column="4" x:Name="btn10"  Click="Button_Click"/>
-            <Button Grid.Row="2" Grid.Column="5" x:Name="btn11"  Click="Button_Click"/>
-            <Button Grid.Row="2" Grid.Column="6" x:Name="btn12"  Click="Button_Click"/>
+            <Button Grid.Row="4" Grid.Column="0" x:Name="btn7"  Click="Button_Click"/>
+            <Button Grid.Row="4" Grid.Column="1" x:Name="btn8"  Click="Button_Click"/>
+            <Button Grid.Row="4" Grid.Column="2" x:Name="btn9"  Click="Button_Click"/>
+            <Button Grid.Row="4" Grid.Column="4" x:Name="btn10"  Click="Button_Click"/>
+            <Button Grid.Row="4" Grid.Column="5" x:Name="btn11"  Click="Button_Click"/>
+            <Button Grid.Row="4" Grid.Column="6" x:Name="btn12"  Click="Button_Click"/>
 
-            <Button Grid.Row="3" Grid.Column="0" x:Name="btn13"  Click="Button_Click"/>
-            <Button Grid.Row="3" Grid.Column="1" x:Name="btn14"  Click="Button_Click"/>
-            <Button Grid.Row="3" Grid.Column="2" x:Name="btn15"  Click="Button_Click"/>
-            <Button Grid.Row="3" Grid.Column="4" x:Name="btn16"  Click="Button_Click"/>
-            <Button Grid.Row="3" Grid.Column="5" x:Name="btn17"  Click="Button_Click"/>
-            <Button Grid.Row="3" Grid.Column="6"  x:Name="btn18" Click="Button_Click"/>
+            <Button Grid.Row="5" Grid.Column="0" x:Name="btn13"  Click="Button_Click"/>
+            <Button Grid.Row="5" Grid.Column="1" x:Name="btn14"  Click="Button_Click"/>
+            <Button Grid.Row="5" Grid.Column="2" x:Name="btn15"  Click="Button_Click"/>
+            <Button Grid.Row="5" Grid.Column="4" x:Name="btn16"  Click="Button_Click"/>
+            <Button Grid.Row="5" Grid.Column="5" x:Name="btn17"  Click="Button_Click"/>
+            <Button Grid.Row="5" Grid.Column="6"  x:Name="btn18" Click="Button_Click"/>
 
-            <Button Grid.Row="4" Grid.Column="0"  x:Name="btn19" Click="Button_Click"/>
-            <Button Grid.Row="4" Grid.Column="1"  x:Name="btn20" Click="Button_Click"/>
-            <Button Grid.Row="4" Grid.Column="2"   x:Name="btn21" Click="Button_Click"/>
-            <Button Grid.Row="4" Grid.Column="4"  x:Name="btn22" Click="Button_Click"/>
-            <Button Grid.Row="4" Grid.Column="5"  x:Name="btn23" Click="Button_Click"/>
-            <Button Grid.Row="4" Grid.Column="6"  x:Name="btn24" Click="Button_Click"/>
+            <Button Grid.Row="6" Grid.Column="0"  x:Name="btn19" Click="Button_Click"/>
+            <Button Grid.Row="6" Grid.Column="1"  x:Name="btn20" Click="Button_Click"/>
+            <Button Grid.Row="6" Grid.Column="2"   x:Name="btn21" Click="Button_Click"/>
+            <Button Grid.Row="6" Grid.Column="4"  x:Name="btn22" Click="Button_Click"/>
+            <Button Grid.Row="6" Grid.Column="5"  x:Name="btn23" Click="Button_Click"/>
+            <Button Grid.Row="6" Grid.Column="6"  x:Name="btn24" Click="Button_Click"/>
 
-            <Button Grid.Row="5" Grid.Column="0"  x:Name="btn25" Click="Button_Click"/>
-            <Button Grid.Row="5" Grid.Column="1"  x:Name="btn26" Click="Button_Click"/>
-            <Button Grid.Row="5" Grid.Column="2"  x:Name="btn27" Click="Button_Click"/>
-            <Button Grid.Row="5" Grid.Column="4"  x:Name="btn28" Click="Button_Click"/>
-            <Button Grid.Row="5" Grid.Column="5"  x:Name="btn29" Click="Button_Click"/>
-            <Button Grid.Row="5" Grid.Column="6"  x:Name="btn30" Click="Button_Click"/>
+            <Button Grid.Row="7" Grid.Column="0"  x:Name="btn25" Click="Button_Click"/>
+            <Button Grid.Row="7" Grid.Column="1"  x:Name="btn26" Click="Button_Click"/>
+            <Button Grid.Row="7" Grid.Column="2"  x:Name="btn27" Click="Button_Click"/>
+            <Button Grid.Row="7" Grid.Column="4"  x:Name="btn28" Click="Button_Click"/>
+            <Button Grid.Row="7" Grid.Column="5"  x:Name="btn29" Click="Button_Click"/>
+            <Button Grid.Row="7" Grid.Column="6"  x:Name="btn30" Click="Button_Click"/>
 
-            <Button Grid.Row="6" Grid.Column="0"  x:Name="btn31" Click="Button_Click"/>
-            <Button Grid.Row="6" Grid.Column="1"  x:Name="btn32" Click="Button_Click"/>
-            <Button Grid.Row="6" Grid.Column="2"  x:Name="btn33" Click="Button_Click"/>
-            <Button Grid.Row="6" Grid.Column="4"  x:Name="btn34" Click="Button_Click"/>
-            <Button Grid.Row="6" Grid.Column="5"  x:Name="btn35" Click="Button_Click"/>
-            <Button Grid.Row="6" Grid.Column="6"  x:Name="btn36" Click="Button_Click"/>
+            <Button Grid.Row="8" Grid.Column="0"  x:Name="btn31" Click="Button_Click"/>
+            <Button Grid.Row="8" Grid.Column="1"  x:Name="btn32" Click="Button_Click"/>
+            <Button Grid.Row="8" Grid.Column="2"  x:Name="btn33" Click="Button_Click"/>
+            <Button Grid.Row="8" Grid.Column="4"  x:Name="btn34" Click="Button_Click"/>
+            <Button Grid.Row="8" Grid.Column="5"  x:Name="btn35" Click="Button_Click"/>
+            <Button Grid.Row="8" Grid.Column="6"  x:Name="btn36" Click="Button_Click"/>
 
-            <Button Grid.Row="7" Grid.ColumnSpan="7" Margin="5 10 5 5" Content="Выбрать места"
-                    Style="{StaticResource Button}" x:Name="btnAdd" Click="btnAdd_Click"/>
+        <Button Grid.Row="0" Grid.Column="0" IsEnabled="False" Background="Black"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="Место приобретено" VerticalAlignment="Center" Margin="10"/>
 
-        </Grid>
+        <Button Grid.Row="0" Grid.Column="4" IsEnabled="False"/>
+        <TextBlock Grid.Row="0" Grid.Column="5" Grid.ColumnSpan="2" Text="Место свободно" VerticalAlignment="Center" Margin="10"/>
+    </Grid>
 
 </Page>

@@ -17,7 +17,7 @@ namespace air_project
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Passenger()
         {
-            this.Ticket = new HashSet<Ticket>();
+            this.Document = new HashSet<Document>();
         }
     
         public int IdPassenger { get; set; }
@@ -28,15 +28,13 @@ namespace air_project
         public System.DateTime Bithday { get; set; }
         public string Gender { get; set; }
         public int Citizenship { get; set; }
-        public int IdDocument { get; set; }
     
         public virtual Country Country { get; set; }
-        public virtual Document Document { get; set; }
-        public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Ticket> Ticket { get; set; }
+        public virtual ICollection<Document> Document { get; set; }
+        public virtual User User { get; set; }
 
-        public Passenger( string userLogin, string surname, string name, string patronymic, DateTime bithday, string gender, int citizenship, int idDocument,  Document document)
+        public Passenger(string userLogin, string surname, string name, string patronymic, DateTime bithday, string gender, int citizenship)
         {
             UserLogin = userLogin;
             Surname = surname;
@@ -45,8 +43,6 @@ namespace air_project
             Bithday = bithday;
             Gender = gender;
             Citizenship = citizenship;
-            IdDocument = idDocument;
-            Document = document;
         }
     }
 }

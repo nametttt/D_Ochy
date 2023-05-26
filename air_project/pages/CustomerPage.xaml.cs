@@ -56,11 +56,11 @@ namespace air_project
 
             using (AirTicketsEntities db = new AirTicketsEntities())
             {
-                foreach (var i in db.Passenger)
+                foreach (var i in db.Document)
                 {
-                    if (i.UserLogin == _user.Login)
+                    if (i.Passenger.UserLogin == _user.Login)
                     {
-                        doc doc = new doc(i.Document.Type_Document.Type, $"{i.Surname} {i.Name} {i.Patronymic}");
+                        doc doc = new doc(i.Type_Document.Type, $"{i.Passenger.Surname} {i.Passenger.Name} {i.Passenger.Patronymic}");
                         docs.Add(doc);
                     }
                 }
@@ -329,7 +329,7 @@ namespace air_project
                     Card newCard = new Card
                     {
                         IdCard = Convert.ToInt64(cardNumber),
-                        Month = expirationMonth,
+                        Month = Convert.ToInt32(expirationMonth),
                         Year = Convert.ToInt32(expirationYear),
                         CW_CVC = Convert.ToInt32(cvc),
                         OwnerName = ownerName,
@@ -357,7 +357,7 @@ namespace air_project
         private void Owner_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
 
-            Regex regex = new Regex("^[a-zA-Z]+$"); // Регулярное выражение для проверки только английских букв
+            Regex regex = new Regex("^[a-zA-Z]+$");
 
             if (!regex.IsMatch(e.Text))
             {
@@ -432,7 +432,7 @@ namespace air_project
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            if (contr.male.Background is SolidColorBrush brs && brs.Color == desiredColor && contr.female.Background is SolidColorBrush br && br.Color == checkedColor)
+            if ((contr.male.Background is SolidColorBrush brs && brs.Color == desiredColor) && (contr.female.Background is SolidColorBrush br && br.Color == desiredColor))
             {
                 MessageBox.Show("Выберите пол");
                 return;
@@ -449,10 +449,12 @@ namespace air_project
 
             using(AirTicketsEntities db = new AirTicketsEntities())
             {
-                Document doc = new Document(docType, docNumber);
-                Passenger ps = new Passenger(_user.Login, surname, name, patronymic, birthday, selectedSex, selectedCountry, docType, doc);
+                Passenger ps = new Passenger(_user.Login, surname, name, patronymic, birthday, selectedSex, selectedCountry);
+                Document doc = new Document(docType, docNumber, ps.IdPassenger);
                 db.Passenger.Add(ps);
+                db.Document.Add(doc);
                 db.SaveChanges();
+
             }
         }
     }
