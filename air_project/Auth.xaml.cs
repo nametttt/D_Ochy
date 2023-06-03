@@ -49,10 +49,13 @@ namespace air_project
                         GetHash g = new GetHash();
                         if (login == user.Login && password ==user.Password && user.Role == "Покупатель")
                         {
+
                             CustomerProfile w1 = new CustomerProfile(user);
                             w1.LoadCustomerPage();
                             MessageBox.Show($"Добро пожаловать, {user.Name}!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                             w1.Show();
+
+                            
                             this.Hide();
                             return;
                         }

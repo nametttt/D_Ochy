@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:air_project"
       mc:Ignorable="d" 
-      d:DesignHeight="950" d:DesignWidth="1200"
+      d:DesignHeight="1050" d:DesignWidth="1200"
       Title="Interests"
       ShowsNavigationUI="False">
 
@@ -45,16 +45,17 @@
 
                                     <TextBlock Text="Русский мост - это крупнейший в России мост, который соединяет город Санкт-Петербург с островом Канонерский. Он был открыт в 2004 году и имеет длину более 4 километров. Мост имеет уникальную конструкцию, которая позволяет ему выдерживать сильные ветры и волнения. Русский мост является одной из главных достопримечательностей города и одним из самых красивых мостов в мире. Ежегодно тысячи туристов посещают его, чтобы насладиться великолепным видом на город и Финский залив." 
                                                TextWrapping="Wrap" 
+                                               TextAlignment="Justify"
                                                FontFamily="Candara" 
-                                               FontSize="16"
+                                               FontSize="18"
                                                Margin="10 0 10 10"/>
 
                                     <Button DockPanel.Dock="Top" 
                                             x:Name="btnMost"
                                             Height="40"
-                                            Margin="10"
+                                            Margin="10 0 10 10"
                                             Content="Просмотреть билеты"
-                                            Style="{StaticResource Button}">
+                                            Style="{StaticResource Button}" Click="btnMost_Click">
                                     </Button>
                                 </StackPanel>
 
@@ -86,16 +87,18 @@
 
                                     <TextBlock Text="Москва – столица России, расположенная на реке Москва. Она богата культурным и историческим наследием, включая Кремль, Красную площадь, Большой театр, Коломенское, музеи и галереи и многое другое. Москва также является крупнейшим экономическим, научным и образовательным центром России, с множеством бизнес-центров, университетов и научных институтов." 
                                                TextWrapping="Wrap" 
+                                               
+                                               TextAlignment="Justify"
                                                FontFamily="Candara" 
-                                               FontSize="16"
+                                               FontSize="18"
                                                Margin="10 0 10 10"/>
 
                                     <Button DockPanel.Dock="Top" 
                                             x:Name="btnMoscow"
                                             Height="40"
-                                            Margin="10"
+                                            Margin="10 0 10 10"
                                             Content="Просмотреть билеты"
-                                            Style="{StaticResource Button}">
+                                            Style="{StaticResource Button}" Click="btnMoscow_Click">
                                     </Button>
                                 </StackPanel>
 
@@ -127,15 +130,16 @@
                                     <TextBlock Text="Эльбрус - высочайшая вершина России и Европы, расположенная в Кабардино-Балкарской Республике. Высота горы составляет 5 642 метра над уровнем моря. Эльбрус является популярным местом для альпинистов и любителей горных прогулок. На склонах горы расположены несколько горнолыжных курортов. Эльбрус является символом Кавказа и одной из самых известных гор в мире." 
                                                TextWrapping="Wrap" 
                                                FontFamily="Candara" 
-                                               FontSize="16"
+                                               TextAlignment="Justify"
+                                               FontSize="18"
                                                Margin="10 0 10 10"/>
 
                                     <Button DockPanel.Dock="Top" 
                                             x:Name="btnElbrys"
                                             Height="40"
-                                            Margin="10"
+                                            Margin="10 0 10 10"
                                             Content="Просмотреть билеты"
-                                            Style="{StaticResource Button}">
+                                            Style="{StaticResource Button}" Click="btnElbrys_Click">
                                     </Button>
                                 </StackPanel>
 

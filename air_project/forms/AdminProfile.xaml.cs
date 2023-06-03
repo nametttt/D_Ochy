@@ -36,9 +36,14 @@ namespace air_project
 
         private void exit_Selected(object sender, RoutedEventArgs e)
         {
-            Auth auth = new Auth();
-            this.Hide();
-            auth.Show();
+            MessageBoxResult result = MessageBox.Show("Действительно ли вы хотите выйти из аккаунта?", "Подтверждение выхода из аккаунта", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                this.Hide();
+                Auth auth = new Auth();
+                auth.Show();
+            }
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -81,11 +86,6 @@ namespace air_project
         }
 
         private void usersWatch_Selected(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void exit_Selected_1(object sender, RoutedEventArgs e)
         {
 
         }

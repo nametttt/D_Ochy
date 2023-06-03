@@ -9,11 +9,11 @@
       Title="CustomerPage"
       ShowsNavigationUI="False">
 
-    <DockPanel >
+    <DockPanel>
             <Grid x:Name="Grid" Height="500">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="0.5*"/>
-                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
@@ -84,7 +84,7 @@
 
                     <StackPanel>
                                     <Grid>
-                                        <Grid Margin="10 10 10 20">
+                        <Grid Margin="10">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition/>
                                                 <ColumnDefinition/>
@@ -109,7 +109,7 @@
                                           Margin="20 10 20 0"
                                           Tag="Фамилия"/>
 
-                                                <TextBox x:Name="Name" 
+                                                <TextBox x:Name="CName" 
                                           Style="{StaticResource MyWaterMarkStyle}"
                                           Height="38" 
                                           Margin="20 15 20 0"
@@ -140,7 +140,7 @@
                                           Height="38" 
                                           Margin="20 15 20 20"
                                           TextChanged="Phone_TextChanged"
-                                          Tag="Телефон +X(XXX)XXX-XX-XX"/>
+                                          Tag="Телефон X-XXX-XXX-XX-XX"/>
 
                                 <Button DockPanel.Dock="Top" 
                                         x:Name="btnAuth"
@@ -222,76 +222,19 @@
                                     Height="{Binding ElementName=HeightCard, Path=Height}"
                                     VerticalAlignment="Top"
                                     Visibility="Hidden">
-                                
 
-                                <StackPanel>
-                                    <Grid Margin="10 10 10 20">
 
+                <StackPanel Margin="10">
                                         <StackPanel x:Name="HeightCard">
 
-                                            <Label Content="Новая карта"
-                                       HorizontalAlignment="Left"
-                                       Margin="20,15,0,5"
-                                       FontFamily="Arial Black"
-                                       Foreground="#FF2E2F3F"
-                                       FontSize="18"/>
+                                <local:MyCards  x:Name="car"/>
+                            <Button DockPanel.Dock="Top" 
+                                                        Height="40" 
+                                                        Margin="20 20 20 0"
+                                                        Content="Добавить карту"
+                                                        Style="{StaticResource Button}" Click="Button_Click"/>
 
-                                    <TextBox  
-                                          x:Name="CardNum"
-                                          Style="{StaticResource MyWaterMarkStyle}"
-                                          Height="38" 
-                                          Margin="20 20 20 0"
-                                          Tag="Номер карты" PreviewTextInput="CardNum_PreviewTextInput"/>
-
-                            <StackPanel Margin="20 20 20 0" x:Name="info" >
-                                <DockPanel>
-
-                                    <TextBox
-                                        x:Name="Month"
-                                          Style="{StaticResource MyWaterMarkStyle}"
-                                          Height="38"
-                                          MinWidth="180"
-                                          Tag="Месяц" PreviewTextInput="Month_PreviewTextInput"/>
-
-                                    <Label Content="/"
-                                                   FontFamily="Canadara Light"
-                                                   FontSize="26"
-                                                   Margin="10 0 10 0"
-                                                   VerticalAlignment="Center"
-                                                   Foreground="Gray"/>
-
-                                           <TextBox 
-                                                   x:Name="Year"
-                                                   Style="{StaticResource MyWaterMarkStyle}"
-                                                   Height="38"
-                                                   MinWidth="180"
-                                                   Tag="Год" PreviewTextInput="Year_PreviewTextInput" />
-
-                                    <PasswordBox
-                                        x:Name="CVC"
-                                                  Style="{StaticResource MyWaterMarkStyle1}"
-                                                  Height="38"
-                                                  Width="230"
-                                                  Margin="50 0 0 0"
-                                                  DockPanel.Dock="Right"
-                                                  Tag="CW/CVC" PreviewTextInput="CVC_PreviewTextInput"/>
-                            </DockPanel>
-
-                            </StackPanel>
-                                          <TextBox  
-                                          x:Name="Owner"
-                                          Style="{StaticResource MyWaterMarkStyle}"
-                                          Height="38"
-                                          Margin="20 20 20 20"
-                                          Tag="Имя владельца на латинице" PreviewTextInput="Owner_PreviewTextInput"/>
-                                            
-                                            <Button DockPanel.Dock="Top" 
-                                                    Height="40" 
-                                                    Margin="20 0 20 0"
-                                                    Content="Добавить карту"
-                                                    Style="{StaticResource Button}" Click="Button_Click"/>
-
-                                            <Label Content="Сохраненные"
+                        <Label Content="Сохраненные"
                                        HorizontalAlignment="Left"
                                        Margin="20,30,0,5"
                                        FontFamily="Arial Black"
@@ -299,18 +242,18 @@
                                        FontSize="18"/>
 
 
-                            <ItemsControl ItemsSource="{Binding cards}">
+                            <ItemsControl x:Name="mycards">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <Border Height="180" BorderThickness="2" BorderBrush="#33FFFFFF" Background="#FF7C132F" CornerRadius="10" HorizontalAlignment="Left" >
-                                            <Grid Width="300">
+                                        <Border Margin="20" Height="180" BorderThickness="2" BorderBrush="#33FFFFFF" Background="#FF7C132F" CornerRadius="10" HorizontalAlignment="Left" >
+                                            <Grid Width="315">
                                                 <Grid.Background>
                                                     <ImageBrush ImageSource="/Resources/pngcard.png"/>
                                                 </Grid.Background>
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="1*"/>
                                                     <RowDefinition Height="2*"/>
-                                                    <RowDefinition Height="0.5*"/>
+                                                    <RowDefinition Height="0.8*"/>
                                                 </Grid.RowDefinitions>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="1*"/>
@@ -319,18 +262,20 @@
 
                                                 <StackPanel Orientation="Vertical" Grid.Row="1" Grid.ColumnSpan="2" Margin="10 0 0 0">
                                                     <Image Source="{Binding ChipImage}" Height="40" HorizontalAlignment="Left"/>
-                                                    <TextBlock Text="{Binding CardNumber}" Foreground="#FFFFFFFF" FontSize="16"/>
+                                                    <TextBlock Text="{Binding CardNumber}" Margin="0 10 0 0" Foreground="#FFFFFFFF" FontSize="18"/>
                                                 </StackPanel>
 
                                                 <StackPanel Grid.Row="2" Grid.Column="0">
-                                                    <TextBlock Text="{Binding ExpiryDate}" Margin="10,0,0,0" Foreground="#FFFFFFFF"/>
+                                                    <TextBlock Text="{Binding ExpiryDate}" Margin="10,0,0,0" Foreground="#FFFFFFFF" FontSize="16"/>
                                                 </StackPanel>
 
                                                 <StackPanel Grid.Row="2" Grid.Column="1">
-                                                    <TextBlock Text="{Binding CardHolder}" Margin="10,0,10,0" Foreground="#FFFFFFFF" HorizontalAlignment="Right"/>
+                                                    <TextBlock Text="{Binding CardHolder}" FontSize="16" Margin="10,0,10,0" Foreground="#FFFFFFFF" HorizontalAlignment="Right"/>
                                                 </StackPanel>
+
                                             </Grid>
                                         </Border>
+                                        
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                                 <ItemsControl.ItemsPanel>
@@ -342,7 +287,6 @@
 
 
                         </StackPanel>
-                                    </Grid>
                                 </StackPanel>
                             </Border>
 
@@ -350,6 +294,7 @@
                             <Border CornerRadius="10"
                                     BorderThickness="1"
                                     Grid.Column="1"
+                                    MinHeight="500"
                                     Background="#FFFAE3D5"
                                     Margin="30 0 0 30"
                                     x:Name="Tickets"
@@ -359,173 +304,127 @@
                                     Visibility="Hidden">
 
                                 <StackPanel>
-                                    <Grid Margin="10 10 10 20">
+                    <Grid Margin="10 10 10 20">
 
-                                        <StackPanel x:Name="HeightTicket">
+                        <StackPanel x:Name="HeightTicket">
 
                                             <Label Content="Активные билеты"
                                                    HorizontalAlignment="Left"
-                                                   Margin="20,15,0,5"
+                                                   Margin="20,15,0,15"
                                                    FontFamily="Arial Black"
                                                    Foreground="#FF2E2F3F"
                                                    FontSize="18"/>
 
-                                            <Border CornerRadius="10"
-                                                    BorderThickness="1"
-                                                    Background="#FFFEF9F4"
-                                                    Margin="30 15 30 0"
-                                                    BorderBrush="#FFA4848A">
+                            <StackPanel Margin="20 0 0 0" Visibility="Collapsed" x:Name="NoActive">
+                                <TextBlock Text="У вас еще нет активных билетов." TextAlignment="Justify" HorizontalAlignment="Center" Foreground="#FF787878" FontStyle="Italic" FontSize="18" TextWrapping="Wrap" />
+                            </StackPanel>
 
+                            <ItemsControl x:Name="mytickets">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Margin="20 0 20 20">
+                                            <Border Width="315" Height="450" BorderThickness="2" BorderBrush="#33FFFFFF" Background="#FF3F1B1C" CornerRadius="10" HorizontalAlignment="Left">
                                                 <Grid>
                                                     <Grid.RowDefinitions>
-                                                        <RowDefinition Height="Auto"/>
-                                                        <RowDefinition Height="*"/>
-                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="0.1*"/>
+                                                        <RowDefinition Height="0.15*"/>
+                                                        <RowDefinition Height="0.12*"/>
+                                                        <RowDefinition Height="0.1*"/>
+                                                        <RowDefinition Height="2*"/>
                                                     </Grid.RowDefinitions>
 
-                                                    <StackPanel Orientation="Horizontal"  
-                                                                Height="50" 
-                                                                Grid.Row="0" 
-                                                                Margin="20 20 20 0">
+                                                    <Grid Grid.RowSpan="4">
+                                                        <Border CornerRadius="10 10 0 0">
+                                                            <Border.Background>
+                                                                <ImageBrush ImageSource="/Resources/fontickets.jpg" Stretch="Fill"/>
+                                                            </Border.Background>
+                                                        </Border>
+                                                    </Grid>
 
-                                                        <TextBlock Text="Билет №10100101" 
-                                                                   Foreground="#FFA4848A" 
-                                                                   FontSize="24" />
-                                                    </StackPanel>
+                                                    <TextBlock Grid.Row="1" Text="{Binding FromTo}" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Justify" FontSize="20" FontFamily="Bahnschrift SemiBold SemiCondensed" Foreground="White" TextWrapping="Wrap"/>
 
-                                                    <StackPanel Grid.Row="1" 
-                                                                Margin="20 0 20 20">
-                                                        <TextBlock Text="Маршрут: Москва - Нью-Йорк" 
-                                                                   FontSize="18" 
-                                                                   FontWeight="Bold" 
-                                                                   Margin="0,0,0,10"/>
+                                                    <TextBlock Grid.Row="2" Text="{Binding Time}" Style="{StaticResource StyleBig}" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+
+                                                    <Grid Grid.Row="4">
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition/>
+                                                            <RowDefinition Height="1.1*"/>
+                                                        </Grid.RowDefinitions>
+
                                                         <Grid>
-                                                            <Grid.ColumnDefinitions>
-                                                                <ColumnDefinition/>
-                                                                <ColumnDefinition/>
-                                                            </Grid.ColumnDefinitions>
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="0.8*"/>
+                                                                <RowDefinition Height="0.8*"/>
+                                                                <RowDefinition Height="0.8*"/>
+                                                                <RowDefinition Height="0.8*"/>
+                                                                <RowDefinition Height="0.8*"/>
+                                                                <RowDefinition Height="0.8*"/>
+                                                                <RowDefinition Height="0.8*"/>
+                                                                <RowDefinition Height="0.8*"/>
+                                                            </Grid.RowDefinitions>
 
-                                                            <StackPanel>
-                                                                <TextBlock Text="Вылет" 
-                                                                           FontWeight="Bold"/>
+                                                            <TextBlock Grid.Row="0" Text="Пассажир" Style="{StaticResource StyleSmall}"/>
+                                                            <TextBlock Grid.Row="1" Text="{Binding Passenger}" Style="{StaticResource StyleBig}"/>
 
-                                                                <TextBlock Text="Москва (SVO)" 
-                                                                           Margin="0,10,0,0"/>
+                                                            <TextBlock Grid.Row="4" Text="Рейс" Style="{StaticResource StyleSmall}"/>
+                                                            <TextBlock Grid.Row="5" Text="{Binding Flight}" Style="{StaticResource StyleBig}"/>
 
-                                                                <TextBlock Text="19 июня 2023" 
-                                                                           Margin="0,5,0,0"/>
+                                                            <TextBlock Grid.Row="2" Text="{Binding Type}" Style="{StaticResource StyleSmall}"/>
+                                                            <TextBlock Grid.Row="3" Text="{Binding Document}" Style="{StaticResource StyleBig}"/>
 
-                                                                <TextBlock Text="Вылет: 16:30" 
-                                                                           Margin="0,5,0,0"/>
-                                                            </StackPanel>
-
-                                                            <StackPanel Grid.Column="1" 
-                                                                        Margin="20,0,0,0">
-
-                                                                <TextBlock Text="Прилет" 
-                                                                           FontWeight="Bold"/>
-
-                                                                <TextBlock Text="Нью-Йорк (JFK)" 
-                                                                           Margin="0,10,0,0"/>
-
-                                                                <TextBlock Text="20 июня 2023" 
-                                                                           Margin="0,5,0,0"/>
-
-                                                                <TextBlock Text="Прилет: 10:45" 
-                                                                           Margin="0,5,0,0"/>
-                                                            </StackPanel>
+                                                            <TextBlock Grid.Row="6" Text="Место" Style="{StaticResource StyleSmall}"/>
+                                                            <DockPanel Grid.Row="7">
+                                                                <TextBlock Text="{Binding Place}" Style="{StaticResource StyleBig}" DockPanel.Dock="Left"/>
+                                                                <TextBlock Text="OCHY" DockPanel.Dock="Right" FontSize="18" Foreground="#E6D0C3" FontWeight="Bold" Margin="0 0 10 0" FontFamily="Cormorant" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="2"/>
+                                                            </DockPanel>
                                                         </Grid>
 
-                                                        <Separator Margin="0,20"/>
+                                                        <Grid Grid.Row="1">
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="0.5*"/>
+                                                                <RowDefinition Height="1.6*"/>
+                                                                <RowDefinition Height="0.8*"/>
+                                                                <RowDefinition Height="3*"/>
+                                                            </Grid.RowDefinitions>
 
-                                                        <StackPanel Orientation="Horizontal">
-                                                            <TextBlock Text="Класс: " FontWeight="Bold"/>
-                                                            <TextBlock Text="Бизнес" Margin="5,0"/>
-                                                        </StackPanel>
+                                                            <TextBlock Text="- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" Margin="0" Style="{StaticResource StyleSmall}" VerticalAlignment="Top"/>
 
-                                                        <StackPanel Orientation="Horizontal">
-                                                            <TextBlock Text="Количество пассажиров: " FontWeight="Bold"/>
-                                                            <TextBlock Text="2 взрослых, 1 ребенок" Margin="5,0"/>
-                                                        </StackPanel>
+                                                            <TextBlock Grid.Row="1" Text="Предупреждение: никому не передавайте данные своих билетов! Также не забудьте свои документы по пути в аэропорт :)" Margin="10 0 10 0" TextAlignment="Justify" VerticalAlignment="Top" Foreground="#FFB8B7B7" FontStyle="Italic" FontSize="12" TextWrapping="Wrap" />
 
-                                                        <Separator Margin="0,20"/>
+                                                            <TextBlock Grid.Row="2" x:Name="change" TextDecorations="Underline" Text="Показать QR-код" Margin="10 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Top" PreviewMouseDown="change_PreviewMouseDown" Tag="{x:Reference whyvisible}">
+                                                                <TextBlock.Style>
+                                                                    <Style TargetType="TextBlock">
+                                                                        <Setter Property="Foreground" Value="White"/>
+                                                                        <Setter Property="FontFamily" Value="Bahnschrift Light SemiCondensed"/>
+                                                                        <Setter Property="FontSize" Value="16"/>
+                                                                        <Style.Triggers>
+                                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                                <Setter Property="Foreground" Value="#FFB8B7B7"/>
+                                                                            </Trigger>
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </TextBlock.Style>
+                                                            </TextBlock>
 
-                                                        <StackPanel Orientation="Horizontal">
-                                                            <TextBlock Text="Стоимость: " FontWeight="Bold"/>
-                                                            <TextBlock Text="97 500 руб." Margin="5,0"/>
-                                                        </StackPanel>
-                                                    </StackPanel>
-                                                </Grid>
-                                            </Border>
+                                                            <Grid Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Center" x:Name="whyvisible" Visibility="Hidden">
+                                                                <Image Source="{Binding QRImage}" Width="80" Height="80"/>
+                                                            </Grid>
 
-                                            <Label Content="История приобретений"
-                                       HorizontalAlignment="Left"
-                                       Margin="20,30,0,5"
-                                       FontFamily="Arial Black"
-                                       Foreground="#FF2E2F3F"
-                                       FontSize="18"/>
-                                            <Border CornerRadius="10"
-                                                    BorderThickness="1"
-                                                    Background="#FFFEF9F4"
-                                                    Margin="30 15 30 0"
-                                                    BorderBrush="#FFA4848A">
-
-                                                <Grid>
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition Height="Auto"/>
-                                                        <RowDefinition Height="*"/>
-                                                        <RowDefinition Height="Auto"/>
-                                                    </Grid.RowDefinitions>
-
-                                                    <StackPanel Orientation="Horizontal"  Height="50" Grid.Row="0" Margin="20 20 20 0">
-                                                        <TextBlock Text="Билет №10100101" Foreground="#FFA4848A" FontSize="24" />
-                                                    </StackPanel>
-
-                                                    <StackPanel Grid.Row="1" Margin="20 0 20 20">
-                                                        <TextBlock Text="Маршрут: Москва - Нью-Йорк" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
-                                                        <Grid>
-                                                            <Grid.ColumnDefinitions>
-                                                                <ColumnDefinition/>
-                                                                <ColumnDefinition/>
-                                                            </Grid.ColumnDefinitions>
-
-                                                            <StackPanel>
-                                                                <TextBlock Text="Вылет" FontWeight="Bold"/>
-                                                                <TextBlock Text="Москва (SVO)" Margin="0,10,0,0"/>
-                                                                <TextBlock Text="19 июня 2023" Margin="0,5,0,0"/>
-                                                                <TextBlock Text="Вылет: 16:30" Margin="0,5,0,0"/>
-                                                            </StackPanel>
-
-                                                            <StackPanel Grid.Column="1" Margin="20,0,0,0">
-                                                                <TextBlock Text="Прилет" FontWeight="Bold"/>
-                                                                <TextBlock Text="Нью-Йорк (JFK)" Margin="0,10,0,0"/>
-                                                                <TextBlock Text="20 июня 2023" Margin="0,5,0,0"/>
-                                                                <TextBlock Text="Прилет: 10:45" Margin="0,5,0,0"/>
-                                                            </StackPanel>
                                                         </Grid>
-
-                                                        <Separator Margin="0,20"/>
-
-                                                        <StackPanel Orientation="Horizontal">
-                                                            <TextBlock Text="Класс: " FontWeight="Bold"/>
-                                                            <TextBlock Text="Бизнес" Margin="5,0"/>
-                                                        </StackPanel>
-
-                                                        <StackPanel Orientation="Horizontal">
-                                                            <TextBlock Text="Количество пассажиров: " FontWeight="Bold"/>
-                                                            <TextBlock Text="2 взрослых, 1 ребенок" Margin="5,0"/>
-                                                        </StackPanel>
-
-                                                        <Separator Margin="0,20"/>
-
-                                                        <StackPanel Orientation="Horizontal">
-                                                            <TextBlock Text="Стоимость: " FontWeight="Bold"/>
-                                                            <TextBlock Text="97 500 руб." Margin="5,0"/>
-                                                        </StackPanel>
-                                                    </StackPanel>
+                                                    </Grid>
                                                 </Grid>
                                             </Border>
                                         </StackPanel>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel Orientation="Horizontal" />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                            </ItemsControl>
+
+                        </StackPanel>
                                     </Grid>
                                 </StackPanel>
                             </Border>
@@ -543,10 +442,10 @@
 
                                 <StackPanel>
 
-                                    <StackPanel x:Name="HeightDoc">
+                    <StackPanel x:Name="HeightDoc" Margin="10">
                         <local:MyDocs  x:Name="contr"/>
 
-                        <Button Margin="20" 
+                        <Button Margin="20 10 20 20" 
                                                     Height="40" 
                                                     Content="Сохранить документ"
                                                     Click="Button_Click_1"

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:air_project"
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
-        Title="BuyTicket" Height="650" Width="1200">
+        Title="Покупка билетов" Height="650" Width="1200">
     <DockPanel>
 
 
@@ -153,7 +153,7 @@
                                            Margin="10" 
                                            FontWeight="SemiBold"/>
                             
-                            <Frame Source="/pages/BookingPage.xaml" Name="booking"/>
+                            <Frame Name="booking"/>
                             <TextBlock Text="" x:Name="txtPlace"></TextBlock>
 
                         </StackPanel>
@@ -186,11 +186,13 @@
                             <ComboBox Style="{StaticResource Combo}"
                                       x:Name="documentsCombo"
                                       IsEditable="True"
+                                      SelectionChanged="documentsCombo_SelectionChanged"
                                       Height="38"
                                       Text="Выберите документ"
                                       Margin="20 10 20 0"
                                 />
                             <TextBlock Text="или" 
+                                       x:Name="il"
                                        Margin="10 10 10 0"
                                        FontSize="18"
                                        HorizontalAlignment="Center"/>
@@ -216,27 +218,30 @@
                             <TextBlock Text="Выбор способа оплаты"
                                            FontSize="21"
                                            FontFamily="Candara"
+                                       Margin="10"
                                            Grid.ColumnSpan="2"
-                                           Margin="20 10 20 0"
                                            FontWeight="SemiBold"/>
                             
-                            <TextBlock Text="Заполните данные вручную или выберите данные пассажира из личного кабинета"
+                            <TextBlock Text="Заполните данные вручную или выберите данные карты из личного кабинета"
                                        FontSize="18"
-                                       Margin="10"
+                                           Margin="20 10 20 0"
                                        FontFamily="Candara"/>
                             
                             <ComboBox Style="{StaticResource Combo}"
                                       IsEditable="True"
                                       x:Name="cardsCombo"
+                                      SelectionChanged="cardsCombo_SelectionChanged"
                                       Height="38"
                                       Text="Выберите карту"
-                                      Margin="10"/>
+                                      Margin="20 20 20 0"/>
 
                             <TextBlock Text="или" 
-                                       Margin="10 10 10 0"
+                                       x:Name="ili"
+                                       Margin="10 15 10 0"
                                        FontSize="18"
                                        HorizontalAlignment="Center"/>
-                            <local:MyCards x:Name="cards"/>
+                            
+                            <local:MyCards x:Name="cards" />
                             <Button Margin="20 20 20 10" 
                                     Height="40"
                                     Content="К оплате"

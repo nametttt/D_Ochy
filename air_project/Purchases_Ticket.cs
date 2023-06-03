@@ -17,9 +17,19 @@ namespace air_project
         public int IdTicket { get; set; }
         public int IdPurchases { get; set; }
         public int IdDocument { get; set; }
+        public int IdPurchases_Ticket { get; set; }
     
         public virtual Document Document { get; set; }
         public virtual Purchases Purchases { get; set; }
         public virtual Ticket Ticket { get; set; }
+
+        public Purchases_Ticket() { }
+
+        public Purchases_Ticket(int idTicket, int idPurchases, int idDocument)
+        {
+            IdTicket = idTicket;
+            IdPurchases = idPurchases;
+            IdDocument = idDocument;
+        }
     }
 }

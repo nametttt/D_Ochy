@@ -14,11 +14,18 @@ namespace air_project
     
     public partial class Ticket
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Ticket()
+        {
+            this.Purchases_Ticket = new HashSet<Purchases_Ticket>();
+        }
+    
         public int IdTicket { get; set; }
         public int IdFlight { get; set; }
-        public int Place { get; set; }
+        public string Place { get; set; }
     
         public virtual Flight Flight { get; set; }
-        public virtual Purchases_Ticket Purchases_Ticket { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Purchases_Ticket> Purchases_Ticket { get; set; }
     }
 }

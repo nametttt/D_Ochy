@@ -21,12 +21,19 @@ namespace air_project
         }
     
         public int IdPurchases { get; set; }
-        public long IdCard { get; set; }
+        public int IdCard { get; set; }
         public System.DateTime PurchaseDate { get; set; }
-        public decimal TotalCost { get; set; }
+        public int TotalCost { get; set; }
     
         public virtual Card Card { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Purchases_Ticket> Purchases_Ticket { get; set; }
+
+        public Purchases(int idCard, DateTime purchaseDate, int totalCost)
+        {
+            IdCard = idCard;
+            PurchaseDate = purchaseDate;
+            TotalCost = totalCost;
+        }
     }
 }

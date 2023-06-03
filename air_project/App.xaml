@@ -7,11 +7,31 @@
              StartupUri="Auth.xaml">
     <Application.Resources>
 
+        <Style x:Key="StyleSmall" TargetType="TextBlock">
+            <Setter Property="Grid.Row" Value="0" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Foreground" Value="#FFB8B7B7" />
+            <Setter Property="Margin" Value="10 0 0 0" />
+            <Setter Property="VerticalAlignment" Value="Bottom" />
+            <Setter Property="FontFamily" Value="Bahnschrift Light SemiCondensed" />
+        </Style>
+
+        <Style x:Key="StyleBig" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Margin" Value="10 0 0 0" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="FontFamily" Value="Bahnschrift Light SemiCondensed" />
+        </Style>
+        
         <Style TargetType="Hyperlink">
             <Setter Property="Foreground" Value="#FF6D0000"/>
             <Setter Property="FontFamily" Value="Candara Regular"/>
         </Style>
 
+
+        
         <Style TargetType="Button" x:Key="Gender">
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
@@ -47,6 +67,9 @@
                             </LinearGradientBrush>
                         </Setter.Value>
                     </Setter>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="#FF897A7A"/>
                 </Trigger>
             </Style.Triggers>
             <Style.Setters>

@@ -18,7 +18,6 @@ namespace air_project
         public Country()
         {
             this.Region = new HashSet<Region>();
-            this.Passenger = new HashSet<Passenger>();
         }
     
         public int IdCountry { get; set; }
@@ -26,7 +25,5 @@ namespace air_project
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Region> Region { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Passenger> Passenger { get; set; }
     }
 }

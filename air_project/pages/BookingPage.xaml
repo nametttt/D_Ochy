@@ -29,7 +29,7 @@
 
         </Style>
     </Page.Resources>
-    <Grid Margin="5 10 5 0">
+    <Grid Margin="5 10 5 0" x:Name="YourContainer">
             <Grid.RowDefinitions>
                 <RowDefinition Height="70"></RowDefinition>
                 <RowDefinition Height="10"></RowDefinition>
@@ -65,47 +65,47 @@
             <TextBlock Grid.Row="7" Grid.Column="3" Text="5" TextAlignment="Center" VerticalAlignment="Center"/>
             <TextBlock Grid.Row="8" Grid.Column="3" Text="6" TextAlignment="Center" VerticalAlignment="Center"/>
 
-            <Button Grid.Row="3" Grid.Column="0" x:Name="btn1"  Click="Button_Click"/>
-            <Button Grid.Row="3" Grid.Column="1" x:Name="btn2"  Click="Button_Click"/>
-            <Button Grid.Row="3" Grid.Column="2" x:Name="btn3"  Click="Button_Click"/>
-            <Button Grid.Row="3" Grid.Column="4" x:Name="btn4"  Click="Button_Click"/>
-            <Button Grid.Row="3" Grid.Column="5" x:Name="btn5"  Click="Button_Click"/>
-            <Button Grid.Row="3" Grid.Column="6" x:Name="btn6"  Click="Button_Click"/>
+        <Button Grid.Row="3" Grid.Column="0" x:Name="A1" Click="Button_Click"/>
+        <Button Grid.Row="3" Grid.Column="1" x:Name="B1" Click="Button_Click"/>
+        <Button Grid.Row="3" Grid.Column="2" x:Name="C1" Click="Button_Click"/>
+        <Button Grid.Row="3" Grid.Column="4" x:Name="D1" Click="Button_Click"/>
+        <Button Grid.Row="3" Grid.Column="5" x:Name="E1" Click="Button_Click"/>
+        <Button Grid.Row="3" Grid.Column="6" x:Name="F1" Click="Button_Click"/>
 
-            <Button Grid.Row="4" Grid.Column="0" x:Name="btn7"  Click="Button_Click"/>
-            <Button Grid.Row="4" Grid.Column="1" x:Name="btn8"  Click="Button_Click"/>
-            <Button Grid.Row="4" Grid.Column="2" x:Name="btn9"  Click="Button_Click"/>
-            <Button Grid.Row="4" Grid.Column="4" x:Name="btn10"  Click="Button_Click"/>
-            <Button Grid.Row="4" Grid.Column="5" x:Name="btn11"  Click="Button_Click"/>
-            <Button Grid.Row="4" Grid.Column="6" x:Name="btn12"  Click="Button_Click"/>
+        <Button Grid.Row="4" Grid.Column="0" x:Name="A2" Click="Button_Click"/>
+        <Button Grid.Row="4" Grid.Column="1" x:Name="B2" Click="Button_Click"/>
+        <Button Grid.Row="4" Grid.Column="2" x:Name="C2" Click="Button_Click"/>
+        <Button Grid.Row="4" Grid.Column="4" x:Name="D2" Click="Button_Click"/>
+        <Button Grid.Row="4" Grid.Column="5" x:Name="E2" Click="Button_Click"/>
+        <Button Grid.Row="4" Grid.Column="6" x:Name="F2" Click="Button_Click"/>
 
-            <Button Grid.Row="5" Grid.Column="0" x:Name="btn13"  Click="Button_Click"/>
-            <Button Grid.Row="5" Grid.Column="1" x:Name="btn14"  Click="Button_Click"/>
-            <Button Grid.Row="5" Grid.Column="2" x:Name="btn15"  Click="Button_Click"/>
-            <Button Grid.Row="5" Grid.Column="4" x:Name="btn16"  Click="Button_Click"/>
-            <Button Grid.Row="5" Grid.Column="5" x:Name="btn17"  Click="Button_Click"/>
-            <Button Grid.Row="5" Grid.Column="6"  x:Name="btn18" Click="Button_Click"/>
+        <Button Grid.Row="5" Grid.Column="0" x:Name="A3" Click="Button_Click"/>
+        <Button Grid.Row="5" Grid.Column="1" x:Name="B3" Click="Button_Click"/>
+        <Button Grid.Row="5" Grid.Column="2" x:Name="C3" Click="Button_Click"/>
+        <Button Grid.Row="5" Grid.Column="4" x:Name="D3" Click="Button_Click"/>
+        <Button Grid.Row="5" Grid.Column="5" x:Name="E3" Click="Button_Click"/>
+        <Button Grid.Row="5" Grid.Column="6" x:Name="F3" Click="Button_Click"/>
 
-            <Button Grid.Row="6" Grid.Column="0"  x:Name="btn19" Click="Button_Click"/>
-            <Button Grid.Row="6" Grid.Column="1"  x:Name="btn20" Click="Button_Click"/>
-            <Button Grid.Row="6" Grid.Column="2"   x:Name="btn21" Click="Button_Click"/>
-            <Button Grid.Row="6" Grid.Column="4"  x:Name="btn22" Click="Button_Click"/>
-            <Button Grid.Row="6" Grid.Column="5"  x:Name="btn23" Click="Button_Click"/>
-            <Button Grid.Row="6" Grid.Column="6"  x:Name="btn24" Click="Button_Click"/>
+        <Button Grid.Row="6" Grid.Column="0" x:Name="A4" Click="Button_Click"/>
+        <Button Grid.Row="6" Grid.Column="1" x:Name="B4" Click="Button_Click"/>
+        <Button Grid.Row="6" Grid.Column="2" x:Name="C4" Click="Button_Click"/>
+        <Button Grid.Row="6" Grid.Column="4" x:Name="D4" Click="Button_Click"/>
+        <Button Grid.Row="6" Grid.Column="5" x:Name="E4" Click="Button_Click"/>
+        <Button Grid.Row="6" Grid.Column="6" x:Name="F4" Click="Button_Click"/>
 
-            <Button Grid.Row="7" Grid.Column="0"  x:Name="btn25" Click="Button_Click"/>
-            <Button Grid.Row="7" Grid.Column="1"  x:Name="btn26" Click="Button_Click"/>
-            <Button Grid.Row="7" Grid.Column="2"  x:Name="btn27" Click="Button_Click"/>
-            <Button Grid.Row="7" Grid.Column="4"  x:Name="btn28" Click="Button_Click"/>
-            <Button Grid.Row="7" Grid.Column="5"  x:Name="btn29" Click="Button_Click"/>
-            <Button Grid.Row="7" Grid.Column="6"  x:Name="btn30" Click="Button_Click"/>
+        <Button Grid.Row="7" Grid.Column="0" x:Name="A5" Click="Button_Click"/>
+        <Button Grid.Row="7" Grid.Column="1" x:Name="B5" Click="Button_Click"/>
+        <Button Grid.Row="7" Grid.Column="2" x:Name="C5" Click="Button_Click"/>
+        <Button Grid.Row="7" Grid.Column="4" x:Name="D5" Click="Button_Click"/>
+        <Button Grid.Row="7" Grid.Column="5" x:Name="E5" Click="Button_Click"/>
+        <Button Grid.Row="7" Grid.Column="6" x:Name="F5" Click="Button_Click"/>
 
-            <Button Grid.Row="8" Grid.Column="0"  x:Name="btn31" Click="Button_Click"/>
-            <Button Grid.Row="8" Grid.Column="1"  x:Name="btn32" Click="Button_Click"/>
-            <Button Grid.Row="8" Grid.Column="2"  x:Name="btn33" Click="Button_Click"/>
-            <Button Grid.Row="8" Grid.Column="4"  x:Name="btn34" Click="Button_Click"/>
-            <Button Grid.Row="8" Grid.Column="5"  x:Name="btn35" Click="Button_Click"/>
-            <Button Grid.Row="8" Grid.Column="6"  x:Name="btn36" Click="Button_Click"/>
+        <Button Grid.Row="8" Grid.Column="0" x:Name="A6" Click="Button_Click"/>
+        <Button Grid.Row="8" Grid.Column="1" x:Name="B6" Click="Button_Click"/>
+        <Button Grid.Row="8" Grid.Column="2" x:Name="C6" Click="Button_Click"/>
+        <Button Grid.Row="8" Grid.Column="4" x:Name="D6" Click="Button_Click"/>
+        <Button Grid.Row="8" Grid.Column="5" x:Name="E6" Click="Button_Click"/>
+        <Button Grid.Row="8" Grid.Column="6" x:Name="F6" Click="Button_Click"/>
 
         <Button Grid.Row="0" Grid.Column="0" IsEnabled="False" Background="Black"/>
         <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="Место приобретено" VerticalAlignment="Center" Margin="10"/>

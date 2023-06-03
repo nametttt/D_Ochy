@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -26,7 +27,8 @@ namespace air_project.pages
         public int TicketID { get; set; }
         public string Rise { get; set; }
         public string Title { get; set; }
-        public double Price { get; set; }
+        public int Price { get; set; }
+        public string MPrice { get; set; }
         public DateTime DepartureTime { get; set; }
         public DateTime ArrivalTime { get; set; }
         public string DepartureLocation { get; set; }
@@ -34,6 +36,7 @@ namespace air_project.pages
         public string Mars { get; set; }
         public string Raznitsa { get; set; }
         public string DateTimeLet { get; set; }
+        public string SeatsFree { get; set; }
 
 
     }
@@ -41,12 +44,21 @@ namespace air_project.pages
     public partial class MainCustomer : Page
     {
         public User _user;
+        public int cost;
         public MainCustomer(User user)
         {
             InitializeComponent();
             _user = user;
 
+            LoadCities();
 
+            otpr.DisplayDateEnd = DateTime.Today.AddMonths(1);
+
+            
+        }
+
+        public void LoadCities()
+        {
             using (AirTicketsEntities db = new AirTicketsEntities())
             {
                 foreach (var i in db.City)
@@ -56,30 +68,33 @@ namespace air_project.pages
                 }
 
             }
-            //otpr.SelectedDate = DateTime.Now;
-            //otpr.DisplayDateStart = DateTime.Today;
-            otpr.DisplayDateEnd = DateTime.Today.AddMonths(1);
-
-            
         }
 
 
         private void otpr_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
-            txtvilet.Text = otpr.SelectedDate.Value.Date.ToString("dd.MM.yyyy");
-            otpr.Visibility = Visibility.Hidden;
+            if (checkboxNoDate.IsChecked != true)
+            {
+                txtvilet.Text = otpr.SelectedDate?.Date.ToString("dd.MM.yyyy");
+                opop.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                txtvilet.Text = "";
+            }
         }
+
 
 
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (otpr.Visibility == Visibility.Visible)
+            if (opop.Visibility == Visibility.Visible)
             {
-                otpr.Visibility = Visibility.Hidden;
+                opop.Visibility = Visibility.Hidden;
             }
             else
             {
-            otpr.Visibility = Visibility.Visible;
+                opop.Visibility = Visibility.Visible;
             calendarPopup.IsOpen = true;
             calendarPopup.StaysOpen = true;
             calendarPopup.PlacementTarget = txtvilet;
@@ -87,7 +102,7 @@ namespace air_project.pages
             if (pass.Visibility == Visibility.Visible)
             {
                 pass.Visibility = Visibility.Hidden;
-                otpr.Visibility = Visibility.Visible;
+                opop.Visibility = Visibility.Visible;
 
             }
 
@@ -114,184 +129,225 @@ namespace air_project.pages
 
         private void btnSearchTickets_Click(object sender, RoutedEventArgs e)
         {
-            tanushka.Visibility = Visibility.Visible;
-
-            string from = txtFrom.Text;
-            string to = txtTo.Text;
-            City arr = new City();
-            City dep = new City();
-            string vilet = txtvilet.Text;
-            DateTime date = new DateTime();
-            int vzr = Convert.ToInt32(txt_first.Text);
-            int podr = Convert.ToInt32(txt_second.Text);
-            int deti = Convert.ToInt32(txt_third.Text);
-
-            if (vilet !="")
+            if (!string.IsNullOrEmpty(txtFrom.Text) || !string.IsNullOrEmpty(txtTo.Text))
             {
-                date = DateTime.Parse(vilet);
-            }
+                string from = txtFrom.Text;
+                string to = txtTo.Text;
+                City arr = new City();
+                City dep = new City();
+                string vilet = txtvilet.Text;
+                int vzr = Convert.ToInt32(txt_first.Text);
+                int podr = Convert.ToInt32(txt_second.Text);
+                int deti = Convert.ToInt32(txt_third.Text);
 
 
 
-
-            using (AirTicketsEntities db = new AirTicketsEntities())
-            {
-                var tickets = new List<TicketT>();
-
-                foreach (var i in db.City)
+                using (AirTicketsEntities db = new AirTicketsEntities())
                 {
-                    if (i.CityName.ToLower() == from.ToLower())
-                    {
-                        dep = i;
-                    }
-                    if (i.CityName.ToLower() == to.ToLower())
-                    {
-                        arr = i;
-                    }
-                }
+                    var tickets = new List<TicketT>();
 
-                foreach (var i in db.Flight)
-                {
-
-                    if (vilet == "")
+                    foreach (var i in db.City)
                     {
-
-                        
-                        if (i.Arrival_City == arr.IdCity && i.Departure_City == dep.IdCity )
+                        if (i.CityName.ToLower() == from.ToLower())
                         {
-                            int t = 10;
-                            decimal cost = 0;
+                            dep = i;
+                        }
+                        if (i.CityName.ToLower() == to.ToLower())
+                        {
+                            arr = i;
+                        }
+                    }
 
-                            foreach (var j in db.Ticket)
+                    foreach (var i in db.Flight)
+                    {
+
+                        if (vilet == "")
+                        {
+
+
+                            if (i.Arrival_City == arr.IdCity && i.Departure_City == dep.IdCity && i.Departure_Date > DateTime.Now)
                             {
-                                
+                                tanushka.Visibility = Visibility.Visible;
+                                NotFound.Visibility = Visibility.Collapsed;
+
+                                int t = 0;
+                                int cost = 0;
+
+                                foreach (var j in db.Ticket)
+                                {
                                     if (j.IdFlight == i.IdFlight)
                                     {
                                         t++;
                                         cost = i.RetailValue;
-                                    }
-                                
-                            }
-                            
-                            
-                            if (t >= vzr + podr)
-                            {
-                                TimeSpan duration = i.Arrival_Date.Subtract(i.Departure_Date);
-                                string dur;
+                                        bool isTicketPurchased = false; // Флаг, указывающий, был ли билет куплен
 
-                                if (duration.Hours > 0)
-                                {
-                                    dur = string.Format($"{duration.Hours} часов {duration.Minutes} минут в пути", duration);
+                                        foreach (var pt in db.Purchases_Ticket)
+                                        {
+                                            if (pt.IdTicket == j.IdTicket)
+                                            {
+                                                isTicketPurchased = true;
+                                                break;
+                                            }
+                                        }
+
+                                        if (isTicketPurchased)
+                                        {
+                                            t--; // Уменьшаем значение t, если билет уже был куплен
+                                        }
+                                    }
                                 }
-                                else if (duration.Days > 0)
+
+                                if (t >= vzr + podr)
                                 {
+                                    TimeSpan duration = i.Arrival_Date.Subtract(i.Departure_Date);
+                                    string dur;
+
                                     if (duration.Hours > 0)
                                     {
-                                    dur = string.Format($"{duration.Days} дней, {duration.Hours} часов, {duration.Minutes} минут в пути", duration);
+                                        dur = string.Format($"{duration.Hours} часов {duration.Minutes} минут в пути", duration);
+                                    }
+                                    else if (duration.Days > 0)
+                                    {
+                                        if (duration.Hours > 0)
+                                        {
+                                            dur = string.Format($"{duration.Days} дней, {duration.Hours} часов, {duration.Minutes} минут в пути", duration);
+                                        }
+                                        else
+                                        {
+                                            dur = string.Format($"{duration.Days} дней, {duration.Minutes} минут в пути", duration);
+                                        }
                                     }
                                     else
                                     {
-                                        dur = string.Format($"{duration.Days} дней, {duration.Minutes} минут в пути", duration);
+                                        dur = string.Format($"{duration.Minutes} минут в пути", duration);
                                     }
-                                }
-                                else
-                                {
-                                    dur = string.Format($"{duration.Minutes} минут в пути", duration);
-                                }
 
-                                var x = new TicketT()
-                                {
-                                    TicketID = i.IdFlight,
-                                    Rise = $"Рейс №{i.IdFlight}",
-                                    Title = $"Полёт в {arr.CityName}",
-                                    Price = (double)cost,
-                                    DepartureTime = i.Departure_Date,
-                                    ArrivalTime = i.Arrival_Date,
-                                    DepartureLocation = dep.CityName,
-                                    ArrivalLocation = arr.CityName,
-                                    Mars = $"{dep.CityName} → {arr.CityName}",
-                                    Raznitsa = dur,
-                                    DateTimeLet = $"{i.Departure_Date.ToString("dd MMMM HH:mm")} → {i.Arrival_Date.ToString("dd MMMM HH:mm")}"
-                                };
-                                tickets.Add(x);
+                                    var x = new TicketT()
+                                    {
+                                        TicketID = i.IdFlight,
+                                        SeatsFree = $"Свободно {t} мест",
+                                        Rise = $"Рейс №{i.IdFlight}",
+                                        Title = $"Полёт в {arr.CityName}",
+                                        Price = cost,
+                                        MPrice = $"{cost} рублей",
+                                        DepartureTime = i.Departure_Date,
+                                        ArrivalTime = i.Arrival_Date,
+                                        DepartureLocation = dep.CityName,
+                                        ArrivalLocation = arr.CityName,
+                                        Mars = $"{dep.CityName} → {arr.CityName}",
+                                        Raznitsa = dur,
+                                        DateTimeLet = $"{i.Departure_Date.ToString("dd MMMM HH:mm")} → {i.Arrival_Date.ToString("dd MMMM HH:mm")}"
+                                    };
+                                    tickets.Add(x);
+                                }
                             }
-                            
-                            
+                            else
+                            {
+                                NotFound.Visibility = Visibility.Visible;
+                                tanushka.Visibility = Visibility.Collapsed;
+
+                            }
+
                         }
-                    }
-                    else
-                    {
-                        if (i.Arrival_City == arr.IdCity && i.Departure_City == dep.IdCity && i.Departure_Date == date)
+                        else
                         {
-                            int t = 10;
-                            decimal cost = 0;
-
-                            foreach (var j in db.Ticket)
+                            string departureDateString = i.Departure_Date.ToString("dd.MM.yyyy");
+                            if (i.Arrival_City == arr.IdCity && i.Departure_City == dep.IdCity && departureDateString == vilet && i.Departure_Date > DateTime.Now)
                             {
 
-                                if (j.IdFlight == i.IdFlight)
+                                tanushka.Visibility = Visibility.Visible;
+                                NotFound.Visibility = Visibility.Collapsed;
+                                int t = 0;
+                                int cost = 0;
+
+                                foreach (var j in db.Ticket)
                                 {
-                                    t++;
-                                    cost = i.RetailValue;
+                                    if (j.IdFlight == i.IdFlight)
+                                    {
+                                        t++;
+                                        cost = i.RetailValue;
+                                        bool isTicketPurchased = false; // Флаг, указывающий, был ли билет куплен
+
+                                        foreach (var pt in db.Purchases_Ticket)
+                                        {
+                                            if (pt.IdTicket == j.IdTicket)
+                                            {
+                                                isTicketPurchased = true;
+                                                break;
+                                            }
+                                        }
+
+                                        if (isTicketPurchased)
+                                        {
+                                            t--; // Уменьшаем значение t, если билет уже был куплен
+                                        }
+                                    }
                                 }
 
-                            }
-
-
-                            if (t >= vzr + podr)
-                            {
-                                TimeSpan duration = i.Arrival_Date.Subtract(i.Departure_Date);
-                                string dur;
-
-                                if (duration.Hours > 0)
+                                if (t >= vzr + podr)
                                 {
-                                    dur = string.Format($"{duration.Hours} часов {duration.Minutes} минут в пути", duration);
-                                }
-                                else if (duration.Days > 0)
-                                {
+                                    TimeSpan duration = i.Arrival_Date.Subtract(i.Departure_Date);
+                                    string dur;
+
                                     if (duration.Hours > 0)
                                     {
-                                        dur = string.Format($"{duration.Days} дней, {duration.Hours} часов, {duration.Minutes} минут в пути", duration);
+                                        dur = string.Format($"{duration.Hours} часов {duration.Minutes} минут в пути", duration);
+                                    }
+                                    else if (duration.Days > 0)
+                                    {
+                                        if (duration.Hours > 0)
+                                        {
+                                            dur = string.Format($"{duration.Days} дней, {duration.Hours} часов, {duration.Minutes} минут в пути", duration);
+                                        }
+                                        else
+                                        {
+                                            dur = string.Format($"{duration.Days} дней, {duration.Minutes} минут в пути", duration);
+                                        }
                                     }
                                     else
                                     {
-                                        dur = string.Format($"{duration.Days} дней, {duration.Minutes} минут в пути", duration);
+                                        dur = string.Format($"{duration.Minutes} минут в пути", duration);
                                     }
+
+                                    var x = new TicketT()
+                                    {
+                                        TicketID = i.IdFlight,
+                                        SeatsFree = $"Свободно {t} мест",
+                                        Title = $"Полёт в {arr.CityName}",
+                                        Price = cost,
+                                        MPrice = $"{cost} рублей",
+                                        DepartureTime = i.Departure_Date,
+                                        ArrivalTime = i.Arrival_Date,
+                                        DepartureLocation = dep.CityName,
+                                        ArrivalLocation = arr.CityName,
+                                        Mars = $"{dep.CityName} → {arr.CityName}",
+                                        Raznitsa = dur,
+                                        Rise = $"Рейс №{i.IdFlight}",
+                                        DateTimeLet = $"{i.Departure_Date.ToString("dd MMMM HH:mm")} → {i.Arrival_Date.ToString("dd MMMM HH:mm")}"
+                                    };
+                                    tickets.Add(x);
                                 }
-                                else
-                                {
-                                    dur = string.Format($"{duration.Minutes} минут в пути", duration);
-                                }
+                            }
+                            else
+                            {
+                                NotFound.Visibility = Visibility.Visible;
+                                tanushka.Visibility = Visibility.Collapsed;
 
-
-
-
-                                var x = new TicketT()
-                                {
-                                    TicketID = i.IdFlight,
-                                    Title = $"Полёт в {arr.CityName}",
-                                    Price = (double)cost,
-                                    DepartureTime = i.Departure_Date,
-                                    ArrivalTime = i.Arrival_Date,
-                                    DepartureLocation = dep.CityName,
-                                    ArrivalLocation = arr.CityName,
-                                    Mars = $"{dep.CityName} → {arr.CityName}",
-                                    Raznitsa = dur,
-                                    Rise = $"Рейс №{i.IdFlight}",
-                                    DateTimeLet = $"{i.Departure_Date.ToString("dd MMMM HH:mm")} → {i.Arrival_Date.ToString("dd MMMM HH:mm")}"
-                                };
-                                tickets.Add(x);
                             }
                         }
-                    }
 
-                    
+
+
+                    }
+                    ticketListBox.ItemsSource = tickets;
                 }
-                ticketListBox.ItemsSource = tickets;
+            }
+            else
+            {
+                MessageBox.Show("Выберите маршрут!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
-        
 
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -306,10 +362,10 @@ namespace air_project.pages
                 passengerPopup.IsOpen = true;
                 passengerPopup.StaysOpen = true;
             }
-
-            if (otpr.Visibility == Visibility.Visible)
+                
+            if (opop.Visibility == Visibility.Visible)
             {
-                otpr.Visibility = Visibility.Hidden;
+                opop.Visibility = Visibility.Hidden;
                 pass.Visibility = Visibility.Visible;
 
             }
@@ -318,22 +374,19 @@ namespace air_project.pages
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Button btn = (Button)sender;
-            switch(btn.Name)
+            switch (btn.Name)
             {
-                case ("btn_mn_1"):
+                case "btn_mn_1":
                     if (txt_first.Text != "1")
                     {
-                        txt_first.Text = (Convert.ToInt32(txt_first.Text)-1).ToString();
-                        if (Convert.ToInt32(txt_first.Text) == 1 )
+                        txt_first.Text = (Convert.ToInt32(txt_first.Text) - 1).ToString();
+                        if (Convert.ToInt32(txt_first.Text) == 1)
                         {
                             btn_mn_1.IsEnabled = false;
-                            if (Convert.ToInt32(txt_third.Text) ==1)
+                            if (Convert.ToInt32(txt_third.Text) == 1)
                             {
                                 btn_pl_3.IsEnabled = false;
-
                             }
-
-
                         }
                         if (Convert.ToUInt32(txt_first.Text) != 5)
                         {
@@ -346,7 +399,7 @@ namespace air_project.pages
                         }
                     }
                     break;
-                case ("btn_mn_2"):
+                case "btn_mn_2":
                     if (txt_second.Text != "0")
                     {
                         txt_second.Text = (Convert.ToInt32(txt_second.Text) - 1).ToString();
@@ -360,7 +413,7 @@ namespace air_project.pages
                         }
                     }
                     break;
-                case ("btn_mn_3"):
+                case "btn_mn_3":
                     if (txt_third.Text != "0")
                     {
                         txt_third.Text = (Convert.ToInt32(txt_third.Text) - 1).ToString();
@@ -375,6 +428,8 @@ namespace air_project.pages
                     }
                     break;
             }
+
+            UpdateTotalSeats();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -382,12 +437,12 @@ namespace air_project.pages
             Button btn = (Button)sender;
             switch (btn.Name)
             {
-                case ("btn_pl_1"):
+                case "btn_pl_1":
                     if (Convert.ToUInt32(txt_first.Text) == 4)
                     {
                         btn_pl_1.IsEnabled = false;
                     }
-                        txt_first.Text = (Convert.ToInt32(txt_first.Text) + 1).ToString();
+                    txt_first.Text = (Convert.ToInt32(txt_first.Text) + 1).ToString();
                     if (Convert.ToUInt32(txt_first.Text) > 1)
                     {
                         btn_mn_1.IsEnabled = true;
@@ -396,31 +451,32 @@ namespace air_project.pages
                     {
                         btn_pl_3.IsEnabled = true;
                     }
-                    if (Convert.ToUInt32(txt_first.Text) < Convert.ToUInt32(txt_third.Text)|| (Convert.ToUInt32(txt_first.Text)==1 && Convert.ToUInt32(txt_third.Text)==1))
+                    if (Convert.ToUInt32(txt_first.Text) < Convert.ToUInt32(txt_third.Text) || (Convert.ToUInt32(txt_first.Text) == 1 && Convert.ToUInt32(txt_third.Text) == 1))
                     {
                         txt_third.Text = (Convert.ToUInt32(txt_third.Text) - 1).ToString();
                         btn_pl_3.IsEnabled = false;
                     }
                     break;
-                case ("btn_pl_2"):
+                case "btn_pl_2":
                     if (Convert.ToUInt32(txt_second.Text) == 4)
                     {
                         btn_pl_2.IsEnabled = false;
                     }
-                    else { btn_pl_2.IsEnabled = true; }
+                    else
+                    {
+                        btn_pl_2.IsEnabled = true;
+                    }
                     txt_second.Text = (Convert.ToInt32(txt_second.Text) + 1).ToString();
                     if (Convert.ToInt32(txt_second.Text) >= 1)
                     {
                         btn_mn_2.IsEnabled = true;
                     }
                     break;
-                case ("btn_pl_3"):
-
+                case "btn_pl_3":
                     if (Convert.ToUInt32(txt_first.Text) - 1 == Convert.ToUInt32(txt_third.Text))
                     {
                         btn_pl_3.IsEnabled = false;
                     }
-
                     if (Convert.ToUInt32(txt_third.Text) == 4)
                     {
                         btn_pl_3.IsEnabled = false;
@@ -437,52 +493,87 @@ namespace air_project.pages
                     }
                     break;
             }
+
+            UpdateTotalSeats();
         }
 
-        private void ticketListBox_Selected(object sender, RoutedEventArgs e)
+        private void UpdateTotalSeats()
         {
+            int totalSeats = Convert.ToInt32(txt_first.Text) + Convert.ToInt32(txt_second.Text) + Convert.ToInt32(txt_third.Text);
+            txtNumSeats.Text = $"{totalSeats} пассажир(ов)";
+        }
 
-            int vzr = Convert.ToInt32(txt_first.Text);
-            int podr = Convert.ToInt32(txt_second.Text);
-            int deti = Convert.ToInt32(txt_third.Text);
-            string passText;
 
-            TicketT tick = (TicketT) ticketListBox.SelectedItem;
-            BuyTicket bt = new BuyTicket(_user);
-            bt.FlightId.Text = $"Рейс №{tick.TicketID}";
-            bt.countries.Text = $"{tick.DepartureLocation} → {tick.ArrivalLocation}";
-            bt.dates.Text = $"{tick.DepartureTime.ToString("dd MMMM HH:mm")} → {tick.ArrivalTime.ToString("dd MMMM HH:mm")}";
-           
+        private void checkboxNoDate_Checked(object sender, RoutedEventArgs e)
+        {
+            CheckBox checkbox = (CheckBox)sender;
+            bool isChecked = checkbox.IsChecked ?? false;
 
-            TimeSpan duration = tick.ArrivalTime.Subtract(tick.DepartureTime);
-            string dur;
-
-            if (duration.Hours > 0)
+            if (isChecked)
             {
-                dur = string.Format($"{duration.Hours} часов {duration.Minutes} минут в пути", duration);
-            }
-            else if (duration.Days > 0)
-            {
-                if (duration.Hours > 0)
-                {
-                    dur = string.Format($"{duration.Days} дней, {duration.Hours} часов, {duration.Minutes} минут в пути", duration);
-                }
-                else
-                {
-                    dur = string.Format($"{duration.Days} дней, {duration.Minutes} минут в пути", duration);
-                }
+                otpr.SelectedDate = null; 
+                otpr.IsEnabled = false;
             }
             else
             {
-                dur = string.Format($"{duration.Minutes} минут в пути", duration);
+                otpr.IsEnabled = true;
             }
+        }
 
-            bt.duration.Text = dur;
-            bt.btnAdd.Content = $"К оплате {tick.Price * (vzr+podr+deti)}";
-            bt.passengers.Text = PassengerQuantity(vzr, podr, deti);
-            bt.Colvo = vzr + podr;
-            
-            bt.Show();
+
+
+        private void ticketListBox_Selected(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+                int vzr = Convert.ToInt32(txt_first.Text);
+                int podr = Convert.ToInt32(txt_second.Text);
+                int deti = Convert.ToInt32(txt_third.Text);
+                string passText;
+                TicketT tick = (TicketT)ticketListBox.SelectedItem;
+                BookingPage booking = new BookingPage(tick.TicketID);
+                BuyTicket bt = new BuyTicket(_user, tick.TicketID);
+                bt.booking.Content = booking;
+                bt.FlightId.Text = $"Рейс №{tick.TicketID}";
+                bt.countries.Text = $"{tick.DepartureLocation} → {tick.ArrivalLocation}";
+                bt.dates.Text = $"{tick.DepartureTime.ToString("dd MMMM HH:mm")} → {tick.ArrivalTime.ToString("dd MMMM HH:mm")}";
+
+
+                TimeSpan duration = tick.ArrivalTime.Subtract(tick.DepartureTime);
+                string dur;
+
+                if (duration.Hours > 0)
+                {
+                    dur = string.Format($"{duration.Hours} часов {duration.Minutes} минут в пути", duration);
+                }
+                else if (duration.Days > 0)
+                {
+                    if (duration.Hours > 0)
+                    {
+                        dur = string.Format($"{duration.Days} дней, {duration.Hours} часов, {duration.Minutes} минут в пути", duration);
+                    }
+                    else
+                    {
+                        dur = string.Format($"{duration.Days} дней, {duration.Minutes} минут в пути", duration);
+                    }
+                }
+                else
+                {
+                    dur = string.Format($"{duration.Minutes} минут в пути", duration);
+                }
+
+                bt.duration.Text = dur;
+                cost = tick.Price * (vzr + podr + deti);
+                bt.totalCost = cost;
+                bt.btnAdd.Content = $"К оплате {cost}";
+                bt.passengers.Text = PassengerQuantity(vzr, podr, deti);
+                bt.Colvo = vzr + podr;
+
+                bt.Show();
+            }
+            catch { }
+
         }
 
         private String PassengerQuantity(int vzr, int deti, int malysh)

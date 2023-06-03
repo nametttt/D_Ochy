@@ -8,15 +8,30 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel>
         <Grid>
-
             <StackPanel x:Name="HeightCard">
-
-                <Label Content="Новая карта"
+                <Grid Margin="20 15 20 0" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Новая карта"
                                        HorizontalAlignment="Left"
-                                       Margin="20,15,0,5"
                                        FontFamily="Arial Black"
+                                       Grid.Column="0"
                                        Foreground="#FF2E2F3F"
                                        FontSize="18"/>
+
+                    <TextBlock Grid.Column="1"
+                           HorizontalAlignment="Right"
+                           FontSize="18"
+                           Height="20" 
+                           Margin="10 0 0 0">
+                    <Hyperlink Foreground="#FF6D0000"
+                               PreviewMouseDown="Hyperlink_PreviewMouseDown">
+                               Очистить форму </Hyperlink>
+                    </TextBlock>
+                </Grid>
+
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
@@ -31,61 +46,62 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <TextBox  
-                                          x:Name="CardNum"
-                                          Grid.ColumnSpan="4"
-                                          Style="{StaticResource MyWaterMarkStyle}"
-                                          Height="38" 
-                                          Margin="20 20 20 0"
-                                          Tag="Номер карты"/>
-                    <TextBox
-                                        Grid.Row="1"
-                                        Margin="20 20 0 0"
-                                        Grid.Column="0"
-                                        x:Name="Month"
-                                        Style="{StaticResource MyWaterMarkStyle}"
-                                        Height="38"
-                                        Tag="Месяц"/>
+                    <TextBox x:Name="CardNum"
+                         Grid.ColumnSpan="4"
+                         Style="{StaticResource MyWaterMarkStyle}"
+                         Height="38" 
+                         Margin="20 20 20 0"
+                         Tag="Номер карты"
+                         PreviewTextInput="CardNum_PreviewTextInput"/>
+
+                    <TextBox Grid.Row="1"
+                         Margin="20 20 0 0"
+                         Grid.Column="0"
+                         x:Name="Month"
+                         Style="{StaticResource MyWaterMarkStyle}"
+                         Height="38"
+                         Tag="Месяц"
+                         PreviewTextInput="Month_PreviewTextInput"/>
 
                     <Label Content="/"
-                            FontFamily="Canadara Light"
-                            Grid.Column="1"
-                            Grid.Row="1"
-                            FontSize="26"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Bottom"
-                            Foreground="Gray"/>
+                       FontFamily="Canadara Light"
+                       Grid.Column="1"
+                       Grid.Row="1"
+                       FontSize="26"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Bottom"
+                       Foreground="Gray"/>
 
-                    <TextBox 
-                                                   x:Name="Year"
-                                                   Grid.Row="1"
-                                                   Margin="0 20 0 0"
-                                                   Grid.Column="2"
-                                                   Style="{StaticResource MyWaterMarkStyle}"
-                                                   Height="38"
-                                                   Tag="Год" />
+                    <TextBox x:Name="Year"
+                         Grid.Row="1"
+                         Margin="0 20 0 0"
+                         Grid.Column="2"
+                         Style="{StaticResource MyWaterMarkStyle}"
+                         Height="38"
+                         Tag="Год"
+                         PreviewTextInput="Year_PreviewTextInput" />
 
-                    <PasswordBox
-                                                  x:Name="CVC"
-                                                  Style="{StaticResource MyWaterMarkStyle1}"
-                                                  Height="38"
-                                                  Grid.Row="1"
-                                                   Margin="20 20 20 0"
-                                                   Grid.Column="3"
-                                                  DockPanel.Dock="Right"
-                                                  Tag="CW/CVC"/>
-                    <TextBox  
-                                          x:Name="Owner"
-                                          Style="{StaticResource MyWaterMarkStyle}"
-                                          Height="38"
-                                          Grid.ColumnSpan="4"
-                                          Grid.Row="3"
-                                          Margin="20 20 20 0"
-                                          Tag="Имя владельца на латинице"/>
+                    <PasswordBox x:Name="CVC"
+                             Style="{StaticResource MyWaterMarkStyle1}"
+                             Height="38"
+                             Grid.Row="1"
+                             Margin="20 20 20 0"
+                             Grid.Column="3"
+                             DockPanel.Dock="Right"
+                             Tag="CW/CVC"
+                             PreviewTextInput="CVC_PreviewTextInput"/>
 
-
+                    <TextBox x:Name="Owner"
+                         Style="{StaticResource MyWaterMarkStyle}"
+                         Height="38"
+                         Grid.ColumnSpan="4"
+                         Grid.Row="3"
+                         Margin="20 20 20 0"
+                         Tag="Имя владельца на латинице"
+                         PreviewTextInput="Owner_PreviewTextInput"/>
                 </Grid>
             </StackPanel>
         </Grid>
     </StackPanel>
+
 </UserControl>

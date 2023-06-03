@@ -20,15 +20,26 @@ namespace air_project
             this.Purchases = new HashSet<Purchases>();
         }
     
-        public long IdCard { get; set; }
-        public int Month { get; set; }
-        public int Year { get; set; }
-        public int CW_CVC { get; set; }
+        public int IdCard { get; set; }
+        public string CardNumber { get; set; }
+        public string Month { get; set; }
+        public string Year { get; set; }
+        public string CW_CVC { get; set; }
         public string OwnerName { get; set; }
-        public string UserLogin { get; set; }
+        public int IdUser { get; set; }
     
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Purchases> Purchases { get; set; }
+
+        public Card(string cardNumber, string month, string year, string cW_CVC, string ownerName, int idUser)
+        {
+            CardNumber = cardNumber;
+            Month = month;
+            Year = year;
+            CW_CVC = cW_CVC;
+            OwnerName = ownerName;
+            IdUser = idUser;
+        }
     }
 }

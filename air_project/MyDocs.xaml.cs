@@ -1,4 +1,5 @@
-﻿using System;
+﻿using air_project.forms;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -27,18 +28,17 @@ namespace air_project
         public MyDocs()
         {
             InitializeComponent();
-
-            otpr.DisplayDateEnd = DateTime.Today;
+            otpr.DisplayDateEnd = DateTime.Now;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             string[] number;
             btn = (Button)sender;
-            
 
-            
-            switch(btn.Name)
+
+
+            switch (btn.Name)
             {
                 case ("male"):
                     if (btn.Background is SolidColorBrush brush && brush.Color == desiredColor)
@@ -86,7 +86,7 @@ namespace air_project
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            using(AirTicketsEntities air = new AirTicketsEntities())
+            using (AirTicketsEntities air = new AirTicketsEntities())
             {
                 foreach (Country country in air.Country)
                 {
@@ -119,6 +119,63 @@ namespace air_project
                 calendarPopup.StaysOpen = true;
             }
 
+        }
+
+        private void Hyperlink_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            countries.SelectedItem = null;
+            typeDoc.SelectedItem = null;
+            countries.Text = "Гражданство";
+            typeDoc.Text = "Тип документа";
+            Surname.Text = string.Empty;
+            Name.Text = string.Empty;
+            Patronymic.Text = string.Empty;
+            Birthday.Text = string.Empty;
+            DocNum.Text = string.Empty;
+
+            male.Background = new SolidColorBrush(desiredColor);
+            female.Background = new SolidColorBrush(desiredColor);
+
+        }
+
+        private void Surname_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+
+            if (!IsTextInput(e.Text))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private bool IsTextInput(string input)
+        {
+            foreach (char c in input)
+            {
+                if (!char.IsLetter(c))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private void DocNum_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            int maxLength = 20;
+            int minLength = 6;
+
+            if (!IsNumericInput(e.Text) || textBox.Text.Length >= maxLength || textBox.Text.Length < minLength)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private bool IsNumericInput(string text)
+        {
+            return int.TryParse(text, out _);
         }
     }
 }

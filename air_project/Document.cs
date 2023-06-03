@@ -30,12 +30,11 @@ namespace air_project
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Purchases_Ticket> Purchases_Ticket { get; set; }
 
-
-        public Document(int IdType, string Number, int IdPassenger)
+        public Document(int idType, string number, int idPassenger)
         {
-            this.IdType = IdType;
-            this.Number = Number;
-            this.IdPassenger = IdPassenger;
+            IdType = idType;
+            Number = number;
+            IdPassenger = idPassenger;
         }
     }
 }

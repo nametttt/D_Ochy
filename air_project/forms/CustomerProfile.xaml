@@ -55,7 +55,7 @@
                     x:Name="ticketsBuy" 
                         Selected="TicketsBuy_Selected"
                     Height="50"
-                    Text="Полететь далеко" 
+                    Text="Поиск билетов" 
                     Icon="/Resources/plane.png"/>
 
                     <HamburgerMenu:HamburgerMenuItem 

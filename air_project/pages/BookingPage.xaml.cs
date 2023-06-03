@@ -24,16 +24,49 @@ namespace air_project.pages
     public partial class BookingPage : Page
     {
         Button btn;
-        string ass = "";
+        public string ass = "";
         public List<string> number= new List<string> { };
         BuyTicket x = null;
+        private int IDflight;
 
-        public BookingPage()
+        public BookingPage(int idFlight)
         {
             InitializeComponent();
+            FreePlace();
+            IDflight = idFlight;
+            MapTicketsToButtons();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+
+        public void FreePlace()
+        {
+            
+        }
+
+        public void MapTicketsToButtons()
+        {
+            using (AirTicketsEntities db = new AirTicketsEntities())
+            {
+                List<string> purchasedTicketPlaces = db.Purchases_Ticket
+                    .Where(pt => pt.Ticket.IdFlight == IDflight)
+                    .Select(pt => pt.Ticket.Place)
+                    .ToList();
+
+                foreach (Button button in YourContainer.Children.OfType<Button>())
+                {
+                    string place = button.Name;
+
+                    if (purchasedTicketPlaces.Contains(place))
+                    {
+                        button.Background = new SolidColorBrush(Colors.Black);
+                        button.IsEnabled = false;
+                    }
+                }
+            }
+        }
+
+
+    private void Button_Click(object sender, RoutedEventArgs e)
         {
            
 
@@ -52,27 +85,30 @@ namespace air_project.pages
             Color desiredColor = Color.FromArgb(0xFF, 0xE2, 0xC5, 0xBF);
             Color checkedColor = Color.FromArgb(0xFF, 0xA7, 0x87, 0x8E);
 
+
             if (btn.Background is SolidColorBrush brush && brush.Color == desiredColor)
             {
+                string place = btn.Name.ToString();
+
                 if (number.Count == x.Colvo)
                 {
                     MessageBox.Show("Максимум");
                     return;
                 }
+
                 btn.Background = new SolidColorBrush(checkedColor);
-                number.Add(btn.Name.Split('n')[1]);
-                MessageBox.Show(number[0]);
-                ass += number.Last() + " ";
+                number.Add(place);
+
+                ass += place + " ";
             }
             else
             {
+                string place = btn.Name.ToString();
+
                 btn.Background = new SolidColorBrush(desiredColor);
-                ass = ass.Replace($"{btn.Name.Split('n')[1]} ", "");
-                number.Remove(btn.Name.Split('n')[1]);
+                ass = ass.Replace(place + " ", "");
+                number.Remove(place);
             }
-
         }
-
-       
     }
 }

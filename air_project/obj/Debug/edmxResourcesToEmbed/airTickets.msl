@@ -5,11 +5,12 @@
       <EntityTypeMapping TypeName="AirTicketsModel.Card">
         <MappingFragment StoreEntitySet="Card">
           <ScalarProperty Name="IdCard" ColumnName="IdCard" />
+          <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
           <ScalarProperty Name="Month" ColumnName="Month" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CW_CVC" ColumnName="CW/CVC" />
           <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
-          <ScalarProperty Name="UserLogin" ColumnName="UserLogin" />
+          <ScalarProperty Name="IdUser" ColumnName="IdUser" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -43,13 +44,13 @@
     <EntitySetMapping Name="Flight">
       <EntityTypeMapping TypeName="AirTicketsModel.Flight">
         <MappingFragment StoreEntitySet="Flight">
-          <ScalarProperty Name="RetailValue" ColumnName="RetailValue" />
           <ScalarProperty Name="IdFlight" ColumnName="IdFlight" />
           <ScalarProperty Name="Departure_City" ColumnName="Departure_City" />
           <ScalarProperty Name="Departure_Date" ColumnName="Departure_Date" />
           <ScalarProperty Name="Arrival_City" ColumnName="Arrival_City" />
           <ScalarProperty Name="Arrival_Date" ColumnName="Arrival_Date" />
           <ScalarProperty Name="Seats_Number" ColumnName="Seats_Number" />
+          <ScalarProperty Name="RetailValue" ColumnName="RetailValue" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -57,7 +58,7 @@
       <EntityTypeMapping TypeName="AirTicketsModel.Passenger">
         <MappingFragment StoreEntitySet="Passenger">
           <ScalarProperty Name="IdPassenger" ColumnName="IdPassenger" />
-          <ScalarProperty Name="UserLogin" ColumnName="UserLogin" />
+          <ScalarProperty Name="IdUser" ColumnName="IdUser" />
           <ScalarProperty Name="Surname" ColumnName="Surname" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
@@ -83,6 +84,7 @@
           <ScalarProperty Name="IdTicket" ColumnName="IdTicket" />
           <ScalarProperty Name="IdPurchases" ColumnName="IdPurchases" />
           <ScalarProperty Name="IdDocument" ColumnName="IdDocument" />
+          <ScalarProperty Name="IdPurchases_Ticket" ColumnName="IdPurchases_Ticket" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -115,6 +117,7 @@
     <EntitySetMapping Name="User">
       <EntityTypeMapping TypeName="AirTicketsModel.User">
         <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="IdUser" ColumnName="IdUser" />
           <ScalarProperty Name="Login" ColumnName="Login" />
           <ScalarProperty Name="Surname" ColumnName="Surname" />
           <ScalarProperty Name="Name" ColumnName="Name" />

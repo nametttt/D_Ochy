@@ -39,17 +39,21 @@ namespace air_project
         {
             MainContent.Source = new Uri("/pages/CustomerPage.xaml", UriKind.Relative);
             MainContent.NavigationService.Navigate(new CustomerPage(_user));
+            Title = "Личный кабинет";
         }
 
         private void Interest_Selected(object sender, RoutedEventArgs e)
         {
             MainContent.Navigate(new Uri("/pages/Interests.xaml", UriKind.Relative));
+            MainContent.NavigationService.Navigate(new Interests(_user));
+            Title = "Интересное";
         }
 
         private void TicketsBuy_Selected(object sender, RoutedEventArgs e)
         {
             MainContent.Navigate(new Uri("/pages/MainCustomer.xaml", UriKind.Relative));
             MainContent.NavigationService.Navigate(new MainCustomer(_user));
+            Title = "Поиск билетов";
         }
 
         private void Exit_Selected(object sender, RoutedEventArgs e)

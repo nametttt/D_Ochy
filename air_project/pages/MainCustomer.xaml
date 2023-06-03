@@ -63,6 +63,7 @@
                     <Grid Height="38" Grid.Column="3" Margin="10 0 10 0" MouseDown="Grid_MouseDown" x:Name="PassGrid">
                         
                         <TextBox x:Name="txtNumSeats"
+                             Text="1 пассажир"
                              Style="{StaticResource MyWaterMarkStyle}"
                              IsReadOnly="True"
                              Tag="Пассажиры"/>
@@ -90,21 +91,34 @@
        AllowsTransparency="True"
        Placement="Bottom"
        PlacementTarget="{Binding ElementName=myGrid}">
-            
-            <Calendar Margin="0 0 20 0"
-              Visibility="Collapsed" 
-              Name="otpr"
-              SelectedDatesChanged="otpr_SelectedDatesChanged">
-                <Calendar.LayoutTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Calendar.LayoutTransform>
-            </Calendar>
+            <Grid Name="opop"
+                  Visibility="Collapsed">
+                <Calendar Margin="0 0 20 0"
+                  Name="otpr"
+                  SelectedDatesChanged="otpr_SelectedDatesChanged">
+                    <Calendar.LayoutTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Calendar.LayoutTransform>
+                </Calendar>
+
+                <CheckBox Content="Не выбирать дату" 
+                  x:Name="checkboxNoDate" 
+                  Margin="10"
+                  Checked="checkboxNoDate_Checked"
+                  Unchecked="checkboxNoDate_Checked"
+                  VerticalAlignment="Bottom"
+                  Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"
+                  BorderBrush="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}"
+                  Style="{StaticResource {x:Type CheckBox}}"/>
+            </Grid>
         </Popup>
+
+
 
 
 
@@ -125,18 +139,18 @@
                     <StackPanel DockPanel.Dock="Top" 
                                 Margin="3" 
                                 Background="#FFE7ECF2">
-                        
+
                         <TextBlock Text="Количество пассажиров" 
                                    Margin="6" 
                                    HorizontalAlignment="Center" 
                                    FontSize="16" 
                                    FontFamily="Candara Bold"/>
-                        
+
                     </StackPanel>
-                    
+
                     <Grid DockPanel.Dock="Top" 
                           Margin="7 5 5 10">
-                        
+
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1.3*"/>
                             <ColumnDefinition Width="0.4*"/>
@@ -148,21 +162,21 @@
                             <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        
+
                         <StackPanel Grid.Row="0" 
                                     Grid.Column="0" 
                                     HorizontalAlignment="Left" 
                                     VerticalAlignment="Center">
-                            
+
                             <TextBlock Text="Взрослые" 
                                        FontSize="16" 
                                        FontFamily="Candara Bold"/>
-                            
+
                             <TextBlock Text="старше 12 лет" 
                                        FontSize="14" 
                                        FontFamily="Candara Regular" 
                                        Foreground="Gray"/>
-                            
+
                         </StackPanel>
                         <Button  Grid.Row="0" 
                                  Name="btn_mn_1"
@@ -172,7 +186,7 @@
                                  Click="Button_Click"
                                  Style="{StaticResource ButtonPass}"
                                  Margin="5 10 5 10"/>
-                        
+
                         <TextBlock Grid.Row="0"
                                    Name="txt_first"
                                    Grid.Column="2" 
@@ -181,7 +195,7 @@
                                    HorizontalAlignment="Center" 
                                    FontFamily="Candara SemiBold" 
                                    FontSize="17"/>
-                        
+
                         <Button  Grid.Row="0" 
                                  Name="btn_pl_1"
                                  Grid.Column="3" 
@@ -194,18 +208,18 @@
                                     Grid.Column="0" 
                                     HorizontalAlignment="Left" 
                                     VerticalAlignment="Center">
-                            
+
                             <TextBlock Text="Дети" 
                                        FontSize="16" 
                                        FontFamily="Candara Bold"/>
-                            
+
                             <TextBlock Text="от 2 до 12" 
                                        FontSize="14" 
                                        FontFamily="Candara Regular" 
                                        Foreground="Gray"/>
-                            
+
                         </StackPanel>
-                        
+
                         <Button  Grid.Row="1" 
                                  Name="btn_mn_2"
                                  Grid.Column="1" 
@@ -215,7 +229,7 @@
                                
                                  Style="{StaticResource ButtonPass}"
                                  Margin="5 10 5 10"/>
-                        
+
                         <TextBlock Grid.Row="1"
                                    Grid.Column="2" 
                                    Text="0" 
@@ -225,7 +239,7 @@
                                    HorizontalAlignment="Center" 
                                    FontFamily="Candara SemiBold" 
                                    FontSize="17"/>
-                        
+
                         <Button  Grid.Row="1" 
                                  Grid.Column="3" 
                                  Name="btn_pl_2"
@@ -238,16 +252,16 @@
                                     Grid.Column="0" 
                                     HorizontalAlignment="Left" 
                                     VerticalAlignment="Center">
-                            
+
                             <TextBlock Text="Младенцы"
                                        FontSize="16" 
                                        FontFamily="Candara Bold"/>
-                            
+
                             <TextBlock Text="до 2, без места"
                                        FontSize="14" 
                                        FontFamily="Candara Regular" 
                                        Foreground="Gray"/>
-                            
+
                         </StackPanel>
                         <Button  Grid.Row="2" 
                                  Grid.Column="1"
@@ -257,7 +271,7 @@
                                  Name="btn_mn_3"
                                  IsEnabled="False"
                                  Margin="5 10 5 10"/>
-                        
+
                         <TextBlock Grid.Row="2" 
                                    Grid.Column="2" 
                                    Text="0" 
@@ -267,7 +281,7 @@
                                    HorizontalAlignment="Center" 
                                    FontFamily="Candara SemiBold" 
                                    FontSize="17"/>
-                        
+
                         <Button  Grid.Row="2" 
                                  Grid.Column="3" 
                                  Style="{StaticResource ButtonPass}"
@@ -279,14 +293,31 @@
                 </DockPanel>
             </Border>
         </Popup>
+        <StackPanel Margin="0 40 0 10" 
+                        x:Name="NotFound" 
+                        VerticalAlignment="Top" 
+                        Visibility="Collapsed">
+            <Border CornerRadius="10"
+                                    Margin="0 20 0 20"
+                                    BorderThickness="1"
+                                    Grid.Column="1"
+                                    Background="#FFF3E8"
+                                    VerticalAlignment="Top" BorderBrush="#FFCC775E">
+                <StackPanel Margin="0 10 0 10">
+                    <TextBlock Text="Билетов не найдено" TextAlignment="Justify" HorizontalAlignment="Center" Foreground="#FF787878" FontStyle="Italic" FontSize="18" TextWrapping="Wrap" />
 
-        <StackPanel Margin="70 40 70 10" 
+                </StackPanel>
+            </Border>
+
+        </StackPanel>
+
+        <StackPanel Margin="0 40 0 10" 
                         x:Name="tanushka" 
                         VerticalAlignment="Top" 
                         Visibility="Collapsed">
                 
                 <ListBox Name="ticketListBox"
-                         Margin="10" 
+                         Margin="0 10 0 10" 
                          BorderThickness="0"
                          Background="Transparent"
                          HorizontalContentAlignment="Stretch" 
@@ -303,7 +334,7 @@
                                     Grid.Column="1"
                                     Background="#FFF3E8"
                                     VerticalAlignment="Top" BorderBrush="#FFCC775E">
-                            <StackPanel Margin="10 10 10 15">
+                            <StackPanel Margin="0 10 0 15">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition/>
@@ -316,8 +347,7 @@
                                         <RowDefinition/>
                                     </Grid.RowDefinitions>
 
-                                    <TextBlock Text="{Binding Rise}"
-                                           
+                                    <TextBlock Text="{Binding MPrice}"
                                            x:Name="FlightId"
                                            Foreground="#FF683E42"
                                            FontSize="22"
@@ -349,6 +379,15 @@
                                            FontFamily="Candara"
                                            HorizontalAlignment="Right"
                                            Grid.Row="1"
+                                           Grid.Column="2"
+                                           Margin="10"/>
+
+                                    <TextBlock Text="{Binding SeatsFree}"
+                                           x:Name="freeseats"
+                                           FontSize="20"
+                                           FontFamily="Candara"
+                                           HorizontalAlignment="Right"
+                                           Grid.Row="2"
                                            Grid.Column="2"
                                            Margin="10"/>
 

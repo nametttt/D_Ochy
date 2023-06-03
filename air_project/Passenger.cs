@@ -21,7 +21,7 @@ namespace air_project
         }
     
         public int IdPassenger { get; set; }
-        public string UserLogin { get; set; }
+        public int IdUser { get; set; }
         public string Surname { get; set; }
         public string Name { get; set; }
         public string Patronymic { get; set; }
@@ -29,14 +29,13 @@ namespace air_project
         public string Gender { get; set; }
         public int Citizenship { get; set; }
     
-        public virtual Country Country { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Document> Document { get; set; }
         public virtual User User { get; set; }
 
-        public Passenger(string userLogin, string surname, string name, string patronymic, DateTime bithday, string gender, int citizenship)
+        public Passenger(int idUser, string surname, string name, string patronymic, DateTime bithday, string gender, int citizenship)
         {
-            UserLogin = userLogin;
+            IdUser = idUser;
             Surname = surname;
             Name = name;
             Patronymic = patronymic;

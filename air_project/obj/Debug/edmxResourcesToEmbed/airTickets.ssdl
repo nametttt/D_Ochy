@@ -4,12 +4,13 @@
     <Key>
       <PropertyRef Name="IdCard" />
     </Key>
-    <Property Name="IdCard" Type="bigint" Nullable="false" />
-    <Property Name="Month" Type="int" Nullable="false" />
-    <Property Name="Year" Type="int" Nullable="false" />
-    <Property Name="CW/CVC" Type="int" Nullable="false" />
+    <Property Name="IdCard" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CardNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Month" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Year" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="CW/CVC" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="OwnerName" Type="nvarchar" MaxLength="100" Nullable="false" />
-    <Property Name="UserLogin" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IdUser" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="City">
     <Key>
@@ -17,14 +18,14 @@
     </Key>
     <Property Name="IdCity" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IdRegion" Type="int" Nullable="false" />
-    <Property Name="CityName" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="CityName" Type="nvarchar" MaxLength="128" Nullable="false" />
   </EntityType>
   <EntityType Name="Country">
     <Key>
       <PropertyRef Name="IdCountry" />
     </Key>
     <Property Name="IdCountry" Type="int" Nullable="false" />
-    <Property Name="CountryName" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="CountryName" Type="nvarchar" MaxLength="128" Nullable="false" />
   </EntityType>
   <EntityType Name="Document">
     <Key>
@@ -32,7 +33,7 @@
     </Key>
     <Property Name="IdDocument" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IdType" Type="int" Nullable="false" />
-    <Property Name="Number" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Number" Type="nvarchar" MaxLength="20" Nullable="false" />
     <Property Name="IdPassenger" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Flight">
@@ -52,12 +53,12 @@
       <PropertyRef Name="IdPassenger" />
     </Key>
     <Property Name="IdPassenger" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="UserLogin" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IdUser" Type="int" Nullable="false" />
     <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Patronymic" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Bithday" Type="date" Nullable="false" />
-    <Property Name="Gender" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="20" Nullable="false" />
     <Property Name="Citizenship" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Purchases">
@@ -65,17 +66,18 @@
       <PropertyRef Name="IdPurchases" />
     </Key>
     <Property Name="IdPurchases" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="IdCard" Type="bigint" Nullable="false" />
-    <Property Name="PurchaseDate" Type="date" Nullable="false" />
-    <Property Name="TotalCost" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="IdCard" Type="int" Nullable="false" />
+    <Property Name="PurchaseDate" Type="datetime" Nullable="false" />
+    <Property Name="TotalCost" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Purchases_Ticket">
     <Key>
-      <PropertyRef Name="IdTicket" />
+      <PropertyRef Name="IdPurchases_Ticket" />
     </Key>
     <Property Name="IdTicket" Type="int" Nullable="false" />
     <Property Name="IdPurchases" Type="int" Nullable="false" />
     <Property Name="IdDocument" Type="int" Nullable="false" />
+    <Property Name="IdPurchases_Ticket" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
   </EntityType>
   <EntityType Name="Region">
     <Key>
@@ -83,7 +85,7 @@
     </Key>
     <Property Name="IdRegion" Type="int" Nullable="false" />
     <Property Name="IdCountry" Type="int" Nullable="false" />
-    <Property Name="RegionName" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="RegionName" Type="nvarchar" MaxLength="128" Nullable="false" />
   </EntityType>
   <EntityType Name="Ticket">
     <Key>
@@ -91,7 +93,7 @@
     </Key>
     <Property Name="IdTicket" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IdFlight" Type="int" Nullable="false" />
-    <Property Name="Place" Type="int" Nullable="false" />
+    <Property Name="Place" Type="nvarchar" MaxLength="10" Nullable="false" />
   </EntityType>
   <EntityType Name="Type_Document">
     <Key>
@@ -102,8 +104,9 @@
   </EntityType>
   <EntityType Name="User">
     <Key>
-      <PropertyRef Name="Login" />
+      <PropertyRef Name="IdUser" />
     </Key>
+    <Property Name="IdUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -127,16 +130,14 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Card_User">
-    <End Role="User" Type="Self.User" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
+    <End Role="User" Type="Self.User" Multiplicity="1" />
     <End Role="Card" Type="Self.Card" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="User">
-        <PropertyRef Name="Login" />
+        <PropertyRef Name="IdUser" />
       </Principal>
       <Dependent Role="Card">
-        <PropertyRef Name="UserLogin" />
+        <PropertyRef Name="IdUser" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -151,20 +152,6 @@
       </Principal>
       <Dependent Role="City">
         <PropertyRef Name="IdRegion" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Customer_User">
-    <End Role="User" Type="Self.User" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Passenger" Type="Self.Passenger" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="Login" />
-      </Principal>
-      <Dependent Role="Passenger">
-        <PropertyRef Name="UserLogin" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -192,20 +179,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Documents_Country">
-    <End Role="Country" Type="Self.Country" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Passenger" Type="Self.Passenger" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Country">
-        <PropertyRef Name="IdCountry" />
-      </Principal>
-      <Dependent Role="Passenger">
-        <PropertyRef Name="Citizenship" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Flight_City">
     <End Role="City" Type="Self.City" Multiplicity="1" />
     <End Role="Flight" Type="Self.Flight" Multiplicity="*" />
@@ -227,6 +200,18 @@
       </Principal>
       <Dependent Role="Flight">
         <PropertyRef Name="Arrival_City" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Passenger_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Passenger" Type="Self.Passenger" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="IdUser" />
+      </Principal>
+      <Dependent Role="Passenger">
+        <PropertyRef Name="IdUser" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -268,7 +253,7 @@
   </Association>
   <Association Name="FK_Purchases_Ticket_Ticket">
     <End Role="Ticket" Type="Self.Ticket" Multiplicity="1" />
-    <End Role="Purchases_Ticket" Type="Self.Purchases_Ticket" Multiplicity="0..1" />
+    <End Role="Purchases_Ticket" Type="Self.Purchases_Ticket" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Ticket">
         <PropertyRef Name="IdTicket" />
@@ -317,10 +302,6 @@
       <End Role="Region" EntitySet="Region" />
       <End Role="City" EntitySet="City" />
     </AssociationSet>
-    <AssociationSet Name="FK_Customer_User" Association="Self.FK_Customer_User">
-      <End Role="User" EntitySet="User" />
-      <End Role="Passenger" EntitySet="Passenger" />
-    </AssociationSet>
     <AssociationSet Name="FK_Document_Passenger" Association="Self.FK_Document_Passenger">
       <End Role="Passenger" EntitySet="Passenger" />
       <End Role="Document" EntitySet="Document" />
@@ -329,10 +310,6 @@
       <End Role="Type_Document" EntitySet="Type_Document" />
       <End Role="Document" EntitySet="Document" />
     </AssociationSet>
-    <AssociationSet Name="FK_Documents_Country" Association="Self.FK_Documents_Country">
-      <End Role="Country" EntitySet="Country" />
-      <End Role="Passenger" EntitySet="Passenger" />
-    </AssociationSet>
     <AssociationSet Name="FK_Flight_City" Association="Self.FK_Flight_City">
       <End Role="City" EntitySet="City" />
       <End Role="Flight" EntitySet="Flight" />
@@ -340,6 +317,10 @@
     <AssociationSet Name="FK_Flight_City1" Association="Self.FK_Flight_City1">
       <End Role="City" EntitySet="City" />
       <End Role="Flight" EntitySet="Flight" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Passenger_User" Association="Self.FK_Passenger_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Passenger" EntitySet="Passenger" />
     </AssociationSet>
     <AssociationSet Name="FK_Purchases_Card" Association="Self.FK_Purchases_Card">
       <End Role="Card" EntitySet="Card" />
