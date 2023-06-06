@@ -1,6 +1,7 @@
 ﻿<Page x:Class="air_project.pages.AddFlight"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:air_project.pages" 
@@ -186,7 +187,7 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
-                    <ColumnDefinition Width="1.1*"/>
+                    <ColumnDefinition Width="1.3*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -239,10 +240,11 @@
                                    Grid.Row="5" 
                                    Grid.Column="0"/>
                         
-                        <xctk:DateTimePicker Margin="10" 
+                        <xctk:DateTimePicker Margin="10"
                                              Style="{DynamicResource DateTimePickerStyle1}"
                                              TextAlignment="Left"
                                              Name="depdate" 
+                                             ValueChanged="depdate_ValueChanged"
                                              Grid.Row="2" 
                                              Grid.Column="1" 
                                              Height="30" 
@@ -257,6 +259,7 @@
 
                         <ComboBox Style="{StaticResource ComboBoxStyle}"
                                   Grid.Row="0"
+                                  FontFamily="Candara" FontSize="17"
                                   Grid.Column="1"
                                   x:Name="idFlight" 
                                   SelectionChanged="idFlight_SelectionChanged" />
@@ -268,8 +271,9 @@
 
                         <xctk:DateTimePicker Margin="10" 
                                              Style="{DynamicResource DateTimePickerStyle1}"
-                                             TextAlignment="Left" 
-                                             Name="arrdate" 
+                                             TextAlignment="Left"
+
+                        Name="arrdate" 
                                              Grid.Row="4" 
                                              Grid.Column="1" 
                                              Height="30" 

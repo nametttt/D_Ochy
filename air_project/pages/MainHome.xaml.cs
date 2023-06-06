@@ -93,6 +93,8 @@ namespace air_project
                         _context.User.Remove(user);
                     }
                 }
+                MessageBox.Show("Успешное удаление аккаунта!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
+
                 _context.SaveChanges();
                 Window parentWindow = Window.GetWindow(this);
                 parentWindow.Hide();
@@ -103,36 +105,43 @@ namespace air_project
 
         private void btnAuth_Click(object sender, RoutedEventArgs e)
         {
-            foreach (User user in _context.User)
-            {
-                if (_user.Login == user.Login)
+                foreach (User user in _context.User)
                 {
-                    if (string.IsNullOrWhiteSpace(Surname.Text) || string.IsNullOrWhiteSpace(Name.Text) || string.IsNullOrWhiteSpace(Patronymic.Text))
+                    if (_user.IdUser == user.IdUser)
                     {
-                        MessageBox.Show("Заполните все данные!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-                    else
-                    {
-                        user.Surname = Surname.Text;
-                        user.Name = Name.Text;
-                        user.Patronymic = Patronymic.Text;
-
-                        if (string.IsNullOrWhiteSpace(Phone.Text))
+                        if (string.IsNullOrWhiteSpace(Surname.Text) || string.IsNullOrWhiteSpace(Name.Text) || string.IsNullOrWhiteSpace(Patronymic.Text))
                         {
-                            user.Phone = null;
+                            MessageBox.Show("Заполните все данные!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
                         else
                         {
                             string cleanedPhone = new string(Phone.Text.Where(char.IsDigit).ToArray());
-                            user.Phone = cleanedPhone;
-                        }
+                            if (user.Surname == Surname.Text && user.Name == Name.Text && user.Patronymic == Patronymic.Text && user.Phone == cleanedPhone)
+                            {
+                                MessageBox.Show("Введите данные для изменения!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                            }
+                            else
+                            {
+                                user.Surname = Surname.Text;
+                                user.Name = Name.Text;
+                                user.Patronymic = Patronymic.Text;
 
-                        MessageBox.Show("Данные успешно изменены!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
+                                if (string.IsNullOrWhiteSpace(Phone.Text))
+                                {
+                                    user.Phone = null;
+                                }
+                                else
+                                {
+                                    user.Phone = cleanedPhone;
+                                }
+
+                                MessageBox.Show("Данные успешно изменены!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
+                            }
+                        }
                     }
                 }
-            }
 
-            _context.SaveChanges();
+                _context.SaveChanges();
 
         }
 

@@ -17,34 +17,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static air_project.forms.BuyTicket;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
 
 namespace air_project.pages
 {
 
-    public class TicketT
-    {
-        public int TicketID { get; set; }
-        public string Rise { get; set; }
-        public string Title { get; set; }
-        public int Price { get; set; }
-        public string MPrice { get; set; }
-        public DateTime DepartureTime { get; set; }
-        public DateTime ArrivalTime { get; set; }
-        public string DepartureLocation { get; set; }
-        public string ArrivalLocation { get; set; }
-        public string Mars { get; set; }
-        public string Raznitsa { get; set; }
-        public string DateTimeLet { get; set; }
-        public string SeatsFree { get; set; }
-
-
-    }
-
     public partial class MainCustomer : Page
     {
         public User _user;
         public int cost;
+        TicketT t = new TicketT();
         public MainCustomer(User user)
         {
             InitializeComponent();
@@ -129,8 +112,13 @@ namespace air_project.pages
 
         private void btnSearchTickets_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtFrom.Text) || !string.IsNullOrEmpty(txtTo.Text))
+            if (txtFrom.SelectedItem == null || txtTo.SelectedItem == null)
             {
+                MessageBox.Show("Выберите маршрут!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+
                 string from = txtFrom.Text;
                 string to = txtTo.Text;
                 City arr = new City();
@@ -342,10 +330,6 @@ namespace air_project.pages
                     ticketListBox.ItemsSource = tickets;
                 }
             }
-            else
-            {
-                MessageBox.Show("Выберите маршрут!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
         }
 
 
@@ -370,6 +354,8 @@ namespace air_project.pages
 
             }
         }
+
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -530,14 +516,9 @@ namespace air_project.pages
                 int vzr = Convert.ToInt32(txt_first.Text);
                 int podr = Convert.ToInt32(txt_second.Text);
                 int deti = Convert.ToInt32(txt_third.Text);
-                string passText;
                 TicketT tick = (TicketT)ticketListBox.SelectedItem;
                 BookingPage booking = new BookingPage(tick.TicketID);
-                BuyTicket bt = new BuyTicket(_user, tick.TicketID);
-                bt.booking.Content = booking;
-                bt.FlightId.Text = $"Рейс №{tick.TicketID}";
-                bt.countries.Text = $"{tick.DepartureLocation} → {tick.ArrivalLocation}";
-                bt.dates.Text = $"{tick.DepartureTime.ToString("dd MMMM HH:mm")} → {tick.ArrivalTime.ToString("dd MMMM HH:mm")}";
+               
 
 
                 TimeSpan duration = tick.ArrivalTime.Subtract(tick.DepartureTime);
@@ -563,6 +544,210 @@ namespace air_project.pages
                     dur = string.Format($"{duration.Minutes} минут в пути", duration);
                 }
 
+                BuyTicket bt = new BuyTicket(_user, tick.TicketID, vzr + podr + deti);
+
+                WrapPanel passengersWrapPanel = new WrapPanel();
+                passengersWrapPanel.Orientation = Orientation.Horizontal;
+                passengersWrapPanel.Name = "xer";
+                passengersWrapPanel.HorizontalAlignment = HorizontalAlignment.Center;
+
+                for (int i = 0; i < vzr + podr + deti; i++)
+                {
+                    Border passengerBorder = new Border();
+                    passengerBorder.CornerRadius = new CornerRadius(10);
+                    passengerBorder.BorderThickness = new Thickness(1);
+                    passengerBorder.Background = new SolidColorBrush(Color.FromArgb(255, 250, 227, 213));
+                    passengerBorder.VerticalAlignment = VerticalAlignment.Top;
+                    passengerBorder.Margin = new Thickness(0, 0, 0, 30);
+                    passengerBorder.BorderBrush = new SolidColorBrush(Color.FromArgb(255, 204, 119, 94));
+
+                    StackPanel passengerStackPanel = new StackPanel();
+                    passengerStackPanel.Width = 900;
+                    passengerStackPanel.Name = $"tanusha{i + 1}";
+                    passengerStackPanel.Margin = new Thickness(10, 10, 10, 15);
+
+                    TextBlock passengerInfoTextBlock = new TextBlock();
+                    passengerInfoTextBlock.Text = "Информация о пассажире";
+                    passengerInfoTextBlock.FontSize = 21;
+                    passengerInfoTextBlock.FontFamily = new FontFamily("Candara");
+                    passengerInfoTextBlock.Margin = new Thickness(10);
+                    passengerInfoTextBlock.FontWeight = FontWeights.SemiBold;
+
+                    TextBlock passengerDataTextBlock = new TextBlock();
+                    passengerDataTextBlock.Text = "Заполните данные вручную или выберите данные пассажира из личного кабинета";
+                    passengerDataTextBlock.FontSize = 18;
+                    passengerDataTextBlock.Margin = new Thickness(10);
+                    passengerDataTextBlock.FontFamily = new FontFamily("Candara");
+
+                    ComboBox documentsComboBox = new ComboBox();
+                    documentsComboBox.Style = (Style)FindResource("Combo");
+                    documentsComboBox.Name = $"documentsCombo{i + 1}";
+                    documentsComboBox.IsEditable = true;
+                    documentsComboBox.Height = 38;
+                    documentsComboBox.Text = "Выберите документ";
+                    documentsComboBox.Margin = new Thickness(20, 10, 20, 0);
+
+                    documentsComboBox.SelectionChanged += bt.documentsCombo_SelectionChanged;
+
+                    bool isCountry = false;
+                    List<PassengerDocument> passengerDocuments = new List<PassengerDocument>();
+
+
+                    using (AirTicketsEntities db = new AirTicketsEntities())
+                    {
+                        
+                        int depcity = 0, arrcity = 0, depcountry = 0, arrcountry = 0;
+                        foreach(City city in db.City)
+                        {
+                            if (city.CityName == tick.DepartureLocation)
+                            {
+                                depcity = city.IdCity;
+                            }
+                            if(city.CityName == tick.ArrivalLocation)
+                            {
+                                arrcity = city.IdCity;
+                            }
+                        }
+                        foreach(Country country in db.Country)
+                        {
+                            if (depcity == country.IdCountry)
+                            {
+                                depcountry = country.IdCountry;
+                            }
+                            if(arrcountry == country.IdCountry)
+                            {
+                                arrcountry = country.IdCountry;
+                            }
+                        }
+                        if(depcountry != arrcountry)
+                        {
+                            isCountry = true;
+                            foreach (var passenger in db.Passenger)
+                            {
+                                if (passenger.IdUser == _user.IdUser)
+                                {
+                                    foreach (var document in db.Document)
+                                    {
+                                        if (passenger.IdPassenger == document.IdPassenger)
+                                        {
+                                            foreach(Type_Document type in db.Type_Document)
+                                            {
+                                                if (type.Type == "Загранпаспорт")
+                                                {
+                                                    PassengerDocument passengerDocument = new PassengerDocument
+                                                    {
+                                                        IdPassenger = passenger.IdPassenger,
+                                                        IdDocument = document.IdDocument,
+                                                        DisplayName = $"{document.Type_Document.Type}: {passenger.Surname} {passenger.Name}"
+                                                    };
+
+                                                    passengerDocuments.Add(passengerDocument);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            foreach (var passenger in db.Passenger)
+                            {
+                                if (passenger.IdUser == _user.IdUser)
+                                {
+                                    foreach (var document in db.Document)
+                                    {
+                                        if (passenger.IdPassenger == document.IdPassenger)
+                                        {
+
+                                            PassengerDocument passengerDocument = new PassengerDocument
+                                            {
+                                                IdPassenger = passenger.IdPassenger,
+                                                IdDocument = document.IdDocument,
+                                                DisplayName = $"{document.Type_Document.Type}: {passenger.Surname} {passenger.Name}"
+                                            };
+
+                                            passengerDocuments.Add(passengerDocument);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    documentsComboBox.DisplayMemberPath = "DisplayName";
+                    documentsComboBox.ItemsSource = passengerDocuments;
+
+
+
+                    TextBlock orTextBlock = new TextBlock();
+                    orTextBlock.Text = "или";
+                    orTextBlock.Name = $"il{i + 1}";
+                    orTextBlock.Margin = new Thickness(10, 10, 10, 0);
+                    orTextBlock.FontSize = 18;
+                    orTextBlock.HorizontalAlignment = HorizontalAlignment.Center;
+
+                    MyDocs docsControl = new MyDocs();
+                    docsControl.SetValue(FrameworkElement.NameProperty, $"docs{i + 1}");
+
+                    if(isCountry)
+                    {
+                        docsControl.countries.Items.Clear();
+                        docsControl.countries.Items.Add("Загранпаспорт");
+                    }
+
+                    docsControl.Surname.TextChanged += bt.DocumentTextBox_TextChanged;
+                    docsControl.Name.TextChanged += bt.DocumentTextBox_TextChanged;
+                    docsControl.Patronymic.TextChanged += bt.DocumentTextBox_TextChanged;
+                    docsControl.Birthday.TextChanged += bt.DocumentTextBox_TextChanged;
+                    docsControl.DocNum.TextChanged += bt.DocumentTextBox_TextChanged;
+                    docsControl.countries.SelectionChanged += bt.DocumentComboBox_SelectionChanged;
+                    docsControl.typeDoc.SelectionChanged += bt.DocumentComboBox_SelectionChanged;
+                    docsControl.male.Click += bt.DocumentRadioButton_Checked;
+                    docsControl.female.Click += bt.DocumentRadioButton_Checked;
+                    docsControl.male1.MouseDown += bt.DocumentRadioButton_Checked;
+                    docsControl.female1.MouseDown += bt.DocumentRadioButton_Checked;
+                    docsControl.clear.PreviewMouseDown += bt.DocumentRadioButton_Checked;
+
+                    
+
+                    bool IsExist = false;
+                    using (AirTicketsEntities air = new AirTicketsEntities())
+                    {
+                        foreach (User user in air.User)
+                        {
+                            if (user.IdUser == _user.IdUser)
+                            {
+                                foreach (Passenger p in air.Passenger)
+                                {
+                                    if (p.IdUser == _user.IdUser)
+                                    {
+                                        IsExist = true;
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+
+                    passengerStackPanel.Children.Add(passengerInfoTextBlock);
+                    passengerStackPanel.Children.Add(passengerDataTextBlock);
+                    if (IsExist)
+                    {
+                        passengerStackPanel.Children.Add(documentsComboBox);
+                        passengerStackPanel.Children.Add(orTextBlock);
+                    }
+
+                    passengerStackPanel.Children.Add(docsControl);
+
+                    passengerBorder.Child = passengerStackPanel;
+                    passengersWrapPanel.Children.Add(passengerBorder);
+                }
+
+                bt.booking.Content = booking;
+                bt.FlightId.Text = $"Рейс №{tick.TicketID}";
+                bt.countries.Text = $"{tick.DepartureLocation} → {tick.ArrivalLocation}";
+                bt.dates.Text = $"{tick.DepartureTime.ToString("dd MMMM HH:mm")} → {tick.ArrivalTime.ToString("dd MMMM HH:mm")}";
                 bt.duration.Text = dur;
                 cost = tick.Price * (vzr + podr + deti);
                 bt.totalCost = cost;
@@ -570,6 +755,7 @@ namespace air_project.pages
                 bt.passengers.Text = PassengerQuantity(vzr, podr, deti);
                 bt.Colvo = vzr + podr;
 
+                bt.newpass.Children.Add(passengersWrapPanel);
                 bt.Show();
             }
             catch { }
@@ -599,5 +785,8 @@ namespace air_project.pages
                 return pasQuan;
             }
         }
+
+
+
     }
 }

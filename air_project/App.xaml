@@ -256,6 +256,11 @@
 
 
         <Style x:Key="MyWaterMarkStyle1" TargetType="{x:Type PasswordBox}">
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="#FF897A7A"/>
+                </Trigger>
+            </Style.Triggers>
             <Setter Property="air_project:PasswordBoxMonitor.IsMonitoring"
               Value="True"/>
             <Setter Property="Template">

@@ -16,7 +16,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Label Content="Новый документ"
+            <Label Content="Новый документ" x:Name="newdoc"
                                        HorizontalAlignment="Left"
                                        FontFamily="Arial Black"
                                        Grid.Column="0"
@@ -24,6 +24,7 @@
                                        FontSize="18"/>
             
             <TextBlock Grid.Column="1"
+                       x:Name="delets"
                            HorizontalAlignment="Right"
                            FontSize="18"
                            Height="20" 

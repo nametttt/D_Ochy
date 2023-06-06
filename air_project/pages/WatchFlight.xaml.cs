@@ -13,18 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace air_project
+namespace air_project.pages
 {
-    public partial class Ticket
-    {
-        public string Title { get; set; }
-        public double Price { get; set; }
-        public DateTime DepartureTime { get; set; }
-        public DateTime ArrivalTime { get; set; }
-        public string DepartureLocation { get; set; }
-        public string ArrivalLocation { get; set; }
-    }
-
     /// <summary>
     /// Логика взаимодействия для WatchFlight.xaml
     /// </summary>
@@ -33,15 +23,50 @@ namespace air_project
         public WatchFlight()
         {
             InitializeComponent();
+            UpdateFlight();
+        }
 
-            var tickets = new List<Ticket>()
+        public void UpdateFlight()
+        {
+            datagrid.ItemsSource = null;
+            using (AirTicketsEntities air = new AirTicketsEntities())
             {
-                new Ticket() { Title = "Flight to Paris", Price = 500.00, DepartureTime = new DateTime(2023, 05, 01, 10, 30, 00), ArrivalTime = new DateTime(2023, 05, 01, 14, 00, 00), DepartureLocation = "New York", ArrivalLocation = "Paris" },
-                new Ticket() { Title = "Train to Amsterdam", Price = 50.00, DepartureTime = new DateTime(2023, 05, 03, 08, 00, 00), ArrivalTime = new DateTime(2023, 05, 03, 12, 00, 00), DepartureLocation = "Berlin", ArrivalLocation = "Amsterdam" },
-                new Ticket() { Title = "Bus to Rome", Price = 20.00, DepartureTime = new DateTime(2023, 05, 05, 14, 00, 00), ArrivalTime = new DateTime(2023, 05, 05, 18, 00, 00), DepartureLocation = "Florence", ArrivalLocation = "Rome" }
-            };
+                var query1 = from city1 in air.City
+                             from city2 in air.City
+                             from flight in air.Flight
+                             where flight.Departure_City == city1.IdCity && flight.Arrival_City == city2.IdCity
+                             select new
+                             {
+                                 Номер = flight.IdFlight,
+                                 Откуда = city1.CityName,
+                                 Отправление = flight.Departure_Date,
+                                 Куда = city2.CityName,
+                                 Прибытие = flight.Arrival_Date,
+                                 Места = flight.Seats_Number,
+                                 Стоимость = flight.RetailValue
+                             };
 
-            ticketListBox.ItemsSource = tickets;
+                var flights = query1.ToList();
+
+                var formattedFlights = flights.Select(f => new
+                {
+                    Номер = f.Номер,
+                    Откуда = f.Откуда,
+                    Отправление = f.Отправление.ToString("dd.MM.yyyy HH:mm"),
+                    Куда = f.Куда,
+                    Прибытие = f.Прибытие.ToString("dd.MM.yyyy HH:mm"),
+                    Места = f.Места,
+                    Стоимость = f.Стоимость
+                });
+
+                datagrid.ItemsSource = formattedFlights.ToList();
+
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateFlight();
         }
     }
 }

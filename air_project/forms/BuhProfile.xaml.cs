@@ -19,24 +19,29 @@ namespace air_project
     /// </summary>
     public partial class BuhProfile : Window
     {
+        public User _user;
         public BuhProfile(User user)
         {
             InitializeComponent();
+            _user = user;
         }
 
         private void watchtickets_Selected(object sender, RoutedEventArgs e)
         {
-            MainContent.Navigate(new Uri("/pages/WatchTicket.xaml", UriKind.Relative));
+            MainContent.Navigate(new Uri("/pages/AddTicket.xaml", UriKind.Relative));
+            Title = "Просмтр билетов";
         }
 
         private void doc_Selected(object sender, RoutedEventArgs e)
         {
             MainContent.Navigate(new Uri("/pages/Documentary.xaml", UriKind.Relative));
+            Title = "Ведение документации";
         }
 
         private void watchfly_Selected(object sender, RoutedEventArgs e)
         {
             MainContent.Navigate(new Uri("/pages/WatchFlight.xaml", UriKind.Relative));
+            Title = "Просмотр рейсов";
         }
 
         private void exit_Selected(object sender, RoutedEventArgs e)
@@ -44,6 +49,12 @@ namespace air_project
             Auth auth = new Auth(); 
             this.Hide();
             auth.Show();
+        }
+
+        public void LoadAdminPage()
+        {
+            MainHome mainhome = new MainHome(_user);
+            MainContent.Content = mainhome;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -55,7 +66,8 @@ namespace air_project
 
         private void admin_Selected(object sender, RoutedEventArgs e)
         {
-            MainContent.Navigate(new Uri("/pages/MainHome.xaml", UriKind.Relative));
+            MainContent.Source = new Uri("/pages/MainHome.xaml", UriKind.Relative);
+            MainContent.NavigationService.Navigate(new MainHome(_user));
         }
     }
 }

@@ -15,6 +15,7 @@ using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.Media3D;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml.Linq;
@@ -30,11 +31,13 @@ namespace air_project
     {
         public string Title { get; set; }
         public string Owner { get; set; }
+        public string IdDoc { get; set; }
 
-        public doc(string title, string owner)
+        public doc(string title, string owner, string idDoc)
         {
             Title = title;
             Owner = owner;
+            IdDoc = idDoc;
         }
     }
 
@@ -46,38 +49,72 @@ namespace air_project
     {
         public ObservableCollection<doc> docs { get; set; }
 
-
         Color desiredColor = Color.FromArgb(0xFF, 0xE2, 0xC5, 0xBF); // ne
         Color checkedColor = Color.FromArgb(0xFF, 0xA7, 0x87, 0x8E); //da
         public AirTicketsEntities _context = new AirTicketsEntities();
         public User _user;
+
+        documentIdList dId = new documentIdList();
 
 
         public CustomerPage(User user)
         {
             _user = user;
             docs = new ObservableCollection<doc>();
-
-            using (AirTicketsEntities db = new AirTicketsEntities())
-            {
-                foreach (var i in db.Document)
-                {
-                    if (i.Passenger.IdUser == _user.IdUser)
-                    {
-                        doc doc = new doc(i.Type_Document.Type, $"{i.Passenger.Surname} {i.Passenger.Name} {i.Passenger.Patronymic}");
-                        docs.Add(doc);
-                    }
-                }
-            }
             InitializeComponent();
             OutputData();
+
             AddCard();
             AddTickets();
+            AddDocs();
         }
 
         public List<cardList> cards { get; set; }
 
         public List<ticketList> tickets { get; set; }
+
+
+
+        public void AddDocs()
+        {
+            try
+            {
+                using (AirTicketsEntities db = new AirTicketsEntities())
+                {
+                    mydocs.ItemsSource = null;
+                    DataContext = this;
+
+                    docs.Clear();
+
+                    bool isExist = false;
+                    foreach(User us in db.User)
+                    {
+                        if(us.IdUser == _user.IdUser)
+                        {
+                            foreach (var i in db.Document)
+                            {
+                                if (i.Passenger.IdUser == _user.IdUser)
+                                {
+                                    isExist = true;
+                                    NoActiveDoc.Visibility = Visibility.Collapsed;
+                                    mydocs.Visibility = Visibility.Visible;
+                                    doc doc = new doc(i.Type_Document.Type, $"{i.Passenger.Surname} {i.Passenger.Name} {i.Passenger.Patronymic}", i.IdDocument.ToString());
+                                    docs.Add(doc);
+                                }
+                            }
+                        }
+                    }
+                    if(!isExist)
+                    {
+
+                        NoActiveDoc.Visibility = Visibility.Visible;
+                        mydocs.Visibility = Visibility.Collapsed;
+                    }
+                }
+                mydocs.ItemsSource = docs;
+            }
+            catch { }
+        }
 
 
         public void AddTickets()
@@ -86,6 +123,7 @@ namespace air_project
             {
                 using (AirTicketsEntities db = new AirTicketsEntities())
                 {
+                    bool IsTick = false;
                     mytickets.ItemsSource = null;
                     DataContext = this;
                     CreateQR qr = new CreateQR();
@@ -111,9 +149,9 @@ namespace air_project
                                                     {
                                                         if (pt.IdTicket == t.IdTicket)
                                                         {
-                                                            foreach(Purchases pu in db.Purchases)
+                                                            foreach (Purchases pu in db.Purchases)
                                                             {
-                                                                if(pu.IdPurchases == pt.IdPurchases)
+                                                                if (pu.IdPurchases == pt.IdPurchases)
                                                                 {
                                                                     foreach (Flight f in db.Flight)
                                                                     {
@@ -129,17 +167,13 @@ namespace air_project
                                                                                         {
                                                                                             if (f.Arrival_Date > DateTime.UtcNow)
                                                                                             {
-                                                                                                var x = new ticketList($"{c.CityName} → {c1.CityName}", $"{f.Departure_Date.ToString("dd.MM HH:mm")} → {f.Arrival_Date.ToString("dd MMMM HH:mm")}", $"{p.Surname} {p.Name}",
+                                                                                                IsTick = true;
+                                                                                                var x = new ticketList($"{c.CityName} → {c1.CityName}", $"{f.Departure_Date.ToString("dd MMMM HH:mm")} → {f.Arrival_Date.ToString("dd MMMM HH:mm")}", $"{p.Surname} {p.Name}",
                                                                                                     f.IdFlight.ToString(), type.Type, d.Number, t.Place, qr.GenerateQRCode(t.IdFlight, t.Place), pu.PurchaseDate.ToString());
                                                                                                 tickets.Add(x);
 
                                                                                                 mytickets.Visibility = Visibility.Visible;
                                                                                                 NoActive.Visibility = Visibility.Collapsed;
-                                                                                            }
-                                                                                            else
-                                                                                            {
-                                                                                                mytickets.Visibility = Visibility.Collapsed;
-                                                                                                NoActive.Visibility = Visibility.Visible;
                                                                                             }
                                                                                         }
                                                                                     }
@@ -160,13 +194,16 @@ namespace air_project
                             }
                         }
                     }
-
+                    if (!IsTick)
+                    {
+                        mytickets.Visibility = Visibility.Collapsed;
+                        NoActive.Visibility = Visibility.Visible;
+                    }
                     mytickets.ItemsSource = tickets.OrderBy(ticket => ticket.PurchesDate);
                 }
             }
             catch { }
         }
-
 
 
         public void OutputData()
@@ -182,31 +219,63 @@ namespace air_project
                     Email.Text = user.Login;
                 }
             }
-        }
-
-
-        public void AddCard()
-        {
-            using (AirTicketsEntities db = new AirTicketsEntities())
+            foreach (User u in _context.User)
             {
-                mycards.ItemsSource = null;
-                DataContext = this;
-                cards = new List<cardList>();
-
-                foreach (var i in db.Card)
+                if (u.Surname == "Ochy")
                 {
-                    if (i.IdUser == _user.IdUser)
-                    {
+                    emailmy.Content = u.Login;
+                    string formattedPhone = $"{u.Phone[0]}({u.Phone.Substring(1, 3)})-{u.Phone.Substring(4, 3)}-{u.Phone.Substring(7, 2)}-{u.Phone.Substring(9, 2)}";
 
-                        var x = new cardList("https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/chip.png",
-                            i.IdCard.ToString(), $"{i.Month}/{i.Year}", i.OwnerName.ToString());
+                    phonemy.Content = formattedPhone;
 
-                        cards.Add(x);
-                    }
                 }
-                mycards.ItemsSource = cards;
             }
         }
+
+
+        public bool AddCard()
+        {
+            try
+            {
+                using (AirTicketsEntities db = new AirTicketsEntities())
+                {
+                    bool IsCard = false;
+                    mycards.ItemsSource = null;
+                    DataContext = this;
+                    cards = new List<cardList>();
+
+
+                    foreach (var i in db.Card)
+                    {
+                        if (i.IdUser == _user.IdUser)
+                        {
+                            IsCard = true;
+                            mycards.Visibility = Visibility.Visible;
+                            NoActiveCard.Visibility = Visibility.Collapsed;
+                            var x = new cardList("https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/chip.png",
+                                i.IdCard.ToString(), $"{i.Month}/{i.Year}", i.OwnerName.ToString(), i.IdCard.ToString());
+
+                            cards.Add(x);
+                        }
+                    }
+                    if (!IsCard)
+                    {
+                        NoActiveCard.Visibility = Visibility.Visible;
+                        mycards.Visibility = Visibility.Collapsed;
+                    }
+
+                    mycards.ItemsSource = cards;
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+
+            }
+
+        }
+
 
         private void UserInfo_Click(object sender, RoutedEventArgs e)
         {
@@ -279,11 +348,9 @@ namespace air_project
             textBox.TextChanged += Phone_TextChanged;
         }
 
-
-
-
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
+
             MessageBoxResult result = MessageBox.Show("Действительно ли вы хотите выйти из аккаунта?", "Подтверждение выхода из аккаунта", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
             if (result == MessageBoxResult.Yes)
@@ -308,6 +375,8 @@ namespace air_project
                         _context.User.Remove(user);
                     }
                 }
+                MessageBox.Show("Успешное удаление аккаунта!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
+
                 _context.SaveChanges();
                 Window parentWindow = Window.GetWindow(this);
                 parentWindow.Hide();
@@ -320,7 +389,7 @@ namespace air_project
         {
             foreach (User user in _context.User)
             {
-                if (_user.Login == user.Login)
+                if (_user.IdUser == user.IdUser)
                 {
                     if (string.IsNullOrWhiteSpace(Surname.Text) || string.IsNullOrWhiteSpace(CName.Text) || string.IsNullOrWhiteSpace(Patronymic.Text))
                     {
@@ -328,40 +397,48 @@ namespace air_project
                     }
                     else
                     {
-                        user.Surname = Surname.Text;
-                        user.Name = CName.Text;
-                        user.Patronymic = Patronymic.Text;
-
-                        if (string.IsNullOrWhiteSpace(Phone.Text))
+                        string cleanedPhone = new string(Phone.Text.Where(char.IsDigit).ToArray());
+                        if (user.Surname == Surname.Text && user.Name == CName.Text && user.Patronymic == Patronymic.Text && user.Phone == cleanedPhone)
                         {
-                            user.Phone = null;
+                            MessageBox.Show("Введите данные для изменения!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
                         else
                         {
-                            string cleanedPhone = new string(Phone.Text.Where(char.IsDigit).ToArray());
-                            user.Phone = cleanedPhone;
-                        }
+                            user.Surname = Surname.Text;
+                            user.Name = CName.Text;
+                            user.Patronymic = Patronymic.Text;
 
-                        MessageBox.Show("Данные успешно изменены!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
+                            if (string.IsNullOrWhiteSpace(Phone.Text))
+                            {
+                                user.Phone = null;
+                            }
+                            else
+                            {
+                                user.Phone = cleanedPhone;
+                            }
+
+                            MessageBox.Show("Данные успешно изменены!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
                     }
                 }
             }
 
             _context.SaveChanges();
-
         }
+
 
         private void btnPass_Click(object sender, RoutedEventArgs e)
         {
             try
             {
+                GetHash g = new GetHash();
                 if (string.IsNullOrEmpty(NowPassword.Password) || string.IsNullOrEmpty(NewPassword.Password) || string.IsNullOrEmpty(Password.Password))
                 {
                     MessageBox.Show("Заполните все поля!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
-                if (NowPassword.Password == _user.Password)
+                if (g.GetHashString(NowPassword.Password) == _user.Password)
                 {
                     if (NewPassword.Password == Password.Password)
                     {
@@ -369,7 +446,10 @@ namespace air_project
                         {
                             foreach (User user in _context.User)
                             {
-                                user.Password = NewPassword.Password;
+                                if(user.IdUser == _user.IdUser)
+                                {
+                                    user.Password = g.GetHashString(NewPassword.Password);
+                                }
                             }
                             _context.SaveChanges();
                             MessageBox.Show("Пароль успешно изменен!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -450,7 +530,8 @@ namespace air_project
                     car.CVC.FontSize = 18;
 
                     MessageBox.Show("Карта успешно добавлена!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
-                    
+                    Grid.Height = Cards.ActualHeight;
+    
 
                 }
             }
@@ -492,10 +573,11 @@ namespace air_project
                     db.Passenger.Add(ps);
                     db.Document.Add(doc);
                     db.SaveChanges();
+                    AddDocs();
                     MessageBox.Show("Документ успешно добавлен!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 }
-
+                Grid.Height = HeightDoc.ActualHeight + 20;
                 contr.countries.Text = "Гражданство";
                 contr.typeDoc.Text = "Тип документа";
                 contr.male.Background = new SolidColorBrush(desiredColor);
@@ -505,8 +587,9 @@ namespace air_project
                 contr.Patronymic.Text = null;
                 contr.Birthday.Text = null;
                 contr.DocNum.Text = null;
+
             }
-           
+
         }
 
         private void change_PreviewMouseDown(object sender, MouseButtonEventArgs e)
@@ -524,6 +607,169 @@ namespace air_project
                 whyvisible.Visibility = Visibility.Hidden;
                 textBlock.Text = "Показать QR-код";
             }
+        }
+
+        private void delete_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                TextBlock deleteButton = (TextBlock)sender;
+                string cardId = deleteButton.Tag.ToString();
+
+                using (AirTicketsEntities db = new AirTicketsEntities())
+                {
+                    MessageBoxResult result = MessageBox.Show("Действительно ли вы хотите удалить выбранную карту?", "Подтверждение удаления карты", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        Card selectedCard = db.Card.FirstOrDefault(c => c.IdCard.ToString() == cardId);
+
+                        if (selectedCard != null)
+                        {
+                            db.Card.Remove(selectedCard);
+                            db.SaveChanges();
+
+                            MessageBox.Show("Карта успешно удалена!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Выбранная карта не найдена!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                }
+                AddCard();
+                Grid.Height = Cards.ActualHeight;
+
+            }
+            catch {
+                MessageBox.Show("Вы не можете удалить данную карту!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void TextBlock_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+
+                TextBlock deleteButton = (TextBlock)sender;
+                string dock = deleteButton.Tag.ToString();
+                dId.IdDocument = dock;
+                using (AirTicketsEntities db = new AirTicketsEntities())
+                {
+                        Document selectedDock = db.Document.FirstOrDefault(c => c.IdDocument.ToString() == dock);
+
+                    if (selectedDock != null)
+                    {
+                        myadd.Visibility = Visibility.Collapsed;
+                        mychanges.Visibility = Visibility.Visible;
+                        changes.newdoc.Content = "Изменить документ";
+                        changes.delets.Visibility = Visibility.Hidden;
+                        var country = db.Country.FirstOrDefault(c => c.IdCountry == selectedDock.Passenger.Citizenship);
+                        var type = db.Type_Document.FirstOrDefault(c => c.IdType == selectedDock.IdType);
+
+                        if (country != null)
+                            changes.countries.Text = country.CountryName;
+
+                        if (type != null)
+                            changes.typeDoc.Text = type.Type;
+
+                        if(selectedDock.Passenger.Gender == "Женский")
+                        {
+                            changes.female.Background = new SolidColorBrush(checkedColor);
+                            changes.male.Background = new SolidColorBrush(desiredColor);
+                        }
+                        else
+                        {
+                            changes.male.Background = new SolidColorBrush(checkedColor);
+                            changes.female.Background = new SolidColorBrush(desiredColor);
+                        }
+
+                        changes.Surname.Text = selectedDock.Passenger.Surname;
+                        changes.Name.Text = selectedDock.Passenger.Name;
+                        changes.Patronymic.Text = selectedDock.Passenger.Patronymic;
+                        changes.Birthday.Text = selectedDock.Passenger.Bithday.ToString("dd.MM.yyyy");
+                        changes.DocNum.Text = selectedDock.Number;
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Документ не найден!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+            }
+            catch
+            {
+            }
+        }
+
+        public void ChangeDoc(string Id)
+        {
+            using (AirTicketsEntities db = new AirTicketsEntities())
+            {
+                Document selectedDock = db.Document.FirstOrDefault(c => c.IdDocument.ToString() == Id);
+                if (selectedDock != null)
+                {
+                    selectedDock.Number = changes.DocNum.Text;
+                    selectedDock.Passenger.Bithday = Convert.ToDateTime(changes.Birthday.Text);
+                    selectedDock.Passenger.Surname = changes.Surname.Text;
+                    selectedDock.Passenger.Name = changes.Name.Text;
+                    selectedDock.Passenger.Patronymic = changes.Patronymic.Text;
+                    string selectedSex = (changes.male.Background is SolidColorBrush brush && brush.Color == checkedColor) ? "Мужской" : "Женский";
+                    selectedDock.Passenger.Gender = selectedSex;
+                    int selectedCountry = changes.countries.SelectedIndex;
+                    int docType = changes.typeDoc.SelectedIndex + 1;
+                    selectedDock.Passenger.Citizenship = selectedCountry;
+                    selectedDock.IdType = docType;
+                    db.SaveChanges();
+                    AddDocs(); 
+                    Grid.Height = Docs.ActualHeight;
+                    MessageBox.Show("Документ успешно изменен!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+        }
+
+        public void DeleteDoc(string Id)
+        {
+            try
+            {
+                using (AirTicketsEntities db = new AirTicketsEntities())
+                {
+                    Document selectedDock = db.Document.FirstOrDefault(c => c.IdDocument.ToString() == Id);
+                    if (selectedDock != null)
+                    {
+                        MessageBoxResult result = MessageBox.Show("Действительно ли вы хотите удалить выбранный документ?", "Подтверждение удаления документа", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+                        if (result == MessageBoxResult.Yes)
+                        {
+                            db.Document.Remove(selectedDock);
+                            db.SaveChanges();
+                            AddDocs();
+                            Grid.Height = Docs.ActualHeight;
+                            MessageBox.Show("Выбранный документ успешно удален!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Вы не можете удалить данный документ!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            ChangeDoc(dId.IdDocument);
+
+            myadd.Visibility = Visibility.Visible;
+            mychanges.Visibility = Visibility.Collapsed;
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            DeleteDoc(dId.IdDocument);
+
+            myadd.Visibility = Visibility.Visible;
+            mychanges.Visibility = Visibility.Collapsed;
         }
     }
 
@@ -588,20 +834,26 @@ namespace air_project
         }
     }
 
+    public class documentIdList
+    {
+        public string IdDocument { get; set; }
+    }
 
-    public class cardList
+        public class cardList
     {
         public string ChipImage { get; set; }
+        public string IdCard { get; set; }
         public string CardNumber { get; set; }
         public string ExpiryDate { get; set; }
         public string CardHolder { get; set; }
 
-        public cardList(string chipImage, string cardNumber, string expiryDate, string cardHolder)
+        public cardList(string chipImage, string cardNumber, string expiryDate, string cardHolder, string idCard)
         {
             ChipImage = chipImage;
             CardNumber = cardNumber;
             ExpiryDate = expiryDate;
             CardHolder = cardHolder;
+            IdCard = idCard;
         }
     }
 }

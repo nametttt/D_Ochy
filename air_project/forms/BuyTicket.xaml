@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:air_project"
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
-        Title="Покупка билетов" Height="650" Width="1200">
+        Title="Покупка билетов" Height="650" Width="1250" MinHeight="650" MinWidth="1000" Icon="/Resources/логотип.png">
     <DockPanel>
 
 
@@ -108,7 +108,6 @@
                            Margin="0 0 0 30">
 
                     <Border CornerRadius="10"
-                                    
                                     BorderThickness="1"
                                     Grid.Column="1"
                                     Background="#FFFAE3D5"
@@ -162,46 +161,9 @@
 
                 <WrapPanel Orientation="Horizontal"
                            DockPanel.Dock="Top"
-                           HorizontalAlignment="Center"
-                           Margin="0 0 0 30">
-
-                    <Border CornerRadius="10"
-                                    
-                                    BorderThickness="1"
-                                    Grid.Column="1"
-                                    Background="#FFFAE3D5"
-                                    VerticalAlignment="Top" BorderBrush="#FFCC775E">
-
-                        <StackPanel Width="900" Margin="10 10 10 15">
-                            <TextBlock Text="Информация о пассажире"
-                                           FontSize="21"
-                                           FontFamily="Candara"
-                                           Margin="10" 
-                                           FontWeight="SemiBold"/>
-                            <TextBlock Text="Заполните данные вручную или выберите данные пассажира из личного кабинета"
-                                       FontSize="18"
-                                       Margin="10"
-                                       FontFamily="Candara"/>
-                            
-                            <ComboBox Style="{StaticResource Combo}"
-                                      x:Name="documentsCombo"
-                                      IsEditable="True"
-                                      SelectionChanged="documentsCombo_SelectionChanged"
-                                      Height="38"
-                                      Text="Выберите документ"
-                                      Margin="20 10 20 0"
-                                />
-                            <TextBlock Text="или" 
-                                       x:Name="il"
-                                       Margin="10 10 10 0"
-                                       FontSize="18"
-                                       HorizontalAlignment="Center"/>
-
-                            <local:MyDocs x:Name="docs"/>
-
-                        </StackPanel>
-                    </Border>
-                </WrapPanel>
+                           x:Name="newpass"
+                           HorizontalAlignment="Center"/>
+                    
                 <WrapPanel Orientation="Horizontal"
                            DockPanel.Dock="Top"
                            HorizontalAlignment="Center"

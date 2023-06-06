@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -164,14 +165,46 @@ namespace air_project
         private void DocNum_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             TextBox textBox = (TextBox)sender;
-            int maxLength = 20;
-            int minLength = 6;
+            int maxLength = 19;
 
-            if (!IsNumericInput(e.Text) || textBox.Text.Length >= maxLength || textBox.Text.Length < minLength)
+            if (!IsNumericInput(e.Text) || textBox.Text.Length >= maxLength)
             {
                 e.Handled = true;
+                return;
             }
+
+            string currentText = textBox.Text.Replace(" ", "");
+
+            string newText = currentText + e.Text;
+
+            string formattedText = FormatDocNum(newText);
+
+            textBox.Text = formattedText;
+
+            textBox.CaretIndex = textBox.Text.Length;
+
+            e.Handled = true;
         }
+
+
+        private string FormatDocNum(string DocNum)
+        {
+            string digitsOnly = Regex.Replace(DocNum, @"[^\d]", "");
+
+            StringBuilder formattedNumber = new StringBuilder();
+            for (int i = 0; i < digitsOnly.Length; i++)
+            {
+                if (i > 0 && i % 4 == 0)
+                {
+                    formattedNumber.Append(" ");
+                }
+                formattedNumber.Append(digitsOnly[i]);
+            }
+
+            return formattedNumber.ToString();
+        }
+
+
 
         private bool IsNumericInput(string text)
         {

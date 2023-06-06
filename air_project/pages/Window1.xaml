@@ -5,6 +5,81 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:air_project.pages"
         mc:Ignorable="d"
-        Title="Window1" Height="550" Width="800">
+        Title="Window1" Height="450" Width="800">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel
+                                                                Margin="20 0 20 20">
+                <TextBlock Text="Покупка №12" 
+                                                                   FontSize="18" 
+                                                                   FontWeight="Bold" 
+                                                                   Margin="0,0,0,10"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel>
+                        <TextBlock Text="Вылет" 
+                                                                           FontWeight="Bold"/>
+
+
+                        <TextBlock Text="Москва (SVO)" 
+                                                                           Margin="0,10,0,0"/>
+
+
+                        <TextBlock Text="19 июня 2023" 
+                                                                           Margin="0,5,0,0"/>
+
+
+                        <TextBlock Text="Вылет: 16:30" 
+                                                                           Margin="0,5,0,0"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" 
+                                                                        Margin="20,0,0,0">
+
+
+                        <TextBlock Text="Прилет" 
+                                                                           FontWeight="Bold"/>
+
+
+                        <TextBlock Text="Нью-Йорк (JFK)" 
+                                                                           Margin="0,10,0,0"/>
+
+
+                        <TextBlock Text="20 июня 2023" 
+                                                                           Margin="0,5,0,0"/>
+
+
+                        <TextBlock Text="Прилет: 10:45" 
+                                                                           Margin="0,5,0,0"/>
+                    </StackPanel>
+                </Grid>
+                <Separator Margin="0,20"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Класс: " FontWeight="Bold"/>
+                    <TextBlock Text="Бизнес" Margin="5,0"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Количество пассажиров: " FontWeight="Bold"/>
+                    <TextBlock Text="2 взрослых, 1 ребенок" Margin="5,0"/>
+                </StackPanel>
+                <Separator Margin="0,20"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <TextBlock Text="Итогова стоимость: " FontWeight="Bold"/>
+                    <TextBlock Text="97 500 руб." Margin="5,0"/>
+                </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock Text="Дата покупки: " FontWeight="Bold"/>
+                <TextBlock Text="12 июня 2023." Margin="5,0"/>
+            </StackPanel>
+            <Separator Margin="0,20"/>
+        </StackPanel>
+        </Grid>
 
 </Window>

@@ -9,10 +9,10 @@
       Title="CustomerPage"
       ShowsNavigationUI="False">
 
-    <DockPanel>
+    <DockPanel Width="975">
             <Grid x:Name="Grid" Height="500">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="0.5*"/>
+                                <ColumnDefinition Width="0.3*"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
@@ -59,12 +59,13 @@
                                                    FontFamily="Candara Regular" 
                                                    FontSize="16"/>
 
-                                        <Label Content="+7(903)063-74-62" 
+                                        <Label 
+                                               x:Name="phonemy"
                                                    HorizontalAlignment="Center" 
                                                    FontFamily="Candara Regular" 
                                                    FontSize="14"/>
 
-                                        <Label Content="ochy@gmail.com" 
+                                        <Label x:Name="emailmy"
                                                    HorizontalAlignment="Center"
                                                    FontFamily="Candara Regular" 
                                                    FontSize="14"/>
@@ -241,12 +242,16 @@
                                        Foreground="#FF2E2F3F"
                                        FontSize="18"/>
 
+                        <StackPanel Margin="20 0 0 0" Visibility="Collapsed" x:Name="NoActiveCard">
+                            <TextBlock Text="У вас еще нет добавленных карт." TextAlignment="Justify" HorizontalAlignment="Center" Foreground="#FF787878" FontStyle="Italic" FontSize="18" TextWrapping="Wrap" />
+                        </StackPanel>
 
-                            <ItemsControl x:Name="mycards">
+                        <ItemsControl x:Name="mycards" Margin="0 0 0 10" Visibility="Collapsed">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <Border Margin="20" Height="180" BorderThickness="2" BorderBrush="#33FFFFFF" Background="#FF7C132F" CornerRadius="10" HorizontalAlignment="Left" >
-                                            <Grid Width="315">
+                                    <StackPanel Margin="20 10 20 10">
+                                        <Border Height="180" BorderThickness="2" BorderBrush="#33FFFFFF" Background="#FF7C132F" CornerRadius="10" HorizontalAlignment="Left" >
+                                            <Grid Width="305">
                                                 <Grid.Background>
                                                     <ImageBrush ImageSource="/Resources/pngcard.png"/>
                                                 </Grid.Background>
@@ -274,9 +279,25 @@
                                                 </StackPanel>
 
                                             </Grid>
-                                        </Border>
-                                        
-                                    </DataTemplate>
+                                    </Border>
+
+                                        <TextBlock x:Name="delete" Margin="0 10 0 0" Tag="{Binding IdCard}" TextDecorations="Underline" Text="Удалить карту" HorizontalAlignment="Center" VerticalAlignment="Top" PreviewMouseDown="delete_PreviewMouseDown">
+                                            <TextBlock.Style>
+                                                <Style TargetType="TextBlock">
+                                                    <Setter Property="Foreground" Value="Black"/>
+                                                    <Setter Property="FontFamily" Value="Bahnschrift Light SemiCondensed"/>
+                                                    <Setter Property="FontSize" Value="16"/>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Foreground" Value="#FFB8B7B7"/>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+
+                                    </StackPanel>
+                                </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
@@ -323,7 +344,7 @@
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Margin="20 0 20 20">
-                                            <Border Width="315" Height="450" BorderThickness="2" BorderBrush="#33FFFFFF" Background="#FF3F1B1C" CornerRadius="10" HorizontalAlignment="Left">
+                                            <Border Width="305" Height="450" BorderThickness="2" BorderBrush="#33FFFFFF" Background="#FF3F1B1C" CornerRadius="10" HorizontalAlignment="Left">
                                                 <Grid>
                                                     <Grid.RowDefinitions>
                                                         <RowDefinition Height="0.1*"/>
@@ -443,30 +464,80 @@
                                 <StackPanel>
 
                     <StackPanel x:Name="HeightDoc" Margin="10">
-                        <local:MyDocs  x:Name="contr"/>
+                        <StackPanel x:Name="myadd">
+                            <local:MyDocs  x:Name="contr"/>
 
-                        <Button Margin="20 10 20 20" 
+                            <Button Margin="20 10 20 20" 
                                                     Height="40" 
-                                                    Content="Сохранить документ"
+                                                    Content="Добавить документ"
                                                     Click="Button_Click_1"
                                                     Style="{StaticResource Button}"/>
+                            
+                        </StackPanel>
 
-                                        <Label Content="Мои документы"
+                        <StackPanel Visibility="Collapsed" x:Name="mychanges">
+                            <local:MyDocs x:Name="changes"/>
+                            <Grid Margin="10 0 10 10" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Button Margin="10" 
+                                                    Height="40" 
+                                                    Content="Сохранить изменения"
+                                        Click="Button_Click_2"
+                                                    Style="{StaticResource Button}"/>
+                                <Button Margin="10" Grid.Column="1"
+                                                    Height="40" 
+                                        Click="Button_Click_3"
+                                                    Content="Удалить документ"
+                                                    Style="{StaticResource Button}"/>
+                            </Grid>
+
+                        </StackPanel>
+
+                        <Label Content="Мои документы"
                                                    HorizontalAlignment="Left"
                                                    Margin="20,15,0,5"
                                                    FontFamily="Arial Black"
                                                    Foreground="#FF2E2F3F"
                                                    FontSize="18"/>
                                         <StackPanel>
-                            <ItemsControl ItemsSource="{Binding docs}" Margin="0 0 0 20">
+                            <StackPanel Margin="0 0 0 20" Visibility="Collapsed" x:Name="NoActiveDoc">
+                                <TextBlock Text="У вас еще нет добавленных документов." TextAlignment="Justify" HorizontalAlignment="Center" Foreground="#FF787878" FontStyle="Italic" FontSize="18" TextWrapping="Wrap" />
+                            </StackPanel>
+
+
+                            <ItemsControl Margin="0 0 0 20" x:Name="mydocs" Visibility="Collapsed">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <Border CornerRadius="10" BorderThickness="1" Background="#FFFEF9F4" Margin="20 15 20 0" BorderBrush="#FFA4848A">
-                                            <StackPanel Orientation="Horizontal" Margin="20 15 20 15">
-                                                <TextBlock Text="{Binding Title}" FontSize="16" />
-                                                <TextBlock Text=", " FontSize="16" />
-                                                <TextBlock Text="{Binding Owner}" FontSize="16" />
-                                            </StackPanel>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition Width="0.2*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <StackPanel Orientation="Horizontal" Margin="20 15 20 15">
+                                                    <TextBlock Text="{Binding Title}" FontSize="16" />
+                                                    <TextBlock Text=", " FontSize="16" />
+                                                    <TextBlock Text="{Binding Owner}" FontSize="16" />
+                                                </StackPanel>
+                                                <TextBlock TextDecorations="Underline" Tag="{Binding IdDoc}" Text="Изменить" HorizontalAlignment="Right" Margin="0 0 10 0" VerticalAlignment="Center" Grid.Column="1" PreviewMouseDown="TextBlock_PreviewMouseDown" x:Name="Texts">
+                                                    <TextBlock.Style>
+                                                        <Style TargetType="TextBlock">
+                                                            <Setter Property="Foreground" Value="Black"/>
+                                                            <Setter Property="FontFamily" Value="Bahnschrift Light SemiCondensed"/>
+                                                            <Setter Property="FontSize" Value="16"/>
+                                                            <Style.Triggers>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter Property="Foreground" Value="#FFB8B7B7"/>
+                                                                </Trigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                                </TextBlock>
+                                            </Grid>
+                                           
                                         </Border>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>

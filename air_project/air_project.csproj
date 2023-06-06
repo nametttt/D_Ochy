@@ -37,6 +37,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.9.1.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\Open-XML-SDK.2.9.1\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -60,6 +64,14 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.Primitives.4.3.0\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Packaging, Version=4.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Packaging.4.5.0\lib\net46\System.IO.Packaging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Windows.Forms" />
@@ -123,6 +135,7 @@
     <Compile Include="Card.cs">
       <DependentUpon>AirTickets.tt</DependentUpon>
     </Compile>
+    <Compile Include="ChangeFlight.cs" />
     <Compile Include="CheckRecKod.xaml.cs">
       <DependentUpon>CheckRecKod.xaml</DependentUpon>
     </Compile>
@@ -195,8 +208,9 @@
       <DependentUpon>MyOchy.xaml</DependentUpon>
     </Compile>
     <Compile Include="MyUser.cs" />
-    <Compile Include="pages\WatchTicket.xaml.cs">
-      <DependentUpon>WatchTicket.xaml</DependentUpon>
+    <Compile Include="pages\Ticket.cs" />
+    <Compile Include="pages\WatchFlight.xaml.cs">
+      <DependentUpon>WatchFlight.xaml</DependentUpon>
     </Compile>
     <Compile Include="pages\Window1.xaml.cs">
       <DependentUpon>Window1.xaml</DependentUpon>
@@ -216,9 +230,6 @@
     <Compile Include="Reg.xaml.cs">
       <DependentUpon>Reg.xaml</DependentUpon>
     </Compile>
-    <Compile Include="pages\WatchFlight.xaml.cs">
-      <DependentUpon>WatchFlight.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Region.cs">
       <DependentUpon>AirTickets.tt</DependentUpon>
     </Compile>
@@ -230,12 +241,6 @@
     </Compile>
     <Compile Include="User.cs">
       <DependentUpon>AirTickets.tt</DependentUpon>
-    </Compile>
-    <Compile Include="WatchFlights.xaml.cs">
-      <DependentUpon>WatchFlights.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="WatchTickets.xaml.cs">
-      <DependentUpon>WatchTickets.xaml</DependentUpon>
     </Compile>
     <Page Include="CheckRecKod.xaml">
       <SubType>Designer</SubType>
@@ -324,7 +329,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="pages\WatchTicket.xaml">
+    <Page Include="pages\WatchFlight.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -337,18 +342,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Reg.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="pages\WatchFlight.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="WatchFlights.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="WatchTickets.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

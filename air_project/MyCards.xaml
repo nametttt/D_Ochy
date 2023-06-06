@@ -78,8 +78,8 @@
                          Grid.Column="2"
                          Style="{StaticResource MyWaterMarkStyle}"
                          Height="38"
-                         Tag="Год"
-                         PreviewTextInput="Year_PreviewTextInput" />
+                         PreviewTextInput="Year_PreviewTextInput"
+                         Tag="Год"/>
 
                     <PasswordBox x:Name="CVC"
                              Style="{StaticResource MyWaterMarkStyle1}"

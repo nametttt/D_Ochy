@@ -108,6 +108,7 @@
 
                 <CheckBox Content="Не выбирать дату" 
                   x:Name="checkboxNoDate" 
+                          IsChecked="True"
                   Margin="10"
                   Checked="checkboxNoDate_Checked"
                   Unchecked="checkboxNoDate_Checked"
@@ -129,11 +130,13 @@
                 Placement="Bottom"
                 PlacementTarget="{Binding ElementName=PassGrid}" 
                 VerticalOffset="4">
+        
 
             <Border BorderBrush="Gray" 
                     BorderThickness="1.5" 
                     x:Name="pass" 
                     Visibility="Collapsed">
+                
 
                 <DockPanel Background="#FFFDFDFE" >
                     <StackPanel DockPanel.Dock="Top" 

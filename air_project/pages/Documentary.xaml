@@ -5,72 +5,68 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:air_project"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="1450" d:DesignWidth="1000"
       Title="Documentary">
 
-    <DockPanel>
-        <DockPanel.Background>
-            <ImageBrush ImageSource="/Resources/Plane-stock.jpg"/>
-        </DockPanel.Background>
-        <ScrollViewer>
+    <DockPanel Width="975">
+        <StackPanel DockPanel.Dock="Top">
 
-            <DockPanel Grid.Column="1" 
-                   Grid.ColumnSpan="2">
-                <local:MyOchy DockPanel.Dock="Top"/>
+            <Label DockPanel.Dock="Top" 
+                   Content="Документация"
+                   FontSize="26" 
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center"
+                   Margin="0 0 0 15" />
 
-                <WrapPanel Orientation="Horizontal"
-                        HorizontalAlignment="Center"
-                           Margin="0 0 0 50">
+            <Grid>
+                <Border BorderThickness="1" 
+            CornerRadius="10" 
+            Margin="10" 
+            Grid.Column="1" 
+            Grid.Row="0" 
+            Background="#FFFAE3D5">
 
-                    <Border CornerRadius="10"
-                                    Background="#FFFAE3D5"
-                                    BorderThickness="1"
-                                    Grid.Column="1"
-                                    Margin="30 0 30 0"
-                                    VerticalAlignment="Top"
-                                    Visibility="Visible">
-                        <StackPanel Width="900">
-                            <Grid Margin="20 20">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
+                    <StackPanel>
+                        <FlowDocumentScrollViewer Margin="10 10 10 0" VerticalScrollBarVisibility="Hidden">
+                            <FlowDocument x:Name="save">
+                                <Paragraph FontWeight="Bold" FontSize="18">
+                                    Информация о прибыли
+                                </Paragraph>
+                                <Paragraph>
+                                    <Span FontWeight="Bold">За сегодняшний день:</Span>
+                                    <Run x:Name="todayProfit" />
+                                </Paragraph>
+                                <Paragraph>
+                                    <Span FontWeight="Bold">За месяц:</Span>
+                                    <Run x:Name="MonthProfit"/>
+                                </Paragraph>
 
-                                <Label Content="Документация"
-                                       HorizontalAlignment="Center"
-                                       Grid.ColumnSpan="2"
-                                           Margin="10 10 10 30"
-                                       Grid.Row="0"
-                                       FontSize="40" 
-                                       FontFamily="Nirmala UI Semilight"/>
-
-                                <DataGrid Margin="10,10,10,10" 
-                                          Height="350" 
-                                          Grid.Row="1"
-                                          Grid.ColumnSpan="2"
-                                          FontFamily="Candara" 
-                                          FontSize="20" 
-                                          x:Name="datagrid" 
-                                          Background="#FFFFF5F3"/>
-
-                                <Button x:Name="AllTicket" 
-                                            Grid.Row="3"
-                                            Grid.ColumnSpan="2" 
-                                            Margin="10"
-                                            Height="40" 
-                                            Content="Отправить на печать"
-                                            Style="{StaticResource Button}"/>
-                            </Grid>
-                        </StackPanel>
-                    </Border>
-                </WrapPanel>
-            </DockPanel>
-        </ScrollViewer>
+                                <BlockUIContainer>
+                                    <ListView FontSize="18" FontFamily="Candara" Padding="2" x:Name="grid" Height="450">
+                                        <ListView.View>
+                                            <GridView>
+                                                <GridViewColumn Header="Рейс" DisplayMemberBinding="{Binding FlightNumber}"/>
+                                                <GridViewColumn Header="Маршрут" DisplayMemberBinding="{Binding Route}" Width="190" />
+                                                <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding Date}" Width="240" />
+                                                <GridViewColumn Header="Пассажир" DisplayMemberBinding="{Binding Passenger}" Width="170" />
+                                                <GridViewColumn Header="Место" DisplayMemberBinding="{Binding SeatNumber}" Width="60" />
+                                                <GridViewColumn Header="Цена" DisplayMemberBinding="{Binding TicketPrice}" Width="60" />
+                                                <GridViewColumn Header="Дата покупки" DisplayMemberBinding="{Binding PurchaseDate}" Width="140" />
+                                            </GridView>
+                                        </ListView.View>
+                                    </ListView>
+                                </BlockUIContainer>
+                            </FlowDocument>
+                        </FlowDocumentScrollViewer>
+                        <Button x:Name="btnAuth"
+                    DockPanel.Dock="Top"
+                    Height="40" 
+                    Content="Сохранить отчет" 
+                    Margin="30 0 30 10"
+                    Style="{StaticResource Button}" Click="btnAuth_Click"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </StackPanel>
     </DockPanel>
 </Page>

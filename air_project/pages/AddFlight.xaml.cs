@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,6 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ZXing;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace air_project.pages
 {
@@ -21,11 +25,17 @@ namespace air_project.pages
     public partial class AddFlight : Page
     {
         int ticketCount = 6, numberseats = 36;
+        ChangeFlight changeFlight = new ChangeFlight();
         public AddFlight()
         {
             InitializeComponent();
             UpdateFlight();
+            depdate.Minimum = DateTime.Today.AddDays(1);
+            depdate.Maximum = DateTime.Today.AddMonths(1);
+            depdate.Value = depdate.Minimum;
+
         }
+
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
@@ -59,14 +69,29 @@ namespace air_project.pages
                              select new
                              {
                                  Номер = flight.IdFlight,
-                                 Город_Отправления = city1.CityName,
-                                 Дата_Отправления = flight.Departure_Date,
-                                 Город_Прибытия = city2.CityName,
-                                 Дата_Прибытия = flight.Arrival_Date,
+                                 Откуда = city1.CityName,
+                                 Отправление = flight.Departure_Date,
+                                 Куда = city2.CityName,
+                                 Прибытие = flight.Arrival_Date,
                                  Места = flight.Seats_Number,
                                  Стоимость = flight.RetailValue
                              };
-                datagrid.ItemsSource = query1.ToList();
+
+                var flights = query1.ToList();
+
+                var formattedFlights = flights.Select(f => new
+                {
+                    Номер = f.Номер,
+                    Откуда = f.Откуда,
+                    Отправление = f.Отправление.ToString("dd.MM.yyyy HH:mm"),
+                    Куда = f.Куда,
+                    Прибытие = f.Прибытие.ToString("dd.MM.yyyy HH:mm"),
+                    Места = f.Места,
+                    Стоимость = f.Стоимость
+                });
+
+                datagrid.ItemsSource = formattedFlights.ToList();
+
             }
         }
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -74,41 +99,8 @@ namespace air_project.pages
             UpdateFlight();
         }
 
-        private void AddMyTicket(int flightId, int ticketCount)
-        {
-            try
-            {
-                using (AirTicketsEntities air = new AirTicketsEntities())
-                {
-                    char[] letters = { 'A', 'B', 'C', 'D', 'E', 'F' };
 
-                    foreach (char letter in letters)
-                    {
-                        for (int i = 1; i <= ticketCount; i++)
-                        {
-                            string place = $"{letter}{i}";
-
-                            Ticket ticket = new Ticket()
-                            {
-                                IdFlight = flightId,
-                                Place = place,
-                            };
-
-                            air.Ticket.Add(ticket);
-                        }
-                    }
-
-                    air.SaveChanges();
-                    MessageBox.Show("Билеты успешно добавлены.", "Success!");
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Произошла ошибка при добавлении билетов.");
-            }
-        }
-
-        private void AddMyFlight(int departureCityId, DateTime departureDate, int arrivalCityId, DateTime arrivalDate, int seatsNumber, int retailValue)
+        public bool AddMyFlight(int departureCityId, DateTime departureDate, int arrivalCityId, DateTime arrivalDate, int seatsNumber, int retailValue)
         {
             try
             {
@@ -129,14 +121,17 @@ namespace air_project.pages
 
                     air.SaveChanges();
 
-                    AddMyTicket(flight.IdFlight, ticketCount);
+                    changeFlight.AddMyTicket(flight.IdFlight, ticketCount);
 
+                    return true;
 
                 }
             }
             catch
             {
                 MessageBox.Show("Произошла ошибка при добавлении рейса.");
+                return false;
+
             }
         }
 
@@ -176,33 +171,6 @@ namespace air_project.pages
             }
         }
 
-        private void UpdateFlight(int flightId, int departureCityId, DateTime departureDate, int arrivalCityId, DateTime arrivalDate, int seatsNumber, int retailValue)
-        {
-            try
-            {
-                using (AirTicketsEntities air = new AirTicketsEntities())
-                {
-                    var flight = air.Flight.FirstOrDefault(f => f.IdFlight == flightId);
-                    if (flight != null)
-                    {
-                        flight.Departure_City = departureCityId;
-                        flight.Departure_Date = departureDate;
-                        flight.Arrival_City = arrivalCityId;
-                        flight.Arrival_Date = arrivalDate;
-                        flight.Seats_Number = seatsNumber;
-                        flight.RetailValue = retailValue;
-
-                        air.SaveChanges();
-
-                        MessageBox.Show("Рейс успешно обновлен.", "Success!");
-                    }
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Произошла ошибка при обновлении рейса.");
-            }
-        }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
@@ -220,7 +188,7 @@ namespace air_project.pages
                         int departureCityId = air.City.FirstOrDefault(c => c.CityName == depcity.Text)?.IdCity ?? 0;
                         int arrivalCityId = air.City.FirstOrDefault(c => c.CityName == arrcity.Text)?.IdCity ?? 0;
 
-                        UpdateFlight(flightId, departureCityId, Convert.ToDateTime(depdate.Text), arrivalCityId, Convert.ToDateTime(arrdate.Text), numberseats, Convert.ToInt32(cost.Text));
+                        changeFlight.UpdateFlight(flightId, departureCityId, Convert.ToDateTime(depdate.Text), arrivalCityId, Convert.ToDateTime(arrdate.Text), numberseats, Convert.ToInt32(cost.Text));
 
                         depcity.Text = "";
                         depdate.Text = "";
@@ -237,28 +205,6 @@ namespace air_project.pages
             catch
             {
                 MessageBox.Show("Произошла ошибка!");
-            }
-        }
-
-
-        private void DeleteFlight(int flightId)
-        {
-            try
-            {
-                using (AirTicketsEntities air = new AirTicketsEntities())
-                {
-                    var flight = air.Flight.FirstOrDefault(f => f.IdFlight == flightId);
-                    if (flight != null)
-                    {
-                        air.Flight.Remove(flight);
-                        air.SaveChanges();
-                        MessageBox.Show("Рейс успешно удален.", "Success!");
-                    }
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Произошла ошибка при удалении рейса.");
             }
         }
 
@@ -276,7 +222,7 @@ namespace air_project.pages
                     else
                     {
                         int flightId = (int)idFlight.SelectedItem;
-                        DeleteFlight(flightId);
+                        changeFlight.DeleteFlight(flightId);
                         depcity.Text = "";
                         depdate.Text = "";
                         arrcity.Text = "";
@@ -294,6 +240,31 @@ namespace air_project.pages
                 MessageBox.Show("Произошла ошибка!");
             }
         }
+
+        private void depdate_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            try
+            {
+                if (depdate.Value.HasValue)
+                {
+                    arrdate.Minimum = null;
+                    arrdate.Maximum = null;
+
+
+                    DateTime newDate = depdate.Value.Value.AddMinutes(10);
+                    arrdate.Value = newDate;
+                    arrdate.Minimum = newDate;
+                    arrdate.Maximum = newDate.AddHours(18);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+                Clipboard.SetText(ex.Message);
+            }
+        }
+
 
         private void idFlight_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

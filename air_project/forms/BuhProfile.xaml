@@ -9,6 +9,7 @@
          Title="Личный кабинет" Height="650" Width="1250" MinHeight="650" MinWidth="1000" Icon="/Resources/логотип.png" Closing="Window_Closing">
 
     <DockPanel>
+        <ScrollViewer>
 
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -21,10 +22,16 @@
                     <ImageBrush ImageSource="/Resources/Plane-stock.jpg"/>
                 </Grid.Background>
 
-            <Frame Grid.Column="1" Grid.ColumnSpan="2" x:Name="MainContent" NavigationUIVisibility="Hidden" Source="/pages/MainHome.xaml">
-                    
-                </Frame>
+                <DockPanel Grid.Column="1" 
+                   Grid.ColumnSpan="2">
+                    <local:MyOchy DockPanel.Dock="Top"/>
 
+                    <WrapPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                        <Frame Grid.Column="1" Grid.ColumnSpan="2" x:Name="MainContent" NavigationUIVisibility="Hidden" Margin="0 0 0 30"/>
+                    </WrapPanel>
+
+                </DockPanel>
                 <HamburgerMenu:HamburgerMenu 
                                 Grid.Column="0" 
                                 Grid.ColumnSpan="2" 
@@ -47,12 +54,12 @@
                                                      Height="50"
                                                      x:Name="watchtickets" 
                                                      Icon="/Resources/plane.png" Selected="watchtickets_Selected"/>
-                    
+
                     <HamburgerMenu:HamburgerMenuItem Text="Документация" 
                                                      Height="50"
                                                      x:Name="doc" 
                                                      Icon="/Resources/doc.png" Selected="doc_Selected"/>
-                    
+
                     <HamburgerMenu:HamburgerMenuItem Text="Просмотр рейсов" 
                                                      Height="50"
                                                      x:Name="watchfly" 
@@ -64,5 +71,6 @@
                                                      Icon="/Resources/exit.png" Selected="exit_Selected"/>
                 </HamburgerMenu:HamburgerMenu>
             </Grid>
+        </ScrollViewer>
     </DockPanel>
 </Window>

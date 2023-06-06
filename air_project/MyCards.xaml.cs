@@ -40,16 +40,46 @@ namespace air_project
 
         private void CardNum_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            CardNum.FontSize = 22;
-
             TextBox textBox = (TextBox)sender;
-            int maxLength = 16;
+            int maxLength = 19;
 
             if (!IsNumericInput(e.Text) || textBox.Text.Length >= maxLength)
             {
                 e.Handled = true;
+                return;
             }
+
+            string currentText = textBox.Text.Replace(" ", "");
+
+            string newText = currentText + e.Text;
+
+            string formattedText = FormatCardNumber(newText);
+
+            textBox.Text = formattedText;
+
+            textBox.CaretIndex = textBox.Text.Length;
+
+            e.Handled = true;
         }
+
+
+        private string FormatCardNumber(string cardNumber)
+        {
+            string digitsOnly = Regex.Replace(cardNumber, @"[^\d]", "");
+
+            StringBuilder formattedNumber = new StringBuilder();
+            for (int i = 0; i < digitsOnly.Length; i++)
+            {
+                if (i > 0 && i % 4 == 0)
+                {
+                    formattedNumber.Append(" ");
+                }
+                formattedNumber.Append(digitsOnly[i]);
+            }
+
+            return formattedNumber.ToString();
+        }
+
 
         private bool IsNumericInput(string input)
         {
@@ -65,7 +95,6 @@ namespace air_project
 
         private void Month_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            Month.FontSize = 22;
 
             TextBox textBox = (TextBox)sender;
             int maxLength = 2;
@@ -99,46 +128,9 @@ namespace air_project
             return false;
         }
 
-        private void Year_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            Year.FontSize = 22;
-
-            TextBox textBox = (TextBox)sender;
-            int maxLength = 2;
-
-            if (!IsNumericInput(e.Text) || textBox.Text.Length >= maxLength)
-            {
-                e.Handled = true;
-                return;
-            }
-
-            string input = textBox.Text + e.Text;
-
-            if (!IsValidYear(input))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private bool IsValidYear(string input)
-        {
-            int year;
-
-            if (int.TryParse(input, out year))
-            {
-                if (year >= 23 && year <= 30)
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
 
         private void CVC_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            CVC.FontSize = 22;
 
             PasswordBox textBox = (PasswordBox)sender;
             int maxLength = 3;
@@ -160,6 +152,54 @@ namespace air_project
             Month.FontSize = 18;
             Year.FontSize = 18;
             CVC.FontSize = 18;
+        }
+
+        private void Year_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+
+            if (textBox.Text.Length + e.Text.Length > 2)
+            {
+                e.Handled = true;
+                return;
+            }
+
+            string newText = textBox.Text + e.Text;
+
+            if (!IsValidYear(newText))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private bool IsValidYear(string input)
+        {
+            if (input.Length == 1)
+            {
+                int digit = int.Parse(input);
+
+                if (digit != 2 && digit != 3)
+                {
+                    return false;
+                }
+            }
+            else if (input.Length == 2)
+            {
+                int firstDigit = int.Parse(input.Substring(0, 1));
+                int secondDigit = int.Parse(input.Substring(1, 1));
+
+                if ((firstDigit == 2 && secondDigit >= 3 && secondDigit <= 9) ||
+                    (firstDigit == 3 && secondDigit == 0))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }

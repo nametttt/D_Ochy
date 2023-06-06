@@ -36,14 +36,9 @@ namespace air_project
 
         private void exit_Selected(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("Действительно ли вы хотите выйти из аккаунта?", "Подтверждение выхода из аккаунта", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-
-            if (result == MessageBoxResult.Yes)
-            {
                 this.Hide();
                 Auth auth = new Auth();
                 auth.Show();
-            }
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -59,35 +54,23 @@ namespace air_project
             MainContent.NavigationService.Navigate(new MainHome(_user));
         }
 
-        private void addticket_Selected(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void changeticket_Selected(object sender, RoutedEventArgs e)
         {
-
             MainContent.Navigate(new Uri("/pages/AddTicket.xaml", UriKind.Relative));
+            Title = "Просмотр билетов";
         }
 
         private void addfly_Selected(object sender, RoutedEventArgs e)
         {
             MainContent.Navigate(new Uri("/pages/AddFlight.xaml", UriKind.Relative));
+            Title = "Управление рейсами";
         }
 
-        private void changefly_Selected(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void HamburgerMenuItem_Selected(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void usersWatch_Selected(object sender, RoutedEventArgs e)
         {
-
+            MainContent.Navigate(new Uri("/pages/AddUser.xaml", UriKind.Relative));
+            Title = "Управление пользователями";
         }
     }
 }

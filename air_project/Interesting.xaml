@@ -12,15 +12,11 @@
     <DockPanel>
 
             <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50"/>
-                    <ColumnDefinition Width="200"/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-
-                <Grid.Background>
-                    <ImageBrush ImageSource="Resources/Plane-stock.jpg"/>
-                </Grid.Background>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
 
             <ScrollViewer Grid.Column="1" 
                    Grid.ColumnSpan="2">

@@ -47,7 +47,7 @@ namespace air_project
                     foreach (User user in air.User)
                     {
                         GetHash g = new GetHash();
-                        if (login == user.Login && password ==user.Password && user.Role == "Покупатель")
+                        if (login == user.Login && g.GetHashString(password) == user.Password && user.Role == "Покупатель")
                         {
 
                             CustomerProfile w1 = new CustomerProfile(user);
@@ -59,7 +59,7 @@ namespace air_project
                             this.Hide();
                             return;
                         }
-                        else if (login == user.Login && password == user.Password && user.Role == "Администратор")
+                        else if (login == user.Login && password == (user.Password) && user.Role == "Администратор")
                         {
 
                             AdminProfile admin = new AdminProfile(user);
@@ -69,11 +69,13 @@ namespace air_project
                             this.Hide();
                             return;
                         }
-                        else if (login == user.Login && password == user.Password && user.Role == "Бухгалтер")
+                        else if (login == user.Login && g.GetHashString(password) == user.Password && user.Role == "Бухгалтер")
                         {
-                            MessageBox.Show($"Добро пожаловать, {user.Name}!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
 
                             BuhProfile buh = new BuhProfile(user);
+                            buh.LoadAdminPage();
+                            MessageBox.Show($"Добро пожаловать, {user.Name}!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
+
                             buh.Show();
                             this.Hide();
                             return;
