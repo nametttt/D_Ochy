@@ -88,7 +88,7 @@ namespace air_project
             {
                 foreach (User user in _context.User)
                 {
-                    if (_user.Login == user.Login)
+                    if (_user.IdUser == user.IdUser)
                     {
                         _context.User.Remove(user);
                     }
@@ -163,8 +163,10 @@ namespace air_project
                         {
                             foreach (User user in _context.User)
                             {
-                                user.Password = NewPassword.Password;
-                            }
+                                if (_user.IdUser == user.IdUser)
+                                {
+                                    user.Password = NewPassword.Password;
+                                }                            }
                             _context.SaveChanges();
                             MessageBox.Show("Пароль успешно изменен!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                             NowPassword.Password = "";

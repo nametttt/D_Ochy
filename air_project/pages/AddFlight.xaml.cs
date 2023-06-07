@@ -156,10 +156,8 @@ namespace air_project.pages
                         AddMyFlight(departureCityId, Convert.ToDateTime(depdate.Text), arrivalCityId, Convert.ToDateTime(arrdate.Text), numberseats, Convert.ToInt32(cost.Text));
 
                         depcity.Text = "";
-                        depdate.Text = "";
                         arrcity.Text = "";
                         cost.Text = "";
-                        arrdate.Text = "";
                         UpdateFlight();
 
                     }
@@ -191,10 +189,8 @@ namespace air_project.pages
                         changeFlight.UpdateFlight(flightId, departureCityId, Convert.ToDateTime(depdate.Text), arrivalCityId, Convert.ToDateTime(arrdate.Text), numberseats, Convert.ToInt32(cost.Text));
 
                         depcity.Text = "";
-                        depdate.Text = "";
                         arrcity.Text = "";
                         cost.Text = "";
-                        arrdate.Text = "";
                         idFlight.SelectedItem = null;
                         UpdateFlight();
 
@@ -224,10 +220,8 @@ namespace air_project.pages
                         int flightId = (int)idFlight.SelectedItem;
                         changeFlight.DeleteFlight(flightId);
                         depcity.Text = "";
-                        depdate.Text = "";
                         arrcity.Text = "";
                         cost.Text = "";
-                        arrdate.Text = "";
                         idFlight.SelectedItem = null;
                         UpdateFlight();
 

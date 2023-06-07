@@ -22,7 +22,6 @@ namespace air_project
         public static string code = "";
         static MailAddress to;
         private MyUser myUser;
-        string _email = "";
 
         public Confirmation(string Email, MyUser regUser)
         {

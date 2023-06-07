@@ -59,7 +59,7 @@ namespace air_project
                             this.Hide();
                             return;
                         }
-                        else if (login == user.Login && password == (user.Password) && user.Role == "Администратор")
+                        else if (login == user.Login && g.GetHashString(password) == (user.Password) && user.Role == "Администратор")
                         {
 
                             AdminProfile admin = new AdminProfile(user);
