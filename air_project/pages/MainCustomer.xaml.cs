@@ -36,8 +36,10 @@ namespace air_project.pages
             LoadCities();
 
             otpr.DisplayDateEnd = DateTime.Today.AddMonths(1);
+            otpr.DisplayDateStart = DateTime.Today;
 
-            
+
+
         }
 
         public void LoadCities()
@@ -128,7 +130,7 @@ namespace air_project.pages
                 int podr = Convert.ToInt32(txt_second.Text);
                 int deti = Convert.ToInt32(txt_third.Text);
 
-
+                bool isExist = false;
 
                 using (AirTicketsEntities db = new AirTicketsEntities())
                 {
@@ -157,7 +159,7 @@ namespace air_project.pages
                             {
                                 tanushka.Visibility = Visibility.Visible;
                                 NotFound.Visibility = Visibility.Collapsed;
-
+                                isExist = true;
                                 int t = 0;
                                 int cost = 0;
 
@@ -229,12 +231,6 @@ namespace air_project.pages
                                     tickets.Add(x);
                                 }
                             }
-                            else
-                            {
-                                NotFound.Visibility = Visibility.Visible;
-                                tanushka.Visibility = Visibility.Collapsed;
-
-                            }
 
                         }
                         else
@@ -242,7 +238,7 @@ namespace air_project.pages
                             string departureDateString = i.Departure_Date.ToString("dd.MM.yyyy");
                             if (i.Arrival_City == arr.IdCity && i.Departure_City == dep.IdCity && departureDateString == vilet && i.Departure_Date > DateTime.Now)
                             {
-
+                                isExist = true;
                                 tanushka.Visibility = Visibility.Visible;
                                 NotFound.Visibility = Visibility.Collapsed;
                                 int t = 0;
@@ -316,16 +312,15 @@ namespace air_project.pages
                                     tickets.Add(x);
                                 }
                             }
-                            else
-                            {
-                                NotFound.Visibility = Visibility.Visible;
-                                tanushka.Visibility = Visibility.Collapsed;
-
-                            }
                         }
 
 
 
+                    }
+                    if(!isExist)
+                    {
+                            NotFound.Visibility = Visibility.Visible;
+                            tanushka.Visibility = Visibility.Collapsed;
                     }
                     ticketListBox.ItemsSource = tickets;
                 }

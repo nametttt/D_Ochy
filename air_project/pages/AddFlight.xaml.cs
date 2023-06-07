@@ -91,6 +91,9 @@ namespace air_project.pages
                 });
 
                 datagrid.ItemsSource = formattedFlights.ToList();
+                depdate.Minimum = DateTime.Today.AddDays(1);
+                depdate.Maximum = DateTime.Today.AddMonths(1);
+                depdate.Value = depdate.Minimum;
 
             }
         }
